@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entrar | SOul</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f5f7fa;
+      color: #333;
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .auth-container {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      padding: 2rem;
+    }
+
+    .auth-header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .auth-header h1 {
+      color: #2c3e50;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .auth-header p {
+      color: #7f8c8d;
+      font-size: 0.9rem;
+    }
+
+    .input-group {
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .input-group i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #95a5a6;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 0.75rem 1rem 0.75rem 2.5rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .input-group input:focus {
+      border-color: #1abc9c;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(26, 188, 156, 0.2);
+    }
+
+    .forgot-password {
+      text-align: right;
+      margin: 0.5rem 0 1rem;
+    }
+
+    .forgot-password a {
+      color: #7f8c8d;
+      font-size: 0.8rem;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .forgot-password a:hover {
+      color: #1abc9c;
+    }
+
+    .auth-button {
+      width: 100%;
+      padding: 0.75rem;
+      background-color: #1abc9c;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .auth-button:hover {
+      background-color: #16a085;
+    }
+
+    .message {
+      text-align: center;
+      margin: 1rem 0;
+      padding: 0.5rem;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+
+    .auth-link {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      color: #7f8c8d;
+    }
+
+    .auth-link a {
+      color: #1abc9c;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .auth-link a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+      .auth-container {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="auth-container">
+    <div class="auth-header">
+      <h1>Bem-vindo de volta!</h1>
+      <p>Por favor, faça login na sua conta</p>
+    </div>
+    
+    <form>
+      <div class="input-group">
+        <i class="fas fa-user"></i>
+        <input type="text" placeholder="Usuário ou E-mail" required>
+      </div>
+      
+      <div class="input-group">
+        <i class="fas fa-lock"></i>
+        <input type="password" placeholder="Senha" required>
+      </div>
+      
+      <div class="forgot-password">
+        <a href="#">Esqueceu a senha?</a>
+      </div>
+      
+      <button type="submit" class="auth-button">Entrar</button>
+
+      <div id="loginMessage" class="message"></div>
+    </form>
+    
+    <div class="auth-link">
+      <p>Não tem uma conta? <a href="signup.html">Cadastre-se</a></p>
+    </div>
+  </div>
+
+  <script>
+    document.querySelector('form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const email = this.querySelector('input[type="text"]').value;
+        const password = this.querySelector('input[type="password"]').value;
+        
+        fetch('login.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, senha: password })
+        })
+        .then(response => response.json())
+        .then(data => {
+            const messageEl = document.getElementById('loginMessage');
+            messageEl.textContent = data.message || '';
+            messageEl.style.color = data.success ? 'green' : 'red';
+            
+            if (data.success) {
+                // Armazena o estado de login
+                localStorage.setItem('userLoggedIn', 'true');
+                localStorage.setItem('userName', data.user || 'Usuário');
+                
+                // Redireciona após breve delay
+                setTimeout(() => {
+                    window.location.href = data.redirect || 'index.html';
+                }, 1000);
+            }
+        })
+        .catch(error => {
+            document.getElementById('loginMessage').textContent = 'Erro ao conectar com o servidor';
+            document.getElementById('loginMessage').style.color = 'red';
+        });
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home | SOul</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f5f7fa;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #2c3e50;
+      color: #fff;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    nav a {
+      color: #ecf0f1;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #1abc9c;
+    }
+
+    .user-area {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .user-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: #1abc9c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .user-dropdown {
+      position: absolute;
+      top: 70px;
+      right: 2rem;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      padding: 1rem;
+      width: 200px;
+      display: none;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .user-dropdown a {
+      color: #333;
+      padding: 0.5rem;
+      border-radius: 4px;
+      transition: background 0.3s ease;
+    }
+
+    .user-dropdown a:hover {
+      background: #f5f7fa;
+    }
+
+    .user-dropdown.show {
+      display: flex;
+    }
+
+    .login-btn {
+      background: #1abc9c;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-weight: 500;
+      transition: background 0.3s ease;
+    }
+
+    .login-btn:hover {
+      background: #16a085;
+    }
+
+    main {
+      padding: 4rem 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: calc(100vh - 70px);
+    }
+
+    .welcome {
+      max-width: 600px;
+      text-align: center;
+    }
+
+    .welcome h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .welcome p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: #555;
+    }
+
+    .start-btn {
+      background: #1abc9c;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .start-btn:hover {
+      background: #16a085;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Estilos compartilhados com login/signup */
+    .auth-container {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      padding: 2rem;
+      margin: 2rem auto;
+    }
+
+    .auth-header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .auth-header h1 {
+      color: #2c3e50;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .auth-header p {
+      color: #7f8c8d;
+      font-size: 0.9rem;
+    }
+
+    .input-group {
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .input-group i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #95a5a6;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 0.75rem 1rem 0.75rem 2.5rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .input-group input:focus {
+      border-color: #1abc9c;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(26, 188, 156, 0.2);
+    }
+
+    .auth-button {
+      width: 100%;
+      padding: 0.75rem;
+      background-color: #1abc9c;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 0.5rem;
+    }
+
+    .auth-button:hover {
+      background-color: #16a085;
+    }
+
+    .auth-link {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #7f8c8d;
+    }
+
+    .auth-link a {
+      color: #1abc9c;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .auth-link a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 1rem;
+      }
+      
+      nav ul {
+        gap: 1rem;
+      }
+      
+      .welcome h1 {
+        font-size: 2rem;
+      }
+      
+      .welcome p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo" onclick="window.location.href='index.html'">SOul</div>
+    <nav>
+      <ul>
+        <li><a href="#">Sistemas Operacionais</a></li>
+        <li><a href="#">Favoritos</a></li>
+        <li><a href="test.html">Teste</a></li>
+        <li class="user-area">
+          <!-- Estado não logado -->
+          <a href="login.html" class="login-btn">Entrar</a>
+          
+          <!-- Estado logado (comentar uma das versões para testar) -->
+          <!--
+          <div class="user-avatar" id="userAvatar">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="user-dropdown" id="userDropdown">
+            <a href="#"><i class="fas fa-user-circle"></i> Minha Conta</a>
+            <a href="#"><i class="fas fa-cog"></i> Configurações</a>
+            <a href="#"><i class="fas fa-sign-out-alt"></i> Sair</a>
+          </div>
+          -->
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="welcome">
+      <h1>Olá, <span id="username">@usuário</span> 👋</h1>
+      <p>Bem-vindo ao <strong>SOul</strong> — nosso objetivo é alinhar você ao sistema operacional ideal com base em um teste simples e personalizado.</p>
+      <a href="test.html" class="start-btn">Começar o Teste</a>
+    </section>
+  </main>
+
+  <script>
+    // Controle do dropdown do usuário
+    const userAvatar = document.getElementById('userAvatar');
+    const userDropdown = document.getElementById('userDropdown');
+    
+    if (userAvatar && userDropdown) {
+      userAvatar.addEventListener('click', function(e) {
+        e.stopPropagation();
+        userDropdown.classList.toggle('show');
+      });
+      
+      // Fechar dropdown ao clicar fora
+      document.addEventListener('click', function() {
+        userDropdown.classList.remove('show');
+      });
+    }
+  </script>
+</body>
+</html>
