@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teste | SOul</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f5f7fa;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #2c3e50;
+      color: #fff;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    nav a {
+      color: #ecf0f1;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #1abc9c;
+    }
+
+    .user-area {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .login-btn {
+      background: #1abc9c;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-weight: 500;
+      transition: background 0.3s ease;
+    }
+
+    .login-btn:hover {
+      background: #16a085;
+    }
+
+    main {
+      padding: 3rem 2rem;
+      min-height: calc(100vh - 70px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .test-container {
+      width: 100%;
+      max-width: 800px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background: #ecf0f1;
+      border-radius: 3px;
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+
+    .progress {
+      height: 100%;
+      width: 20%;
+      background: #1abc9c;
+      transition: width 0.3s ease;
+    }
+
+    .question {
+      margin-bottom: 2.5rem;
+      text-align: center;
+    }
+
+    .question h2 {
+      font-size: 1.5rem;
+      color: #2c3e50;
+      margin-bottom: 1rem;
+    }
+
+    .question p {
+      color: #7f8c8d;
+      font-size: 1rem;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .option-card {
+      background: #f8f9fa;
+      border-radius: 10px;
+      padding: 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .option-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .option-card.selected {
+      border-color: #1abc9c;
+      background: rgba(26, 188, 156, 0.05);
+    }
+
+    .option-icon {
+      font-size: 2.5rem;
+      color: #1abc9c;
+      margin-bottom: 1rem;
+    }
+
+    .option-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 0.5rem;
+    }
+
+    .option-description {
+      font-size: 0.9rem;
+      color: #7f8c8d;
+    }
+
+    .navigation {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .nav-btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-next {
+      background: #1abc9c;
+      color: white;
+      border: none;
+    }
+
+    .btn-next:hover {
+      background: #16a085;
+      transform: translateY(-2px);
+    }
+
+    .btn-next:disabled {
+      background: #bdc3c7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-back {
+      background: none;
+      border: 1px solid #bdc3c7;
+      color: #7f8c8d;
+    }
+
+    .btn-back:hover {
+      border-color: #1abc9c;
+      color: #1abc9c;
+    }
+
+    @media (max-width: 768px) {
+      .test-container {
+        padding: 1.5rem;
+      }
+      
+      .options-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .question h2 {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo" onclick="window.location.href='index.html'">SOul</div>
+    <nav>
+      <ul>
+        <li><a href="#">Sistemas Operacionais</a></li>
+        <li><a href="#">Favoritos</a></li>
+        <li><a href="test.html">Teste</a></li>
+        <li class="user-area">
+          <a href="login.html" class="login-btn">Entrar</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="test-container">
+      <div class="progress-bar">
+        <div class="progress" id="progressBar"></div>
+      </div>
+      
+      <div class="question">
+        <h2>Quanto custaria o sistema operacional ideal para você?</h2>
+        <p>Selecione a opção que melhor representa seu orçamento</p>
+      </div>
+      
+      <div class="options-grid" id="optionsContainer">
+        <div class="option-card" data-value="free">
+          <div class="option-icon">
+            <i class="fas fa-dollar-sign"></i>
+          </div>
+          <h3 class="option-title">Gratuito</h3>
+          <p class="option-description">Prefiro sistemas operacionais totalmente gratuitos e de código aberto</p>
+        </div>
+
+        <div class="option-card" data-value="cheap">
+          <div class="option-icon">
+            <i class="fas fa-coins"></i>
+          </div>
+          <h3 class="option-title">Econômico</h3>
+          <p class="option-description">Posso investir uma pequena quantia em um sistema pago com bom custo-benefício</p>
+        </div>
+
+        <div class="option-card" data-value="expensive">
+          <div class="option-icon">
+            <i class="fas fa-gem"></i>
+          </div>
+          <h3 class="option-title">Premium</h3>
+          <p class="option-description">Estou disposto a pagar por um sistema operacional premium com todos os recursos</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="navigation">
+      <button class="nav-btn btn-back" disabled>
+        <i class="fas fa-arrow-left"></i> Voltar
+      </button>
+      <button class="nav-btn btn-next" id="nextBtn" disabled>
+        Próxima <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const optionCards = document.querySelectorAll('.option-card');
+      const nextBtn = document.getElementById('nextBtn');
+      let selectedOption = null;
+
+      // Selecionar uma opção
+      optionCards.forEach(card => {
+        card.addEventListener('click', function() {
+          // Remove a seleção de todas as opções
+          optionCards.forEach(c => c.classList.remove('selected'));
+          
+          // Adiciona seleção à opção clicada
+          this.classList.add('selected');
+          selectedOption = this.getAttribute('data-value');
+          
+          // Ativa o botão de próxima
+          nextBtn.disabled = false;
+        });
+      });
+
+      // Navegação para a próxima página
+      nextBtn.addEventListener('click', function() {
+        if (selectedOption) {
+          // Aqui você pode salvar a resposta e ir para a próxima pergunta
+          console.log('Opção selecionada:', selectedOption);
+          // Simulando navegação para a próxima pergunta
+          alert('Resposta salva: ' + selectedOption + '\nPróxima pergunta será carregada...');
+          // window.location.href = 'teste2.html';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
