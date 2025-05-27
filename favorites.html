@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Favoritos | SOul</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f5f7fa;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #2c3e50;
+      color: #fff;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    nav a {
+      color: #ecf0f1;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #1abc9c;
+    }
+
+    .user-area {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .login-btn {
+      background: #1abc9c;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-weight: 500;
+      transition: background 0.3s ease;
+    }
+
+    .login-btn:hover {
+      background: #16a085;
+    }
+
+    main {
+      padding: 2rem;
+      min-height: calc(100vh - 70px);
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .page-header h1 {
+      color: #2c3e50;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-header p {
+      color: #7f8c8d;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 3rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .empty-state i {
+      font-size: 3rem;
+      color: #bdc3c7;
+      margin-bottom: 1rem;
+    }
+
+    .empty-state h2 {
+      color: #2c3e50;
+      margin-bottom: 1rem;
+    }
+
+    .empty-state p {
+      color: #7f8c8d;
+      margin-bottom: 1.5rem;
+    }
+
+    .explore-btn {
+      background: #1abc9c;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.2s ease;
+      display: inline-block;
+    }
+
+    .explore-btn:hover {
+      background: #16a085;
+    }
+
+    .os-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .os-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .os-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .os-card-header {
+      position: relative;
+      height: 150px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .favorite-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(255, 255, 255, 0.8);
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .favorite-btn:hover {
+      background: white;
+      transform: scale(1.1);
+    }
+
+    .favorite-btn i {
+      color: #e74c3c;
+      font-size: 1.2rem;
+    }
+
+    .favorite-btn.favorited i {
+      color: #e74c3c;
+    }
+
+    .os-card-body {
+      padding: 1.5rem;
+    }
+
+    .os-card-body h3 {
+      color: #2c3e50;
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .os-card-body p {
+      color: #7f8c8d;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .os-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 1.5rem 1.5rem;
+    }
+
+    .os-type {
+      background: #ecf0f1;
+      color: #7f8c8d;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .details-btn {
+      background: #1abc9c;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .details-btn:hover {
+      background: #16a085;
+    }
+
+    @media (max-width: 768px) {
+      .os-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .page-header h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo" onclick="window.location.href='index.html'">SOul</div>
+    <nav>
+      <ul>
+        <li><a href="os.html">Sistemas Operacionais</a></li>
+        <li><a href="favorites.html">Favoritos</a></li>
+        <li><a href="test.html">Teste</a></li>
+        <li><a href="about.html">Sobre Nós</a></li>
+        <li class="user-area">
+          <a href="login.html" class="login-btn">Entrar</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>Seus Sistemas Favoritos</h1>
+      <p>Aqui estão todos os sistemas operacionais que você favoritou para fácil acesso</p>
+    </div>
+
+    <div id="favoritesContainer">
+    </div>
+
+    <div id="emptyState" class="empty-state" style="display: none;">
+      <i class="far fa-star"></i>
+      <h2>Nenhum favorito ainda</h2>
+      <p>Você ainda não favoritou nenhum sistema operacional. Explore nossa lista e adicione seus favoritos!</p>
+      <a href="os.html" class="explore-btn">Explorar Sistemas</a>
+    </div>
+  </main>
+
+  <script src="shared.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const favoritesContainer = document.getElementById('favoritesContainer');
+      const emptyState = document.getElementById('emptyState');
+      
+      const allOperatingSystems = [
+        {
+          name: "Ubuntu",
+          description: "Um dos sistemas Linux mais populares, conhecido por sua facilidade de uso e grande comunidade de suporte. Ideal para iniciantes e desenvolvedores.",
+          type: "Linux",
+          gradient: "linear-gradient(to right, #E95420, #77216F)",
+          link: "ubuntu.html"
+        },
+        {
+          name: "MacOS",
+          description: "Sistema operacional da Apple, conhecido por sua interface elegante, estabilidade e integração perfeita com outros produtos da marca.",
+          type: "Apple",
+          gradient: "linear-gradient(to right, #000000, #333333)",
+          link: "macos.html"
+        },
+        {
+          name: "Arch Linux",
+          description: "Distribuição Linux para usuários avançados, seguindo a filosofia KISS (Keep It Simple, Stupid). Altamente personalizável e minimalista.",
+          type: "Linux",
+          gradient: "linear-gradient(to right, #1793D1, #0F5F8F)",
+          link: "arch.html"
+        },
+        {
+          name: "Windows",
+          description: "Sistema operacional mais usado no mundo, desenvolvido pela Microsoft. Conhecido por sua compatibilidade com softwares e jogos.",
+          type: "Microsoft",
+          gradient: "linear-gradient(to right, #0078D7, #004E8C)",
+          link: "windows.html"
+        },
+        {
+          name: "Debian",
+          description: "Uma das distribuições Linux mais antigas e estáveis, base para muitas outras como Ubuntu. Valoriza software livre e estabilidade.",
+          type: "Linux",
+          gradient: "linear-gradient(to right, #A80030, #6D001E)",
+          link: "debian.html"
+        },
+        {
+          name: "Linux Mint",
+          description: "Distribuição Linux baseada no Ubuntu, focada em facilidade de uso e experiência desktop completa 'out of the box'.",
+          type: "Linux",
+          gradient: "linear-gradient(to right, #87CF3E, #5A9E22)",
+          link: "mint.html"
+        }
+      ];
+
+      let userFavorites = favorites.getAll();
+      
+      if (userFavorites.length === 0) {
+        emptyState.style.display = 'block';
+        return;
+      } else {
+        emptyState.style.display = 'none';
+      }
+      
+      const grid = document.createElement('div');
+      grid.className = 'os-grid';
+      
+      const favoriteSystems = allOperatingSystems.filter(os => 
+        userFavorites.includes(os.name)
+      );
+      
+      favoriteSystems.forEach(os => {
+        const card = document.createElement('div');
+        card.className = 'os-card';
+        card.innerHTML = `
+          <div class="os-card-header" style="background-image: ${os.gradient}">
+            <button class="favorite-btn favorited">
+              <i class="fas fa-star"></i>
+            </button>
+          </div>
+          <div class="os-card-body">
+            <h3>${os.name}</h3>
+            <p>${os.description}</p>
+          </div>
+          <div class="os-card-footer">
+            <span class="os-type">${os.type}</span>
+            <a href="${os.link}" class="details-btn">Ver detalhes</a>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+      
+      favoritesContainer.appendChild(grid);
+      
+      document.querySelectorAll('.favorite-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const osCard = this.closest('.os-card');
+          const osName = osCard.querySelector('h3').textContent;
+          
+          favorites.remove(osName);
+          osCard.remove();
+          
+          if (favorites.getAll().length === 0) {
+            emptyState.style.display = 'block';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

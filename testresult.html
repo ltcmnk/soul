@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resultados do Teste | SOul</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .results-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .results-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .results-header h1 {
+      font-size: 2rem;
+      color: #2c3e50;
+      margin-bottom: 1rem;
+    }
+
+    .results-header p {
+      color: #7f8c8d;
+      font-size: 1.1rem;
+    }
+
+    .recommendations {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .os-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .os-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .os-image {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .os-content {
+      padding: 1.5rem;
+    }
+
+    .os-name {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .os-description {
+      color: #7f8c8d;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .match-score {
+      display: inline-block;
+      background: #1abc9c;
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .os-features {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #ecf0f1;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #7f8c8d;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-item i {
+      color: #1abc9c;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .favorite-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #e74c3c;
+      font-size: 1.25rem;
+      padding: 0.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .favorite-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .favorite-btn.active {
+      color: #e74c3c;
+    }
+
+    .loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 400px;
+    }
+
+    .loading i {
+      font-size: 3rem;
+      color: #1abc9c;
+      animation: spin 1s linear infinite;
+    }
+
+    .loading p {
+      margin-top: 1rem;
+      color: #7f8c8d;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .error {
+      text-align: center;
+      padding: 2rem;
+      color: #e74c3c;
+    }
+
+    .retry-btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      background: #e74c3c;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .retry-btn:hover {
+      background: #c0392b;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo" onclick="window.location.href='index.html'">SOul</div>
+    <nav>
+      <ul>
+        <li><a href="os.html">Sistemas Operacionais</a></li>
+        <li><a href="favorites.html">Favoritos</a></li>
+        <li><a href="test.html">Teste</a></li>
+        <li><a href="about.html">Sobre Nós</a></li>
+        <li class="user-area"></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="results-container">
+      <div id="loadingSection" class="loading">
+        <i class="fas fa-circle-notch"></i>
+        <p>Analisando suas respostas...</p>
+      </div>
+
+      <div id="resultsSection" style="display: none;">
+        <div class="results-header">
+          <h1>Seus Resultados</h1>
+          <p>Com base nas suas respostas, aqui estão os sistemas operacionais mais adequados para você:</p>
+        </div>
+
+        <div id="recommendations" class="recommendations">
+          <!-- OS cards will be dynamically inserted here -->
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-secondary" onclick="navigation.goTo('test7')">Refazer Teste</button>
+          <button class="btn btn-primary" onclick="navigation.goTo('os')">Ver Todos os Sistemas</button>
+        </div>
+      </div>
+
+      <div id="errorSection" class="error" style="display: none;">
+        <h2>Ops! Algo deu errado.</h2>
+        <p>Não foi possível carregar seus resultados. Por favor, tente novamente.</p>
+        <a href="test.html" class="retry-btn">Refazer o Teste</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="shared.js"></script>
+  <script>
+    // OS recommendation logic based on user answers
+    const recommendOS = (answers) => {
+      const recommendations = [];
+      
+      // Example OS data - in a real app, this would come from a database
+      const operatingSystems = [
+        {
+          id: 'ubuntu',
+          name: 'Ubuntu',
+          description: 'Sistema Linux amigável e popular, perfeito para iniciantes',
+          image: 'images/ubuntu.jpg',
+          features: ['Interface intuitiva', 'Grande comunidade', 'Fácil instalação'],
+          matchCriteria: {
+            q1: ['easy', 'moderate'],
+            q2: ['free', 'low-cost'],
+            q3: ['gui'],
+            q4: ['productivity', 'multimedia'],
+            q5: ['stable'],
+            q6: ['basic', 'enhanced'],
+            q7: ['beginner', 'intermediate']
+          }
+        },
+        {
+          id: 'fedora',
+          name: 'Fedora',
+          description: 'Distribuição Linux moderna com foco em inovação',
+          image: 'images/fedora.jpg',
+          features: ['Atualizações frequentes', 'Software recente', 'Ótimo para desenvolvedores'],
+          matchCriteria: {
+            q1: ['moderate', 'complex'],
+            q2: ['free'],
+            q3: ['gui', 'cli'],
+            q4: ['development', 'productivity'],
+            q5: ['latest'],
+            q6: ['enhanced', 'maximum'],
+            q7: ['intermediate', 'advanced']
+          }
+        },
+        {
+          id: 'arch',
+          name: 'Arch Linux',
+          description: 'Distribuição Linux minimalista e altamente customizável',
+          image: 'images/arch.jpg',
+          features: ['Controle total', 'Rolling release', 'Documentação excelente'],
+          matchCriteria: {
+            q1: ['complex'],
+            q2: ['free'],
+            q3: ['cli'],
+            q4: ['development'],
+            q5: ['latest'],
+            q6: ['maximum'],
+            q7: ['advanced']
+          }
+        },
+        // Add more OS options here
+      ];
+
+      // Calculate match score for each OS
+      operatingSystems.forEach(os => {
+        let score = 0;
+        let maxScore = 0;
+
+        // Compare user answers with OS criteria
+        Object.entries(answers).forEach(([question, answer]) => {
+          if (os.matchCriteria[question]) {
+            maxScore++;
+            if (os.matchCriteria[question].includes(answer)) {
+              score++;
+            }
+          }
+        });
+
+        const matchPercentage = (score / maxScore) * 100;
+        
+        // Add to recommendations if match is above 50%
+        if (matchPercentage >= 50) {
+          recommendations.push({
+            ...os,
+            matchScore: Math.round(matchPercentage)
+          });
+        }
+      });
+
+      // Sort by match score
+      return recommendations.sort((a, b) => b.matchScore - a.matchScore);
+    };
+
+    // Create OS card HTML
+    const createOSCard = (os) => {
+      return `
+        <div class="os-card">
+          <img src="${os.image}" alt="${os.name}" class="os-image">
+          <div class="os-content">
+            <div class="os-name">
+              ${os.name}
+              <span class="match-score">${os.matchScore}% match</span>
+            </div>
+            <p class="os-description">${os.description}</p>
+            <div class="os-features">
+              ${os.features.map(feature => `
+                <div class="feature-item">
+                  <i class="fas fa-check"></i>
+                  <span>${feature}</span>
+                </div>
+              `).join('')}
+            </div>
+            <button class="favorite-btn" data-os-id="${os.id}" onclick="favorites.toggle('${os.id}')">
+              <i class="fas fa-heart"></i>
+            </button>
+          </div>
+        </div>
+      `;
+    };
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Check if user is logged in
+      if (!navigation.requireAuth()) return;
+
+      try {
+        // Get test answers
+        const answers = testProgress.getAnswers();
+        
+        // If no answers, redirect to test start
+        if (!answers || Object.keys(answers).length === 0) {
+          navigation.goTo('test');
+          return;
+        }
+
+        // Simulate API delay
+        await new Promise(resolve => setTimeout(resolve, 1500));
+
+        // Get recommendations
+        const recommendations = recommendOS(answers);
+
+        // Show results
+        document.getElementById('loadingSection').style.display = 'none';
+        document.getElementById('resultsSection').style.display = 'block';
+
+        // Render recommendations
+        const recommendationsContainer = document.getElementById('recommendations');
+        recommendationsContainer.innerHTML = recommendations
+          .map(os => createOSCard(os))
+          .join('');
+
+        // Update favorite buttons
+        const favoriteButtons = document.querySelectorAll('.favorite-btn');
+        favoriteButtons.forEach(btn => {
+          const osId = btn.dataset.osId;
+          if (favorites.isFavorite(osId)) {
+            btn.classList.add('active');
+          }
+        });
+
+      } catch (error) {
+        console.error('Error loading results:', error);
+        document.getElementById('loadingSection').style.display = 'none';
+        document.getElementById('errorSection').style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html> 

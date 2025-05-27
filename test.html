@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teste | SOul</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f5f7fa;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #2c3e50;
+      color: #fff;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    nav a {
+      color: #ecf0f1;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #1abc9c;
+    }
+
+    .user-area {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .login-btn {
+      background: #1abc9c;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-weight: 500;
+      transition: background 0.3s ease;
+    }
+
+    .login-btn:hover {
+      background: #16a085;
+    }
+
+    main {
+      padding: 3rem 2rem;
+      min-height: calc(100vh - 70px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .test-intro-container {
+      width: 100%;
+      max-width: 800px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .test-intro-container h1 {
+      color: #2c3e50;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .test-intro-container p {
+      color: #7f8c8d;
+      margin-bottom: 1.5rem;
+      text-align: left;
+      line-height: 1.7;
+    }
+
+    .features-list {
+      text-align: left;
+      margin: 2rem 0;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-icon {
+      color: #1abc9c;
+      font-size: 1.2rem;
+      margin-right: 1rem;
+      margin-top: 0.2rem;
+    }
+
+    .feature-text h3 {
+      color: #2c3e50;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-text p {
+      color: #7f8c8d;
+      margin-bottom: 0;
+    }
+
+    .start-test-btn {
+      background: #1abc9c;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 1rem;
+    }
+
+    .start-test-btn:hover {
+      background: #16a085;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(26, 188, 156, 0.3);
+    }
+
+    .test-steps {
+      display: flex;
+      justify-content: space-between;
+      margin: 2rem auto;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      position: relative;
+    }
+
+    .step-number {
+      width: 40px;
+      height: 40px;
+      background: #1abc9c;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      z-index: 2;
+    }
+
+    .step-text {
+      color: #7f8c8d;
+      font-size: 0.9rem;
+      text-align: center;
+      max-width: 100px;
+    }
+
+    .step-connector {
+      position: absolute;
+      height: 2px;
+      background: #ecf0f1;
+      top: 20px;
+      left: 50%;
+      width: 100%;
+      z-index: 1;
+    }
+
+    .step:last-child .step-connector {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .test-intro-container {
+        padding: 1.5rem;
+      }
+      
+      .test-intro-container h1 {
+        font-size: 1.5rem;
+      }
+      
+      .test-steps {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+      }
+      
+      .step-connector {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo" onclick="window.location.href='index.html'">SOul</div>
+    <nav>
+      <ul>
+        <li><a href="os.html">Sistemas Operacionais</a></li>
+        <li><a href="favorites.html">Favoritos</a></li>
+        <li><a href="test.html">Teste</a></li>
+        <li><a href="about.html">Sobre Nós</a></li>
+        <li class="user-area">
+          <a href="login.html" class="login-btn">Entrar</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="test-intro-container">
+      <h1>Encontre o Sistema Operacional Perfeito para Você</h1>
+      <p>Nosso teste de compatibilidade analisa suas necessidades, preferências e hardware para recomendar o sistema operacional ideal para seu uso diário. Responda algumas perguntas simples e descubra qual sistema combina mais com você!</p>
+      
+      <div class="features-list">
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-search"></i>
+          </div>
+          <div class="feature-text">
+            <h3>Análise Personalizada</h3>
+            <p>Consideramos seu tipo de uso, hardware e preferências para oferecer recomendações precisas.</p>
+          </div>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div class="feature-text">
+            <h3>Rápido e Fácil</h3>
+            <p>O teste leva apenas alguns minutos e você pode fazê-lo diretamente no navegador.</p>
+          </div>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-star"></i>
+          </div>
+          <div class="feature-text">
+            <h3>Resultados Objetivos</h3>
+            <p>Baseamos nossas recomendações em critérios técnicos e de usabilidade, sem viés comercial.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="test-steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-connector"></div>
+          <div class="step-text">Responda as perguntas</div>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-connector"></div>
+          <div class="step-text">Analisamos suas respostas</div>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-connector"></div>
+          <div class="step-text">Receba suas recomendações</div>
+        </div>
+      </div>
+      
+      <button class="start-test-btn" onclick="window.location.href='test1.html'">
+        Começar Teste <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+  </main>
+
+  <script src="shared.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const startBtn = document.querySelector('.start-test-btn');
+    const currentQuestion = testProgress.getCurrentQuestion();
+    const hasAnswers = Object.keys(testProgress.getAnswers()).length > 0;
+    
+    if (currentQuestion !== 'test1.html' || hasAnswers) {
+        startBtn.textContent = hasAnswers ? 'Continuar Teste' : 'Começar Teste';
+        startBtn.innerHTML += ' <i class="fas fa-arrow-right"></i>';
+        startBtn.onclick = function() {
+            window.location.href = hasAnswers ? currentQuestion : 'test1.html';
+        };
+    }
+  });
+  </script>
+</body>
+</html>
