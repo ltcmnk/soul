@@ -105,7 +105,7 @@
 
     .progress {
       height: 100%;
-      width: 85.71%;
+      width: 100%;
       background: #1abc9c;
       transition: width 0.3s ease;
     }
@@ -345,7 +345,7 @@
       // Função auxiliar para determinar a próxima página
       function getNextPage() {
           const currentTestNumber = parseInt(questionNumber.replace('q', ''));
-          return currentTestNumber === 7 ? 'testresult.html' : `test${currentTestNumber + 1}.html`;
+          return currentTestNumber === 6 ? 'testresult.html' : `test${currentTestNumber + 1}.html`;
       }
     });
   </script>
