@@ -105,7 +105,7 @@
 
     .progress {
       height: 100%;
-      width: 28.57%;
+      width: 33.33%;
       background: #1abc9c;
       transition: width 0.3s ease;
     }
@@ -246,7 +246,7 @@
   <main>
     <div class="container">
       <div class="progress-bar">
-        <div class="progress" id="progressBar" style="width: 28.57%"></div>
+        <div class="progress" id="progressBar" style="width: 33.33%"></div>
       </div>
       
       <div class="question">
@@ -337,7 +337,7 @@
       // Função auxiliar para determinar a próxima página
       function getNextPage() {
           const currentTestNumber = parseInt(questionNumber.replace('q', ''));
-          return currentTestNumber === 7 ? 'testresult.html' : `test${currentTestNumber + 1}.html`;
+          return currentTestNumber === 6 ? 'testresult.html' : `test${currentTestNumber + 1}.html`;
       }
     });
   </script>
