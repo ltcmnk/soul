@@ -378,45 +378,55 @@
     border-radius: 4px;
     }
 
-    /* ===== NOVOS ESTILOS PARA LOADING ===== */
-    .loading-message {
-    display: none;
-    align-self: flex-start;
-    margin: 0.5rem 0;
-    animation: fadeIn 0.3s ease-out;
+    /* ===== ESTILOS DO INDICADOR DE CARREGAMENTO ===== */
+        .loading-message {
+        align-self: flex-start;
+        margin: 0.5rem 0;
+        animation: fadeIn 0.3s ease-out;
     }
 
-    .loading-content {
-    display: inline-flex;
-    padding: 0.75rem 1.25rem;
-    background: white;
-    border-radius: 12px;
-    border: 1px solid #ecf0f1;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    .loading-bubble {
+        padding: 1rem 1.25rem;
+        background: white;
+        border-radius: 12px;
+        border: 1px solid #e0e0e0;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 100px;
     }
 
     .loading-dots {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        height: 24px;
     }
 
     .loading-dots span {
-    font-size: 24px;
-    line-height: 1;
-    animation: dotPulse 1.5s infinite ease-in-out;
-    opacity: 0;
-    color: #2c3e50;
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #2c3e50;
+        animation: bounce 1.4s infinite ease-in-out both;
     }
 
-    .loading-dots span:nth-child(1) { animation-delay: 0.2s; }
-    .loading-dots span:nth-child(2) { animation-delay: 0.4s; }
-    .loading-dots span:nth-child(3) { animation-delay: 0.6s; }
+    .loading-dots span:nth-child(1) { animation-delay: -0.32s; }
+    .loading-dots span:nth-child(2) { animation-delay: -0.16s; }
+    .loading-dots span:nth-child(3) { animation-delay: 0s; }
 
-    @keyframes dotPulse {
-    0%, 100% { opacity: 0.3; transform: translateY(0); }
-    50% { opacity: 1; transform: translateY(-3px); }
+    @keyframes bounce {
+        0%, 80%, 100% { 
+            transform: translateY(0);
+            opacity: 0.6;
+        }
+        40% { 
+            transform: translateY(-8px);
+            opacity: 1;
+        }
     }
 
     /* ===== ESTILOS PARA MENSAGENS FORMATADAS ===== */
@@ -640,12 +650,12 @@
     
     <div class="chat-messages" id="chat-messages">
     <!-- Mensagens aparecerão aqui -->
-    <div class="loading-indicator" id="loading-indicator" style="display: none;">
-        <div class="loading-dots">
+    <div class="chat-message message-bot loading-indicator" id="loading-indicator" style="display: none;">
+      <div class="loading-dots">
         <span>.</span><span>.</span><span>.</span>
-        </div>
+      </div>
     </div>
-    </div>
+  </div>
     
     <div class="chat-input">
         <input type="text" id="user-question" placeholder="Digite sua pergunta sobre sistemas operacionais...">
@@ -721,8 +731,14 @@
     loadingIndicator.id = 'loading-indicator';
     loadingIndicator.className = 'loading-message';
     loadingIndicator.innerHTML = `
-        <div class="loading-dots">
-        <span>.</span><span>.</span><span>.</span>
+        <div class="loading-message">
+            <div class="loading-bubble">
+                <div class="loading-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
         </div>
     `;
     chatMessages.appendChild(loadingIndicator);
@@ -739,8 +755,7 @@
     
     // Mostra/oculta loading
     function setLoading(loading) {
-        loadingIndicator.style.display = loading ? 'flex' : 'none';
-        chatMessages.scrollTop = chatMessages.scrollHeight;
+      document.getElementById('loading-indicator').style.display = loading ? 'flex' : 'none';
     }
     
     // Envio de mensagens
