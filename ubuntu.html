@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
   <style>
-    /* Estilos específicos para a página de detalhes */
+    /* alterado o nome do botão de favorito de favorite-hero-btn para favorite-btn */ 
     .os-hero {
       width: 100%;
       max-width: 1200px;
@@ -42,7 +42,7 @@
       opacity: 0.9;
     }
     
-    .favorite-hero-btn {
+    .favorite-btn {
       position: absolute;
       top: 1rem;
       right: 1rem;
@@ -58,17 +58,17 @@
       transition: all 0.3s ease;
     }
     
-    .favorite-hero-btn:hover {
+    .favorite-btn:hover {
       background: white;
       transform: scale(1.1);
     }
     
-    .favorite-hero-btn i {
+    .favorite-btn i {
       color: #e74c3c;
       font-size: 1.4rem;
     }
     
-    .favorite-hero-btn.favorited i {
+    .favorite-btn.favorited i {
       color: #e74c3c;
     }
     
@@ -270,10 +270,9 @@
   </header>
 
   <main>
-    <!-- Hero Section -->
     <section class="os-hero">
       <div class="os-hero-content">
-        <button class="favorite-hero-btn" id="favoriteBtn">
+        <button class="favorite-btn" id="favoriteBtn">
           <i class="far fa-star"></i>
         </button>
         <h1>Ubuntu</h1>
@@ -282,7 +281,6 @@
     </section>
     
     <div class="os-details-container">
-      <!-- Main Content -->
       <div class="os-main-content">
         <section class="os-description">
           <h2>Sobre o Ubuntu</h2>
@@ -338,7 +336,6 @@
         </section>
       </div>
       
-      <!-- Sidebar -->
       <div class="os-sidebar">
         <div class="os-info-card">
           <h3>Informações Técnicas</h3>
@@ -411,7 +408,6 @@
       </div>
     </div>
     
-    <!-- Download Section -->
     <section class="download-section">
       <h2>Pronto para experimentar o Ubuntu?</h2>
       <p>Baixe a versão mais recente do Ubuntu e descubra por que milhões de pessoas em todo o mundo escolheram este sistema operacional.</p>
