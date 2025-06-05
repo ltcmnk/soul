@@ -19,7 +19,6 @@
 
     .progress {
       height: 100%;
-      widith: 66.67%;
       background: #1abc9c;
       transition: width 0.3s ease;
     }
@@ -128,7 +127,9 @@
         <li><a href="favorites.html">Favoritos</a></li>
         <li><a href="test.html">Teste</a></li>
         <li><a href="about.html">Sobre Nós</a></li>
-        <li class="user-area"></li>
+         <li class="user-area">
+          <a href="login.html" class="login-btn">Entrar</a>
+        </li>
       </ul>
     </nav>
   </header>
@@ -136,7 +137,7 @@
   <main>
     <div class="container">
       <div class="progress-bar">
-        <div class="progress" id="progressBar" style="width: 66.67%"></div>
+        <div class="progress" id="progressBar" style="width: 57.14%"></div>
       </div>
       
       <div class="question">
@@ -149,7 +150,7 @@
         <p>Multitarefa moderna vai além de apenas abrir vários programas. Envolve a capacidade de usar múltiplas áreas de trabalho (ambientes virtuais), agrupar janelas, dividir a tela com facilidade (page tiling), alternar entre tarefas com atalhos práticos e manter a fluidez mesmo com muitos aplicativos abertos simultaneamente.</p>
       </div>
       
-      <div class="options-grid" id="optionsContainer">
+      <div class="options-grid" id="optionsGrid">
         <div class="option-card" data-value="yes">
           <div class="option-icon">
             <i class="fas fa-tasks"></i>
@@ -169,7 +170,7 @@
     </div>
     
     <div class="navigation">
-      <button class="btn btn-secondary" onclick="navigation.goTo('test3')">Voltar</button>
+      <button class="btn btn-secondary" id="backBtn">Voltar</button>
       <button class="btn btn-primary" id="nextBtn" disabled>Próxima</button>
     </div>
   </main>
@@ -181,9 +182,9 @@
       if (!navigation.requireAuth()) return;
 
       // Elementos da página
-      const optionsGrid = document.getElementById('optionsGrid') || document.getElementById('optionsContainer');
+      const optionsGrid = document.getElementById('optionsGrid');
       const nextBtn = document.getElementById('nextBtn');
-      const backBtn = document.querySelector('.btn-secondary');
+      const backBtn = document.getElementById('backBtn');
       
       // Identifica a pergunta atual
       const currentPage = window.location.pathname.split('/').pop();
