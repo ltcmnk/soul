@@ -84,7 +84,7 @@
       align-items: center;
     }
 
-    .container {
+    .test-container {
       width: 100%;
       max-width: 800px;
       background: white;
@@ -105,7 +105,7 @@
 
     .progress {
       height: 100%;
-      width: 33.33%;
+      width: 42.86%;
       background: #1abc9c;
       transition: width 0.3s ease;
     }
@@ -178,7 +178,7 @@
       max-width: 800px;
     }
 
-    .btn {
+    .nav-btn {
       padding: 0.75rem 1.5rem;
       border-radius: 8px;
       font-weight: 500;
@@ -186,36 +186,36 @@
       transition: all 0.3s ease;
     }
 
-    .btn-secondary {
-      background: none;
-      border: 1px solid #bdc3c7;
-      color: #7f8c8d;
-    }
-
-    .btn-secondary:hover {
-      border-color: #1abc9c;
-      color: #1abc9c;
-    }
-
-    .btn-primary {
+    .btn-next {
       background: #1abc9c;
       color: white;
       border: none;
     }
 
-    .btn-primary:hover {
+    .btn-next:hover {
       background: #16a085;
       transform: translateY(-2px);
     }
 
-    .btn-primary:disabled {
+    .btn-next:disabled {
       background: #bdc3c7;
       cursor: not-allowed;
       transform: none;
     }
 
+    .btn-back {
+      background: none;
+      border: 1px solid #bdc3c7;
+      color: #7f8c8d;
+    }
+
+    .btn-back:hover {
+      border-color: #1abc9c;
+      color: #1abc9c;
+    }
+
     @media (max-width: 768px) {
-      .container {
+      .test-container {
         padding: 1.5rem;
       }
       
@@ -238,43 +238,53 @@
         <li><a href="favorites.html">Favoritos</a></li>
         <li><a href="test.html">Teste</a></li>
         <li><a href="about.html">Sobre Nós</a></li>
-        <li class="user-area"></li>
+         <li class="user-area">
+          <a href="login.html" class="login-btn">Entrar</a>
+        </li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <div class="container">
+    <div class="test-container">
       <div class="progress-bar">
-        <div class="progress" id="progressBar" style="width: 33.33%"></div>
+        <div class="progress" id="progressBar" style="width: 42.86%"></div>
       </div>
       
       <div class="question">
-        <h2>Você está disposto a pagar pelo seu sistema operacional?</h2>
-        <p>Selecione a opção que melhor representa sua preferência</p>
+        <h2>Qual o ano de fabricação do seu computador?</h2>
+        <p>Selecione o período em que sua máquina foi fabricada para verificarmos a compatibilidade</p>
       </div>
       
       <div class="options-grid" id="optionsGrid">
-        <div class="option-card" data-value="no">
+        <div class="option-card" data-value="2009-2014">
           <div class="option-icon">
-            <i class="fas fa-times"></i>
+            <i class="fas fa-laptop"></i>
           </div>
-          <h3 class="option-title">Não</h3>
-          <p class="option-description">Prefiro opções gratuitas e código aberto</p>
+          <h3 class="option-title">2009 - 2014</h3>
+          <p class="option-description">Máquinas mais antigas com hardware menos potente</p>
         </div>
 
-        <div class="option-card" data-value="yes">
+        <div class="option-card" data-value="2015-2019">
           <div class="option-icon">
-            <i class="fas fa-check"></i>
+            <i class="fas fa-desktop"></i>
           </div>
-          <h3 class="option-title">Sim</h3>
-          <p class="option-description">Quero recursos premium e suporte garantido</p>
+          <h3 class="option-title">2015 - 2019</h3>
+          <p class="option-description">Máquinas intermediárias com bom desempenho</p>
+        </div>
+
+        <div class="option-card" data-value="2020-2025">
+          <div class="option-icon">
+            <i class="fas fa-server"></i>
+          </div>
+          <h3 class="option-title">2020 - 2025</h3>
+          <p class="option-description">Máquinas modernas com hardware de última geração</p>
         </div>
       </div>
     </div>
     
     <div class="navigation">
-      <button class="btn btn-secondary">Voltar</button>
+      <button class="btn btn-secondary" id="backBtn">Voltar</button>
       <button class="btn btn-primary" id="nextBtn" disabled>Próxima</button>
     </div>
   </main>
@@ -286,9 +296,9 @@
       if (!navigation.requireAuth()) return;
 
       // Elementos da página
-      const optionsGrid = document.getElementById('optionsGrid') || document.getElementById('optionsContainer');
+      const optionsGrid = document.getElementById('optionsGrid');
       const nextBtn = document.getElementById('nextBtn');
-      const backBtn = document.querySelector('.btn-secondary');
+      const backBtn = document.getElementById('backBtn');
       
       // Identifica a pergunta atual
       const currentPage = window.location.pathname.split('/').pop();
