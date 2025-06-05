@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
   <style>
+    /* alterado o nome do botão de favorito de favorite-hero-btn para favorite-btn */ 
     .os-hero {
       width: 100%;
       max-width: 1200px;
@@ -41,7 +42,7 @@
       opacity: 0.9;
     }
     
-    .favorite-hero-btn {
+    .favorite-btn {
       position: absolute;
       top: 1rem;
       right: 1rem;
@@ -57,17 +58,17 @@
       transition: all 0.3s ease;
     }
     
-    .favorite-hero-btn:hover {
+    .favorite-btn:hover {
       background: white;
       transform: scale(1.1);
     }
     
-    .favorite-hero-btn i {
+    .favorite-btn i {
       color: #e74c3c;
       font-size: 1.4rem;
     }
     
-    .favorite-hero-btn.favorited i {
+    .favorite-btn.favorited i {
       color: #e74c3c;
     }
     
@@ -271,7 +272,7 @@
   <main>
     <section class="os-hero">
       <div class="os-hero-content">
-        <button class="favorite-hero-btn" id="favoriteBtn">
+        <button class="favorite-btn" id="favoriteBtn">
           <i class="far fa-star"></i>
         </button>
         <h1>Debian</h1>
