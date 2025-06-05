@@ -105,7 +105,7 @@
 
     .progress {
       height: 100%;
-      width: 50.00%;
+      width: 42.86%;
       background: #1abc9c;
       transition: width 0.3s ease;
     }
@@ -238,7 +238,9 @@
         <li><a href="favorites.html">Favoritos</a></li>
         <li><a href="test.html">Teste</a></li>
         <li><a href="about.html">Sobre Nós</a></li>
-        <li class="user-area"></li>
+         <li class="user-area">
+          <a href="login.html" class="login-btn">Entrar</a>
+        </li>
       </ul>
     </nav>
   </header>
@@ -246,7 +248,7 @@
   <main>
     <div class="test-container">
       <div class="progress-bar">
-        <div class="progress" id="progressBar" style="width: 50.00%"></div>
+        <div class="progress" id="progressBar" style="width: 42.86%"></div>
       </div>
       
       <div class="question">
@@ -254,7 +256,7 @@
         <p>Selecione o período em que sua máquina foi fabricada para verificarmos a compatibilidade</p>
       </div>
       
-      <div class="options-grid" id="optionsContainer">
+      <div class="options-grid" id="optionsGrid">
         <div class="option-card" data-value="2009-2014">
           <div class="option-icon">
             <i class="fas fa-laptop"></i>
@@ -282,7 +284,7 @@
     </div>
     
     <div class="navigation">
-      <button class="btn btn-secondary" onclick="navigation.goTo('test2')">Voltar</button>
+      <button class="btn btn-secondary" id="backBtn">Voltar</button>
       <button class="btn btn-primary" id="nextBtn" disabled>Próxima</button>
     </div>
   </main>
@@ -294,9 +296,9 @@
       if (!navigation.requireAuth()) return;
 
       // Elementos da página
-      const optionsGrid = document.getElementById('optionsGrid') || document.getElementById('optionsContainer');
+      const optionsGrid = document.getElementById('optionsGrid');
       const nextBtn = document.getElementById('nextBtn');
-      const backBtn = document.querySelector('.btn-secondary');
+      const backBtn = document.getElementById('backBtn');
       
       // Identifica a pergunta atual
       const currentPage = window.location.pathname.split('/').pop();
