@@ -105,7 +105,7 @@
 
     .progress {
       height: 100%;
-      width: 83.33%;
+      width: 71.43%;
       background: #1abc9c;
       transition: width 0.3s ease;
     }
@@ -257,7 +257,9 @@
         <li><a href="favorites.html">Favoritos</a></li>
         <li><a href="test.html">Teste</a></li>
         <li><a href="about.html">Sobre Nós</a></li>
-        <li class="user-area"></li>
+         <li class="user-area">
+          <a href="login.html" class="login-btn">Entrar</a>
+        </li>
       </ul>
     </nav>
   </header>
@@ -265,7 +267,7 @@
   <main>
     <div class="container">
       <div class="progress-bar">
-        <div class="progress" id="progressBar" style="width: 83.33%"></div>
+        <div class="progress" id="progressBar" style="width: 71.43%"></div>
       </div>
       
       <div class="question">
@@ -301,7 +303,7 @@
     </div>
     
     <div class="navigation">
-      <button class="btn btn-secondary" onclick="navigation.goTo('test4')">Voltar</button>
+      <button class="btn btn-secondary" id="backBtn">Voltar</button>
       <button class="btn btn-primary" id="nextBtn" disabled>Próxima</button>
     </div>
   </main>
@@ -313,9 +315,9 @@
       if (!navigation.requireAuth()) return;
 
       // Elementos da página
-      const optionsGrid = document.getElementById('optionsGrid') || document.getElementById('optionsContainer');
+      const optionsGrid = document.getElementById('optionsGrid');
       const nextBtn = document.getElementById('nextBtn');
-      const backBtn = document.querySelector('.btn-secondary');
+      const backBtn = document.getElementById('backBtn');
       
       // Identifica a pergunta atual
       const currentPage = window.location.pathname.split('/').pop();
