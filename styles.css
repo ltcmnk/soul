@@ -1,4 +1,4 @@
-/* Common Styles */
+/* Estilo comum */
 * {
   margin: 0;
   padding: 0;
@@ -12,7 +12,7 @@ body {
   line-height: 1.6;
 }
 
-/* Header and Navigation */
+/* Topo e Navegação */
 header {
   display: flex;
   justify-content: space-between;
@@ -110,7 +110,7 @@ nav a:hover {
   background: #f5f7fa;
 }
 
-/* Main Container */
+/* Container Principal */
 main {
   padding: 3rem 2rem;
   display: flex;
@@ -129,7 +129,7 @@ main {
   margin-bottom: 2rem;
 }
 
-/* Buttons */
+/* Botões */
 .btn {
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
@@ -166,7 +166,7 @@ main {
   color: #1abc9c;
 }
 
-/* Navigation */
+/* Navegação */
 .navigation {
   display: flex;
   justify-content: space-between;
@@ -174,7 +174,7 @@ main {
   max-width: 800px;
 }
 
-/* Toast Messages */
+/* Brinde */
 .toast {
   position: fixed;
   bottom: 2rem;
@@ -203,7 +203,7 @@ main {
   opacity: 1;
 }
 
-/* Responsive Design */
+/* Design Responsivo */
 @media (max-width: 768px) {
   .container {
     padding: 1.5rem;
