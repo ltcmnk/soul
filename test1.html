@@ -105,7 +105,7 @@
 
     .progress {
       height: 100%;
-      width: 16.67%;
+      width: 14.29%;
       background: #1abc9c;
       transition: width 0.3s ease;
     }
@@ -239,7 +239,9 @@
         <li><a href="favorites.html">Favoritos</a></li>
         <li><a href="test.html">Teste</a></li>
         <li><a href="about.html">Sobre Nós</a></li>
-        <li class="user-area"></li>
+        <li class="user-area">
+          <a href="login.html" class="login-btn">Entrar</a>
+        </li>
       </ul>
     </nav>
   </header>
@@ -247,7 +249,7 @@
   <main>
     <div class="container">
       <div class="progress-bar">
-        <div class="progress" id="progressBar" style="width: 16.67%"></div>
+        <div class="progress" id="progressBar" style="width: 14.29%"></div>
       </div>
 
       <div class="question">
@@ -307,7 +309,7 @@
     </div>
 
     <div class="navigation">
-      <button class="btn btn-secondary">Voltar</button>
+      <button class="btn btn-secondary" id="backBtn">Voltar</button>
       <button class="btn btn-primary" id="nextBtn" disabled>Próxima</button>
     </div>
   </main>
@@ -315,63 +317,63 @@
   <script src="shared.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // Verifica se o usuário está logado
-        if (!navigation.requireAuth()) return;
+      // Verifica se o usuário está logado
+      if (!navigation.requireAuth()) return;
 
-        // Elementos da página
-        const optionsGrid = document.getElementById('optionsGrid') || document.getElementById('optionsContainer');
-        const nextBtn = document.getElementById('nextBtn');
-        const backBtn = document.querySelector('.btn-secondary');
-        
-        // Identifica a pergunta atual
-        const currentPage = window.location.pathname.split('/').pop();
-        const questionNumber = currentPage.replace('test', '').replace('.html', 'q');
-        
-        // Restaura resposta salva se existir
-        const savedAnswer = testProgress.getAnswer(questionNumber);
-        if (savedAnswer) {
-            const selectedCard = document.querySelector(`.option-card[data-value="${savedAnswer}"]`);
-            if (selectedCard) {
-                selectedCard.classList.add('selected');
-                nextBtn.disabled = false;
-            }
-        }
+      // Elementos da página
+      const optionsGrid = document.getElementById('optionsGrid');
+      const nextBtn = document.getElementById('nextBtn');
+      const backBtn = document.getElementById('backBtn');
+      
+      // Identifica a pergunta atual
+      const currentPage = window.location.pathname.split('/').pop();
+      const questionNumber = currentPage.replace('test', '').replace('.html', 'q');
+      
+      // Restaura resposta salva se existir
+      const savedAnswer = testProgress.getAnswer(questionNumber);
+      if (savedAnswer) {
+          const selectedCard = document.querySelector(`.option-card[data-value="${savedAnswer}"]`);
+          if (selectedCard) {
+              selectedCard.classList.add('selected');
+              nextBtn.disabled = false;
+          }
+      }
 
-        // Configura o evento de clique nas opções
-        optionsGrid.addEventListener('click', (e) => {
-            const card = e.target.closest('.option-card');
-            if (!card) return;
+      // Configura o evento de clique nas opções
+      optionsGrid.addEventListener('click', (e) => {
+          const card = e.target.closest('.option-card');
+          if (!card) return;
 
-            // Remove seleção de outras opções
-            document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
-            
-            // Seleciona a opção clicada
-            card.classList.add('selected');
-            nextBtn.disabled = false;
+          // Remove seleção de outras opções
+          document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+          
+          // Seleciona a opção clicada
+          card.classList.add('selected');
+          nextBtn.disabled = false;
 
-            // Salva a resposta
-            const answer = card.dataset.value;
-            testProgress.saveAnswer(questionNumber, answer);
-        });
+          // Salva a resposta
+          const answer = card.dataset.value;
+          testProgress.saveAnswer(questionNumber, answer);
+      });
 
-        // Configura o botão de próxima
-        nextBtn.addEventListener('click', () => {
-            const nextPage = getNextPage();
-            testProgress.setCurrentQuestion(nextPage);
-            window.location.href = nextPage;
-        });
+      // Configura o botão de próxima
+      nextBtn.addEventListener('click', () => {
+          const nextPage = getNextPage();
+          testProgress.setCurrentQuestion(nextPage);
+          window.location.href = nextPage;
+      });
 
-        // Configura o botão de voltar
-        backBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            navigation.goBackToTest();
-        });
+      // Configura o botão de voltar
+      backBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          navigation.goBackToTest();
+      });
 
-        // Função auxiliar para determinar a próxima página
-        function getNextPage() {
-            const currentTestNumber = parseInt(questionNumber.replace('q', ''));
-            return currentTestNumber === 6 ? 'testresult.html' : `test${currentTestNumber + 1}.html`;
-        }
+      // Função auxiliar para determinar a próxima página
+      function getNextPage() {
+          const currentTestNumber = parseInt(questionNumber.replace('q', ''));
+          return currentTestNumber === 6 ? 'testresult.html' : `test${currentTestNumber + 1}.html`;
+      }
     });
   </script>
 </body>
