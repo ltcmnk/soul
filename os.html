@@ -212,7 +212,6 @@
       }
     }
 
-   /* ===== CHAT - ESTILO COESO COM A PÁGINA ===== */
     .chat-container {
     background: white;
     border-radius: 12px;
@@ -363,7 +362,6 @@
     font-size: 1rem;
     }
 
-    /* Custom Scrollbar */
     .chat-messages::-webkit-scrollbar {
     width: 8px;
     }
@@ -378,7 +376,6 @@
     border-radius: 4px;
     }
 
-    /* ===== ESTILOS DO INDICADOR DE CARREGAMENTO ===== */
         .loading-message {
         align-self: flex-start;
         margin: 0.5rem 0;
@@ -429,7 +426,6 @@
         }
     }
 
-    /* ===== ESTILOS PARA MENSAGENS FORMATADAS ===== */
     .message-bot .bot-list {
     margin: 8px 0 12px 20px;
     }
@@ -478,7 +474,6 @@
     font-weight: 500;
     }
 
-    /* ===== RESPONSIVIDADE ===== */
     @media (max-width: 768px) {
     .chat-container {
         margin: 2rem 1rem 0;
@@ -538,7 +533,6 @@
     </div>
 
     <div class="os-grid">
-      <!-- Ubuntu -->
       <div class="os-card">
         <div class="os-card-header" style="background-image: linear-gradient(to right, #E95420, #77216F);">
           <button class="favorite-btn">
@@ -555,7 +549,6 @@
         </div>
       </div>
 
-      <!-- MacOS -->
       <div class="os-card">
         <div class="os-card-header" style="background-image: linear-gradient(to right, #000000, #333333);">
           <button class="favorite-btn">
@@ -572,7 +565,6 @@
         </div>
       </div>
 
-      <!-- Arch Linux -->
       <div class="os-card">
         <div class="os-card-header" style="background-image: linear-gradient(to right, #1793D1, #0F5F8F);">
           <button class="favorite-btn">
@@ -589,7 +581,6 @@
         </div>
       </div>
 
-      <!-- Windows -->
       <div class="os-card">
         <div class="os-card-header" style="background-image: linear-gradient(to right, #0078D7, #004E8C);">
           <button class="favorite-btn">
@@ -606,7 +597,6 @@
         </div>
       </div>
 
-      <!-- Debian -->
       <div class="os-card">
         <div class="os-card-header" style="background-image: linear-gradient(to right, #A80030, #6D001E);">
           <button class="favorite-btn">
@@ -623,7 +613,6 @@
         </div>
       </div>
 
-      <!-- Linux Mint -->
       <div class="os-card">
         <div class="os-card-header" style="background-image: linear-gradient(to right, #87CF3E, #5A9E22);">
           <button class="favorite-btn">
@@ -641,7 +630,6 @@
       </div>
     </div>
     
-    <!-- Chat Section -->
     <div class="chat-container">
     <div class="chat-header">
         <i class="fas fa-robot"></i>
@@ -649,7 +637,6 @@
     </div>
     
     <div class="chat-messages" id="chat-messages">
-    <!-- Mensagens aparecerão aqui -->
     <div class="chat-message message-bot loading-indicator" id="loading-indicator" style="display: none;">
       <div class="loading-dots">
         <span>.</span><span>.</span><span>.</span>
@@ -671,7 +658,6 @@
     document.addEventListener('DOMContentLoaded', function() {
       const favoriteBtns = document.querySelectorAll('.favorite-btn');
       
-      // Atualiza ícones com base nos favoritos salvos
       favoriteBtns.forEach(btn => {
         const osCard = btn.closest('.os-card');
         const osName = osCard.querySelector('h3').textContent;
@@ -681,8 +667,7 @@
           btn.classList.add('favorited');
         }
       });
-      
-      // Adiciona/remove favoritos
+
       favoriteBtns.forEach(btn => {
         btn.addEventListener('click', function() {
           const osCard = this.closest('.os-card');
@@ -755,7 +740,12 @@
     
     // Mostra/oculta loading
     function setLoading(loading) {
-      document.getElementById('loading-indicator').style.display = loading ? 'flex' : 'none';
+      const loadingEl = document.getElementById('loading-indicator');
+      loadingEl.style.display = loading ? 'flex' : 'none';
+      if (loading) {
+        // Scrolla para o final do chat quando o loading aparece
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
     }
     
     // Envio de mensagens
