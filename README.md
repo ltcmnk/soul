@@ -172,9 +172,7 @@ O projeto conta com uma página `favorites.html` onde o usuário pode salvar e c
 
 ## 👩‍💻 Autor
 
-Desenvolvido por **Letícia Miniuk Rosa Pereira, Rayssa Gaievicz Grafetti e Victor Willian Rodrigues Bittencourt**
-GitHub Letícia: [https://github.com/ltcmnk](https://github.com/ltcmnk)
-GitHub Rayssa: [https://github.com/T-800-888](https://github.com/T-800-888)
+Desenvolvido por **[Letícia Miniuk Rosa Pereira](https://github.com/ltcmnk), [Rayssa Gaievicz Grafetti](https://github.com/T-800-888) e Victor Willian Rodrigues Bittencourt**
 
 ---
 
