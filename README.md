@@ -180,5 +180,4 @@ Desenvolvido por **[Letícia Miniuk Rosa Pereira](https://github.com/ltcmnk), [R
 
 Este projeto está sob a licença MIT.
 Sinta-se livre para usar, modificar e contribuir.
-
 ```
