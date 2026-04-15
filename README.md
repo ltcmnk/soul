@@ -1,5 +1,5 @@
 ```
-## SOul 🖥️🤖  
+# SOul 🖥️🤖  
 SOul é uma aplicação web interativa que ajuda usuários a escolherem o sistema operacional ideal (Windows, Ubuntu, Mint, MacOS, Arch Linux etc.) com base no perfil e necessidades do usuário. O projeto utiliza uma interface web simples e um backend em **Flask** integrado ao **Ollama (LLM local)** para gerar recomendações e respostas.
 
 ---
