@@ -4,438 +4,142 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Linux Mint | SOul</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script>document.documentElement.setAttribute('data-theme',localStorage.getItem('soul-theme')||'dark')</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
-  <style>
-    /* alterado o nome do botão de favorito de favorite-hero-btn para favorite-btn */ 
-    .os-hero {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto 2rem;
-      border-radius: 12px;
-      overflow: hidden;
-      position: relative;
-      height: 300px;
-      background-image: linear-gradient(to right, #87CF3E, #5A9E22);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-align: center;
-      padding: 2rem;
-    }
-    
-    .os-hero-content {
-      z-index: 2;
-      max-width: 800px;
-      position: relative;
-    }
-    
-    .os-hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-    
-    .os-hero p {
-      font-size: 1.1rem;
-      opacity: 0.9;
-    }
-    
-    .favorite-btn {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: rgba(255, 255, 255, 0.8);
-      border: none;
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    
-    .favorite-btn:hover {
-      background: white;
-      transform: scale(1.1);
-    }
-    
-    .favorite-btn i {
-      color: #e74c3c;
-      font-size: 1.4rem;
-    }
-    
-    .favorite-btn.favorited i {
-      color: #e74c3c;
-    }
-    
-    .os-details-container {
-      display: flex;
-      gap: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      width: 100%;
-    }
-    
-    .os-main-content {
-      flex: 2;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      padding: 2rem;
-    }
-    
-    .os-sidebar {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-    
-    .os-info-card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      padding: 1.5rem;
-    }
-    
-    .os-info-card h3 {
-      color: #2c3e50;
-      margin-bottom: 1rem;
-      font-size: 1.2rem;
-      border-bottom: 1px solid #ecf0f1;
-      padding-bottom: 0.5rem;
-    }
-    
-    .info-item {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 0.75rem;
-    }
-    
-    .info-item span:first-child {
-      color: #7f8c8d;
-      font-weight: 500;
-    }
-    
-    .info-item span:last-child {
-      color: #2c3e50;
-    }
-    
-    .os-features {
-      margin-top: 2rem;
-    }
-    
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-    
-    .feature-card {
-      background: #f8fafc;
-      border-radius: 8px;
-      padding: 1.5rem;
-      transition: transform 0.3s ease;
-    }
-    
-    .feature-card:hover {
-      transform: translateY(-5px);
-    }
-    
-    .feature-card i {
-      font-size: 1.5rem;
-      color: #1abc9c;
-      margin-bottom: 1rem;
-    }
-    
-    .feature-card h4 {
-      color: #2c3e50;
-      margin-bottom: 0.5rem;
-    }
-    
-    .feature-card p {
-      color: #7f8c8d;
-      font-size: 0.9rem;
-    }
-    
-    .os-screenshots {
-      margin-top: 3rem;
-    }
-    
-    .screenshot-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-    
-    .screenshot-item {
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
-      height: 180px;
-      background-size: cover;
-      background-position: center;
-    }
-    
-    .screenshot-item:hover {
-      transform: scale(1.03);
-    }
-    
-    .download-section {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      margin-top: 3rem;
-      padding: 2rem;
-      background: linear-gradient(to right, #f5f7fa, #e8f0f8);
-      border-radius: 12px;
-    }
-    
-    .download-section h2 {
-      color: #2c3e50;
-      margin-bottom: 1rem;
-    }
-    
-    .download-section p {
-      color: #7f8c8d;
-      max-width: 600px;
-      margin-bottom: 1.5rem;
-    }
-    
-    .download-btn {
-      background: #87CF3E;
-      color: white;
-      padding: 0.75rem 2rem;
-      border-radius: 8px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    
-    .download-btn:hover {
-      background: #5A9E22;
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(135, 207, 62, 0.3);
-    }
-    
-    @media (max-width: 768px) {
-      .os-hero {
-        height: auto;
-        padding: 3rem 1rem;
-      }
-      
-      .os-hero h1 {
-        font-size: 2rem;
-      }
-      
-      .os-details-container {
-        flex-direction: column;
-      }
-      
-      .feature-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .screenshot-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
 </head>
 <body>
-  <header>
-    <div class="logo" onclick="window.location.href='index.html'">SOul</div>
+
+  <header class="site-header">
+    <a href="index.html" class="logo">SO<span>ul</span></a>
     <nav>
       <ul>
-        <li><a href="os.html">Sistemas Operacionais</a></li>
+        <li><a href="os.html">Sistemas</a></li>
         <li><a href="favorites.html">Favoritos</a></li>
         <li><a href="test.html">Teste</a></li>
-        <li><a href="about.html">Sobre Nós</a></li>
-        <li class="user-area">
-          <a href="login.html" class="login-btn">Entrar</a>
-        </li>
+        <li><a href="about.html">Sobre</a></li>
+        <li class="user-area"></li>
       </ul>
     </nav>
+    <button class="theme-toggle" aria-label="Alternar tema"></button>
+    <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </header>
 
   <main>
-    <section class="os-hero">
-      <div class="os-hero-content">
-        <button class="favorite-btn" id="favoriteBtn">
-          <i class="far fa-star"></i>
+    <div class="os-page-inner">
+
+      <section class="os-hero" style="background:linear-gradient(135deg,#87CF3E,#5A9E22)">
+        <button class="favorite-btn" id="favoriteBtn" title="Favoritar Linux Mint">
+          <i class="fas fa-heart"></i>
         </button>
-        <h1>Linux Mint</h1>
-        <p>Distribuição Linux baseada no Ubuntu, focada em facilidade de uso e experiência desktop completa "out of the box".</p>
+        <div class="os-hero-content">
+          <i class="fas fa-leaf" style="font-size:3.5rem;margin-bottom:1rem;opacity:.9"></i>
+          <h1>Linux Mint</h1>
+          <p>A transição mais suave para o Linux. Interface familiar, estabilidade sólida e tudo pronto no primeiro boot.</p>
+        </div>
+      </section>
+
+      <div class="os-details-container">
+        <div class="os-main-content">
+
+          <div class="os-description">
+            <h2>Sobre o Linux Mint</h2>
+            <p>O Linux Mint é uma distribuição baseada no Ubuntu (e indiretamente no Debian), criada em 2006 com o objetivo de oferecer a melhor experiência desktop para usuários que estão migrando do Windows.</p>
+            <p>Seu ambiente Cinnamon — desenvolvido pelo próprio time do Mint — oferece uma interface familiar com barra de tarefas na parte inferior, menu Iniciar e sistema de bandeja, tornando a transição do Windows extremamente suave.</p>
+            <p>O Linux Mint vem com codecs multimídia, drivers e uma seleção de software útil pré-instalada, garantindo que o sistema funcione perfeitamente desde a primeira inicialização, sem configurações extras.</p>
+          </div>
+
+          <div class="os-features">
+            <h2>Principais Características</h2>
+            <div class="feature-grid">
+              <div class="feature-card"><i class="fas fa-home"></i><h4>Interface Familiar</h4><p>Visual próximo ao Windows — ideal para quem está migrando.</p></div>
+              <div class="feature-card"><i class="fas fa-check-circle"></i><h4>Pronto de Cara</h4><p>Codecs, drivers e apps úteis já instalados por padrão.</p></div>
+              <div class="feature-card"><i class="fas fa-shield-alt"></i><h4>Estável</h4><p>Baseado no Ubuntu LTS, com atualizações conservadoras e seguras.</p></div>
+              <div class="feature-card"><i class="fas fa-tachometer-alt"></i><h4>Leve</h4><p>Performa bem em hardware antigo, especialmente com XFCE ou MATE.</p></div>
+              <div class="feature-card"><i class="fas fa-box-open"></i><h4>Repositórios Ubuntu</h4><p>Acesso a todo o ecossistema de pacotes .deb do Ubuntu.</p></div>
+              <div class="feature-card"><i class="fas fa-users"></i><h4>Comunidade</h4><p>Fórum ativo e documentação acessível para iniciantes.</p></div>
+            </div>
+          </div>
+
+          <div class="os-screenshots">
+            <h2>Ambiente de Trabalho</h2>
+            <div class="screenshot-grid">
+              <div class="screenshot-item" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/a/ac/LinuxMint22-Wilma-English.png')"></div>
+              <div class="screenshot-item" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/2/2d/Linux_Mint_Cinnamon_22.3.png')"></div>
+              <div class="screenshot-item" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/b/b3/Cinnamon_4.4.8_on_Linux_Mint_19.3.png')"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="os-sidebar">
+          <div class="os-info-card">
+            <h3>Informações Técnicas</h3>
+            <div class="info-item"><span>Desenvolvedor</span><span>Linux Mint Team</span></div>
+            <div class="info-item"><span>Lançamento</span><span>27 ago 2006</span></div>
+            <div class="info-item"><span>Versão atual</span><span>Linux Mint 22 "Wilma"</span></div>
+            <div class="info-item"><span>Desktop</span><span>Cinnamon / MATE / XFCE</span></div>
+            <div class="info-item"><span>Arquiteturas</span><span>x86-64</span></div>
+            <div class="info-item"><span>Pacotes</span><span>APT (.deb)</span></div>
+            <div class="info-item"><span>Licença</span><span>GPL e outras</span></div>
+          </div>
+
+          <div class="os-info-card">
+            <h3>Requisitos Mínimos</h3>
+            <div class="info-item"><span>CPU</span><span>1 GHz (Cinnamon: dual core)</span></div>
+            <div class="info-item"><span>RAM</span><span>2 GB (4 GB recomendado)</span></div>
+            <div class="info-item"><span>Armazenamento</span><span>20 GB</span></div>
+            <div class="info-item"><span>GPU</span><span>1024×768</span></div>
+          </div>
+
+          <div class="os-info-card">
+            <h3>Links Úteis</h3>
+            <a href="https://linuxmint.com/" class="btn btn-secondary"><i class="fas fa-external-link-alt"></i> Site Oficial</a>
+            <a href="https://linuxmint.com/documentation.php" class="btn btn-secondary"><i class="fas fa-book"></i> Documentação</a>
+            <a href="https://forums.linuxmint.com/" class="btn btn-secondary"><i class="fas fa-comments"></i> Fórum</a>
+          </div>
+        </div>
       </div>
-    </section>
-    
-    <div class="os-details-container">
-      <div class="os-main-content">
-        <section class="os-description">
-          <h2>Sobre o Linux Mint</h2>
-          <p>O Linux Mint é uma distribuição Linux baseada no Ubuntu (que por sua vez é baseado no Debian), criada para oferecer uma experiência desktop completa e pronta para uso imediato. Lançado em 2006 por Clément Lefèbvre, o Mint rapidamente se tornou uma das distribuições mais populares, especialmente entre usuários que migram do Windows.</p>
-          <p>Uma das principais características do Linux Mint é seu foco em usabilidade e experiência do usuário. Ele vem com uma seleção cuidadosa de software pré-instalado, codecs multimídia e drivers proprietários (quando necessário), permitindo que os usuários comecem a trabalhar imediatamente após a instalação, sem a necessidade de configurações adicionais.</p>
-          <p>O ambiente desktop padrão é o Cinnamon (desenvolvido pela equipe do Mint), mas também estão disponíveis edições com MATE e Xfce. O Mint mantém a compatibilidade com os repositórios do Ubuntu, garantindo acesso a uma vasta coleção de software.</p>
-        </section>
-        
-        <section class="os-features">
-          <h2>Principais Características</h2>
-          <div class="feature-grid">
-            <div class="feature-card">
-              <i class="fas fa-plug"></i>
-              <h4>Pronto para Uso</h4>
-              <p>Inclui codecs multimídia, Flash e Java pré-instalados.</p>
-            </div>
-            <div class="feature-card">
-              <i class="fas fa-desktop"></i>
-              <h4>Cinnamon Desktop</h4>
-              <p>Ambiente moderno, elegante e altamente personalizável.</p>
-            </div>
-            <div class="feature-card">
-              <i class="fas fa-shield-alt"></i>
-              <h4>Segurança e Estabilidade</h4>
-              <p>Baseado no Ubuntu LTS com atualizações de segurança regulares.</p>
-            </div>
-            <div class="feature-card">
-              <i class="fas fa-tools"></i>
-              <h4>Ferramentas Exclusivas</h4>
-              <p>Software próprio como MintUpdate, MintMenu e MintInstall.</p>
-            </div>
-            <div class="feature-card">
-              <i class="fas fa-user-friends"></i>
-              <h4>Amigável para Iniciantes</h4>
-              <p>Interface intuitiva e familiar para usuários do Windows.</p>
-            </div>
-            <div class="feature-card">
-              <i class="fas fa-box-open"></i>
-              <h4>Grande Compatibilidade</h4>
-              <p>Acesso aos repositórios do Ubuntu e Debian.</p>
-            </div>
-          </div>
-        </section>
-        
-        <section class="os-screenshots">
-          <h2>Capturas de Tela</h2>
-          <div class="screenshot-grid">
-            <div class="screenshot-item" style="background-image: url('https://linuxmint.com/web/img/screenshots/c1.jpg');"></div>
-            <div class="screenshot-item" style="background-image: url('https://linuxmint.com/web/img/screenshots/c4.jpg');"></div>
-            <div class="screenshot-item" style="background-image: url('https://linuxmint.com/web/img/screenshots/c2.jpg');"></div>
-            <div class="screenshot-item" style="background-image: url('https://linuxmint.com/web/img/screenshots/c14.jpg');"></div>
-          </div>
-        </section>
+
+      <div class="download-section">
+        <h2>Pronto para o Linux Mint?</h2>
+        <p>Baixe o Linux Mint e experimente o Linux mais amigável para quem está começando.</p>
+        <a href="https://linuxmint.com/download.php" class="download-btn" style="background:#87CF3E;color:#1a1a1a">
+          <i class="fas fa-download"></i> Baixar Linux Mint
+        </a>
       </div>
-      
-      <div class="os-sidebar">
-        <div class="os-info-card">
-          <h3>Informações Técnicas</h3>
-          <div class="info-item">
-            <span>Desenvolvedor</span>
-            <span>Linux Mint Team</span>
-          </div>
-          <div class="info-item">
-            <span>Lançamento Inicial</span>
-            <span>27 de agosto de 2006</span>
-          </div>
-          <div class="info-item">
-            <span>Modelo de Lançamento</span>
-            <span>Baseado no Ubuntu LTS</span>
-          </div>
-          <div class="info-item">
-            <span>Ambiente Desktop</span>
-            <span>Cinnamon (padrão), MATE, Xfce</span>
-          </div>
-          <div class="info-item">
-            <span>Arquiteturas</span>
-            <span>x86-64</span>
-          </div>
-          <div class="info-item">
-            <span>Gerenciador de Pacotes</span>
-            <span>APT (dpkg)</span>
-          </div>
-          <div class="info-item">
-            <span>Licença</span>
-            <span>Principalmente GPL</span>
-          </div>
-        </div>
-        
-        <div class="os-info-card">
-          <h3>Requisitos Mínimos</h3>
-          <div class="info-item">
-            <span>Processador</span>
-            <span>2 GHz dual-core</span>
-          </div>
-          <div class="info-item">
-            <span>Memória RAM</span>
-            <span>2 GB (recomendado 4 GB)</span>
-          </div>
-          <div class="info-item">
-            <span>Armazenamento</span>
-            <span>15 GB (recomendado 30 GB)</span>
-          </div>
-          <div class="info-item">
-            <span>Resolução de Tela</span>
-            <span>1024×768</span>
-          </div>
-        </div>
-        
-        <div class="os-info-card">
-          <h3>Links Úteis</h3>
-          <a href="https://linuxmint.com/" class="btn btn-secondary" style="width: 100%; margin-bottom: 1rem; text-align: center; display: block;">
-            <i class="fas fa-download"></i> Site Oficial
-          </a>
-          <a href="https://linuxmint.com/documentation.php" class="btn btn-secondary" style="width: 100%; margin-bottom: 1rem; text-align: center; display: block;">
-            <i class="fas fa-book"></i> Documentação
-          </a>
-          <a href="https://forums.linuxmint.com/" class="btn btn-secondary" style="width: 100%; text-align: center; display: block;">
-            <i class="fas fa-question-circle"></i> Fórum
-          </a>
-        </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">SO<span>ul</span></div>
+      <div class="footer-links">
+        <a href="os.html">Sistemas</a>
+        <a href="test.html">Quiz</a>
+        <a href="about.html">Sobre</a>
+        <a href="terms.html">Termos</a>
+        <a href="privacy.html">Privacidade</a>
       </div>
     </div>
-    
-    <section class="download-section">
-      <h2>Pronto para experimentar o Linux Mint?</h2>
-      <p>Baixe a versão mais recente do Linux Mint e desfrute de um sistema operacional elegante, completo e fácil de usar.</p>
-      <a href="https://linuxmint.com/download.php" class="download-btn">
-        <i class="fas fa-download"></i> Baixar Linux Mint
-      </a>
-    </section>
-  </main>
+    <p class="footer-copy">© 2025 SOul — Projeto Universitário · Desenvolvimento Web</p>
+  </footer>
 
   <script src="shared.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const favoriteBtn = document.getElementById('favoriteBtn');
       const osName = 'Linux Mint';
-      
-      if (favorites.isFavorite(osName)) {
-        favoriteBtn.innerHTML = '<i class="fas fa-star"></i>';
-        favoriteBtn.classList.add('favorited');
-      }
-      
+
+      if (favorites.isFavorite(osName)) favoriteBtn.classList.add('favorited');
+
       favoriteBtn.addEventListener('click', function() {
         const isFavorited = favorites.toggle(osName);
-        
-        if (isFavorited) {
-          this.innerHTML = '<i class="fas fa-star"></i>';
-          this.classList.add('favorited');
-          utils.showToast(`${osName} adicionado aos favoritos`);
-        } else {
-          this.innerHTML = '<i class="far fa-star"></i>';
-          this.classList.remove('favorited');
-          utils.showToast(`${osName} removido dos favoritos`);
-        }
+        this.classList.toggle('favorited', isFavorited);
+        utils.showToast(isFavorited ? `${osName} adicionado aos favoritos` : `${osName} removido dos favoritos`);
       });
     });
   </script>

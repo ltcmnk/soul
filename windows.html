@@ -4,442 +4,144 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Windows | SOul</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script>document.documentElement.setAttribute('data-theme',localStorage.getItem('soul-theme')||'dark')</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
-  <style>
-    /* alterado o nome do botão de favorito de favorite-hero-btn para favorite-btn */ 
-    .os-hero {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto 2rem;
-      border-radius: 12px;
-      overflow: hidden;
-      position: relative;
-      height: 300px;
-      background-image: linear-gradient(to right, #0078D7, #004E8C);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-align: center;
-      padding: 2rem;
-    }
-    
-    .os-hero-content {
-      z-index: 2;
-      max-width: 800px;
-      position: relative;
-    }
-    
-    .os-hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-    
-    .os-hero p {
-      font-size: 1.1rem;
-      opacity: 0.9;
-    }
-    
-    .favorite-btn {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: rgba(255, 255, 255, 0.8);
-      border: none;
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    
-    .favorite-btn:hover {
-      background: white;
-      transform: scale(1.1);
-    }
-    
-    .favorite-btn i {
-      color: #e74c3c;
-      font-size: 1.4rem;
-    }
-    
-    .favorite-btn.favorited i {
-      color: #e74c3c;
-    }
-    
-    .os-details-container {
-      display: flex;
-      gap: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      width: 100%;
-    }
-    
-    .os-main-content {
-      flex: 2;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      padding: 2rem;
-    }
-    
-    .os-sidebar {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-    
-    .os-info-card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      padding: 1.5rem;
-    }
-    
-    .os-info-card h3 {
-      color: #2c3e50;
-      margin-bottom: 1rem;
-      font-size: 1.2rem;
-      border-bottom: 1px solid #ecf0f1;
-      padding-bottom: 0.5rem;
-    }
-    
-    .info-item {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 0.75rem;
-    }
-    
-    .info-item span:first-child {
-      color: #7f8c8d;
-      font-weight: 500;
-    }
-    
-    .info-item span:last-child {
-      color: #2c3e50;
-    }
-    
-    .os-features {
-      margin-top: 2rem;
-    }
-    
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-    
-    .feature-card {
-      background: #f8fafc;
-      border-radius: 8px;
-      padding: 1.5rem;
-      transition: transform 0.3s ease;
-    }
-    
-    .feature-card:hover {
-      transform: translateY(-5px);
-    }
-    
-    .feature-card i {
-      font-size: 1.5rem;
-      color: #1abc9c;
-      margin-bottom: 1rem;
-    }
-    
-    .feature-card h4 {
-      color: #2c3e50;
-      margin-bottom: 0.5rem;
-    }
-    
-    .feature-card p {
-      color: #7f8c8d;
-      font-size: 0.9rem;
-    }
-    
-    .os-screenshots {
-      margin-top: 3rem;
-    }
-    
-    .screenshot-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-    
-    .screenshot-item {
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
-      height: 180px;
-      background-size: cover;
-      background-position: center;
-    }
-    
-    .screenshot-item:hover {
-      transform: scale(1.03);
-    }
-    
-    .download-section {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      margin-top: 3rem;
-      padding: 2rem;
-      background: linear-gradient(to right, #f5f7fa, #e8f0f8);
-      border-radius: 12px;
-    }
-    
-    .download-section h2 {
-      color: #2c3e50;
-      margin-bottom: 1rem;
-    }
-    
-    .download-section p {
-      color: #7f8c8d;
-      max-width: 600px;
-      margin-bottom: 1.5rem;
-    }
-    
-    .download-btn {
-      background: #0078D7;
-      color: white;
-      padding: 0.75rem 2rem;
-      border-radius: 8px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    
-    .download-btn:hover {
-      background: #004E8C;
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0, 120, 215, 0.3);
-    }
-    
-    @media (max-width: 768px) {
-      .os-hero {
-        height: auto;
-        padding: 3rem 1rem;
-      }
-      
-      .os-hero h1 {
-        font-size: 2rem;
-      }
-      
-      .os-details-container {
-        flex-direction: column;
-      }
-      
-      .feature-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .screenshot-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
 </head>
 <body>
-  <header>
-    <div class="logo" onclick="window.location.href='index.html'">SOul</div>
+
+  <header class="site-header">
+    <a href="index.html" class="logo">SO<span>ul</span></a>
     <nav>
       <ul>
-        <li><a href="os.html">Sistemas Operacionais</a></li>
+        <li><a href="os.html">Sistemas</a></li>
         <li><a href="favorites.html">Favoritos</a></li>
         <li><a href="test.html">Teste</a></li>
-        <li><a href="about.html">Sobre Nós</a></li>
-        <li class="user-area">
-          <a href="login.html" class="login-btn">Entrar</a>
-        </li>
+        <li><a href="about.html">Sobre</a></li>
+        <li class="user-area"></li>
       </ul>
     </nav>
+    <button class="theme-toggle" aria-label="Alternar tema"></button>
+    <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </header>
 
   <main>
-    <section class="os-hero">
-      <div class="os-hero-content">
-        <button class="favorite-btn" id="favoriteBtn">
-          <i class="far fa-star"></i>
+    <div class="os-page-inner">
+
+      <section class="os-hero" style="background:linear-gradient(135deg,#0078D7,#004E8C)">
+        <button class="favorite-btn" id="favoriteBtn" title="Favoritar Windows">
+          <i class="fas fa-heart"></i>
         </button>
-        <h1>Windows</h1>
-        <p>Sistema operacional mais usado no mundo, desenvolvido pela Microsoft. Conhecido por sua compatibilidade com softwares e jogos.</p>
+        <div class="os-hero-content">
+          <i class="fab fa-windows" style="font-size:3.5rem;margin-bottom:1rem;opacity:.9"></i>
+          <h1>Windows</h1>
+          <p>Sistema operacional mais usado no mundo, desenvolvido pela Microsoft. Máxima compatibilidade com softwares e jogos.</p>
+        </div>
+      </section>
+
+      <div class="os-details-container">
+        <div class="os-main-content">
+
+          <div class="os-description">
+            <h2>Sobre o Windows</h2>
+            <p>O Microsoft Windows é a família de sistemas operacionais mais popular para computadores pessoais, dominando o mercado com cerca de 75% de participação. Desde 1985, a Microsoft evoluiu o Windows continuamente, tornando-o a escolha padrão tanto para usuários domésticos quanto corporativos.</p>
+            <p>O Windows 10 e 11 introduziram recursos modernos como o assistente Cortana, Microsoft Store, o navegador Edge e integração profunda com OneDrive e Microsoft 365. O suporte a DirectX e ao maior catálogo de jogos do mercado o tornam imbatível para gaming.</p>
+            <p>Com o WSL (Windows Subsystem for Linux), os desenvolvedores agora podem rodar ferramentas Linux nativamente, aproximando o Windows do ambiente de desenvolvimento moderno.</p>
+          </div>
+
+          <div class="os-features">
+            <h2>Principais Características</h2>
+            <div class="feature-grid">
+              <div class="feature-card"><i class="fas fa-gamepad"></i><h4>Gaming</h4><p>Maior biblioteca de jogos do mundo com suporte a DirectX 12.</p></div>
+              <div class="feature-card"><i class="fas fa-briefcase"></i><h4>Produtividade</h4><p>Integração com Microsoft 365 e ferramentas empresariais.</p></div>
+              <div class="feature-card"><i class="fas fa-shield-alt"></i><h4>Segurança</h4><p>Windows Defender, BitLocker e atualizações automáticas.</p></div>
+              <div class="feature-card"><i class="fas fa-cloud"></i><h4>Nuvem</h4><p>OneDrive, Azure e integração com serviços Microsoft.</p></div>
+              <div class="feature-card"><i class="fas fa-desktop"></i><h4>Interface</h4><p>Menu Iniciar renovado, widgets e modo escuro nativo.</p></div>
+              <div class="feature-card"><i class="fas fa-terminal"></i><h4>WSL</h4><p>Subsistema Linux integrado para desenvolvedores.</p></div>
+            </div>
+          </div>
+
+          <div class="os-screenshots">
+            <h2>Capturas de Tela</h2>
+            <div class="screenshot-grid">
+              <div class="screenshot-item" style="background-image:url('https://upload.wikimedia.org/wikipedia/en/9/92/Windows_11_Desktop.png');background-position:top"></div>
+              <div class="screenshot-item" style="background-image:url('https://upload.wikimedia.org/wikipedia/en/9/92/Windows_11_Desktop.png');background-position:center left"></div>
+              <div class="screenshot-item" style="background-image:url('https://upload.wikimedia.org/wikipedia/en/9/92/Windows_11_Desktop.png');background-position:center right"></div>
+              <div class="screenshot-item" style="background-image:url('https://upload.wikimedia.org/wikipedia/en/9/92/Windows_11_Desktop.png');background-position:bottom"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="os-sidebar">
+          <div class="os-info-card">
+            <h3>Informações Técnicas</h3>
+            <div class="info-item"><span>Desenvolvedor</span><span>Microsoft</span></div>
+            <div class="info-item"><span>Lançamento</span><span>20 nov 1985</span></div>
+            <div class="info-item"><span>Versão atual</span><span>Windows 11</span></div>
+            <div class="info-item"><span>Desktop</span><span>Windows Shell</span></div>
+            <div class="info-item"><span>Arquiteturas</span><span>x86-64, ARM64</span></div>
+            <div class="info-item"><span>Pacotes</span><span>Winget, MSIX</span></div>
+            <div class="info-item"><span>Licença</span><span>Proprietária</span></div>
+          </div>
+
+          <div class="os-info-card">
+            <h3>Requisitos Mínimos (Win 11)</h3>
+            <div class="info-item"><span>CPU</span><span>1 GHz, 2 núcleos 64-bit</span></div>
+            <div class="info-item"><span>RAM</span><span>4 GB</span></div>
+            <div class="info-item"><span>Armazenamento</span><span>64 GB</span></div>
+            <div class="info-item"><span>GPU</span><span>DirectX 12 / WDDM 2.0</span></div>
+            <div class="info-item"><span>TPM</span><span>Versão 2.0</span></div>
+          </div>
+
+          <div class="os-info-card">
+            <h3>Links Úteis</h3>
+            <a href="https://www.microsoft.com/windows" class="btn btn-secondary"><i class="fas fa-external-link-alt"></i> Site Oficial</a>
+            <a href="https://support.microsoft.com/windows" class="btn btn-secondary"><i class="fas fa-book"></i> Suporte</a>
+            <a href="https://answers.microsoft.com/" class="btn btn-secondary"><i class="fas fa-question-circle"></i> Fórum</a>
+          </div>
+        </div>
       </div>
-    </section>
-    
-    <div class="os-details-container">
-      <div class="os-main-content">
-        <section class="os-description">
-          <h2>Sobre o Windows</h2>
-          <p>O Microsoft Windows é uma família de sistemas operacionais desenvolvidos e comercializados pela Microsoft. Desde seu lançamento inicial em 1985, o Windows se tornou o sistema operacional mais popular para computadores pessoais, dominando o mercado com uma participação de cerca de 75% em 2021.</p>
-          <p>Conhecido por sua interface gráfica amigável e ampla compatibilidade com software e hardware, o Windows é a escolha padrão para muitos usuários domésticos e empresariais. A Microsoft lança novas versões principais periodicamente, com atualizações de segurança e recursos entre os lançamentos.</p>
-          <p>O Windows 10 e 11, as versões mais recentes, introduziram recursos modernos como o assistente virtual Cortana, a Microsoft Store, o navegador Edge e integração com serviços em nuvem como OneDrive e Microsoft 365.</p>
-        </section>
-        
-        <section class="os-features">
-          <h2>Principais Características</h2>
-          <div class="feature-grid">
-            <div class="feature-card">
-              <i class="fas fa-gamepad"></i>
-              <h4>Compatibilidade com Jogos</h4>
-              <p>Ampla seleção de jogos e suporte a DirectX.</p>
-            </div>
-            <div class="feature-card">
-              <i class="fas fa-briefcase"></i>
-              <h4>Produtividade</h4>
-              <p>Integração com Microsoft Office e ferramentas empresariais.</p>
-            </div>
-            <div class="feature-card">
-              <i class="fas fa-shield-alt"></i>
-              <h4>Segurança</h4>
-              <p>Windows Defender, BitLocker e atualizações regulares.</p>
-            </div>
-            <div class="feature-card">
-              <i class="fas fa-cloud"></i>
-              <h4>Integração em Nuvem</h4>
-              <p>OneDrive, Microsoft 365 e serviços Azure.</p>
-            </div>
-            <div class="feature-card">
-              <i class="fas fa-desktop"></i>
-              <h4>Interface Moderna</h4>
-              <p>Menu Iniciar, Action Center e modo Escuro.</p>
-            </div>
-            <div class="feature-card">
-              <i class="fas fa-mobile-alt"></i>
-              <h4>Integração com Android</h4>
-              <p>Seu Telefone e suporte a aplicativos Android.</p>
-            </div>
-          </div>
-        </section>
-        
-        <section class="os-screenshots">
-          <h2>Capturas de Tela</h2>
-          <div class="screenshot-grid">
-            <div class="screenshot-item" style="background-image: url('https://msftstories.thesourcemediaassets.com/sites/620/2021/10/Windows-11-Start-800x533.jpg');"></div>
-            <div class="screenshot-item" style="background-image: url('https://msftstories.thesourcemediaassets.com/sites/620/2021/09/Windows-11-Widgets-Screen-800x533.jpg');"></div>
-            <div class="screenshot-item" style="background-image: url('https://msftstories.thesourcemediaassets.com/sites/620/2021/09/Windows-11-Teams-Integration-Screen-800x533.jpg');"></div>
-            <div class="screenshot-item" style="background-image: url('https://msftstories.thesourcemediaassets.com/sites/620/2021/09/Windows-11-Snap-Desktop-Screen-800x533.jpg');"></div>
-          </div>
-        </section>
+
+      <div class="download-section">
+        <h2>Pronto para experimentar o Windows?</h2>
+        <p>O Windows geralmente vem pré-instalado em novos PCs. Você também pode comprar ou atualizar através da Microsoft Store.</p>
+        <a href="https://www.microsoft.com/windows" class="download-btn" style="background:#0078D7">
+          <i class="fas fa-external-link-alt"></i> Visite o site da Microsoft
+        </a>
       </div>
-      
-      <div class="os-sidebar">
-        <div class="os-info-card">
-          <h3>Informações Técnicas</h3>
-          <div class="info-item">
-            <span>Desenvolvedor</span>
-            <span>Microsoft</span>
-          </div>
-          <div class="info-item">
-            <span>Lançamento Inicial</span>
-            <span>20 de novembro de 1985</span>
-          </div>
-          <div class="info-item">
-            <span>Versão Atual</span>
-            <span>Windows 11 (2022)</span>
-          </div>
-          <div class="info-item">
-            <span>Ambiente Desktop</span>
-            <span>Windows Shell</span>
-          </div>
-          <div class="info-item">
-            <span>Arquiteturas</span>
-            <span>x86-64, ARM64</span>
-          </div>
-          <div class="info-item">
-            <span>Gerenciador de Pacotes</span>
-            <span>Microsoft Store, Winget</span>
-          </div>
-          <div class="info-item">
-            <span>Licença</span>
-            <span>Proprietária</span>
-          </div>
-        </div>
-        
-        <div class="os-info-card">
-          <h3>Requisitos Mínimos (Windows 11)</h3>
-          <div class="info-item">
-            <span>Processador</span>
-            <span>1 GHz, 2+ núcleos, 64-bit</span>
-          </div>
-          <div class="info-item">
-            <span>Memória RAM</span>
-            <span>4 GB</span>
-          </div>
-          <div class="info-item">
-            <span>Armazenamento</span>
-            <span>64 GB</span>
-          </div>
-          <div class="info-item">
-            <span>Placa de Vídeo</span>
-            <span>DirectX 12, WDDM 2.0</span>
-          </div>
-          <div class="info-item">
-            <span>TPM</span>
-            <span>Versão 2.0</span>
-          </div>
-        </div>
-        
-        <div class="os-info-card">
-          <h3>Links Úteis</h3>
-          <a href="https://www.microsoft.com/windows" class="btn btn-secondary" style="width: 100%; margin-bottom: 1rem; text-align: center; display: block;">
-            <i class="fas fa-external-link-alt"></i> Site Oficial
-          </a>
-          <a href="https://support.microsoft.com/windows" class="btn btn-secondary" style="width: 100%; margin-bottom: 1rem; text-align: center; display: block;">
-            <i class="fas fa-book"></i> Suporte
-          </a>
-          <a href="https://answers.microsoft.com/" class="btn btn-secondary" style="width: 100%; text-align: center; display: block;">
-            <i class="fas fa-question-circle"></i> Fórum
-          </a>
-        </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">SO<span>ul</span></div>
+      <div class="footer-links">
+        <a href="os.html">Sistemas</a>
+        <a href="test.html">Quiz</a>
+        <a href="about.html">Sobre</a>
+        <a href="terms.html">Termos</a>
+        <a href="privacy.html">Privacidade</a>
       </div>
     </div>
-    
-    <section class="download-section">
-      <h2>Pronto para experimentar o Windows?</h2>
-      <p>O Windows geralmente vem pré-instalado em novos PCs. Você também pode comprar ou atualizar através da Microsoft Store.</p>
-      <a href="https://www.microsoft.com/windows" class="download-btn">
-        <i class="fas fa-external-link-alt"></i> Visite o site da Microsoft
-      </a>
-    </section>
-  </main>
+    <p class="footer-copy">© 2025 SOul — Projeto Universitário · Desenvolvimento Web</p>
+  </footer>
 
   <script src="shared.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const favoriteBtn = document.getElementById('favoriteBtn');
       const osName = 'Windows';
-      
-      if (favorites.isFavorite(osName)) {
-        favoriteBtn.innerHTML = '<i class="fas fa-star"></i>';
-        favoriteBtn.classList.add('favorited');
-      }
-      
+
+      if (favorites.isFavorite(osName)) favoriteBtn.classList.add('favorited');
+
       favoriteBtn.addEventListener('click', function() {
         const isFavorited = favorites.toggle(osName);
-        
-        if (isFavorited) {
-          this.innerHTML = '<i class="fas fa-star"></i>';
-          this.classList.add('favorited');
-          utils.showToast(`${osName} adicionado aos favoritos`);
-        } else {
-          this.innerHTML = '<i class="far fa-star"></i>';
-          this.classList.remove('favorited');
-          utils.showToast(`${osName} removido dos favoritos`);
-        }
+        this.classList.toggle('favorited', isFavorited);
+        utils.showToast(isFavorited ? `${osName} adicionado aos favoritos` : `${osName} removido dos favoritos`);
       });
     });
   </script>

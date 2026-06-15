@@ -4,250 +4,44 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sobre Nós | SOul</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #f5f7fa;
-      color: #333;
-      line-height: 1.6;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #2c3e50;
-      color: #fff;
-      padding: 1rem 2rem;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: #fff;
-      cursor: pointer;
-    }
-
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 1.5rem;
-      align-items: center;
-    }
-
-    nav a {
-      color: #ecf0f1;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s ease;
-    }
-
-    nav a:hover {
-      color: #1abc9c;
-    }
-
-    .user-area {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .login-btn {
-      background: #1abc9c;
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      font-weight: 500;
-      transition: background 0.3s ease;
-    }
-
-    .login-btn:hover {
-      background: #16a085;
-    }
-
-    main {
-      padding: 2rem;
-      min-height: calc(100vh - 70px);
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .about-hero {
-      text-align: center;
-      margin-bottom: 2rem;
-      padding: 2rem 0;
-    }
-
-    .about-hero h1 {
-      font-size: 2.5rem;
-      color: #2c3e50;
-      margin-bottom: 1rem;
-    }
-
-    .about-hero p {
-      color: #7f8c8d;
-      max-width: 800px;
-      margin: 0 auto;
-      font-size: 1.1rem;
-    }
-
-    .section-title {
-      text-align: center;
-      margin: 1rem 0 2rem;
-      color: #2c3e50;
-      position: relative;
-    }
-
-    .section-title:after {
-      content: "";
-      display: block;
-      width: 80px;
-      height: 3px;
-      background: #1abc9c;
-      margin: 0.5rem auto 0;
-    }
-
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .team-card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      overflow: hidden;
-      transition: transform 0.3s ease;
-      text-align: center;
-      padding: 2rem;
-    }
-
-    .team-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .team-photo {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin: 0 auto 1rem;
-      border: 5px solid #f5f7fa;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      background: #ecf0f1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #7f8c8d;
-    }
-
-    .team-card h3 {
-      color: #2c3e50;
-      margin-bottom: 0.5rem;
-    }
-
-    .team-card .role {
-      color: #1abc9c;
-      font-weight: 500;
-      margin-bottom: 1rem;
-      display: block;
-    }
-
-    .team-card p {
-      color: #7f8c8d;
-      margin-bottom: 1.5rem;
-    }
-
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-    }
-
-    .social-links a {
-      color: #2c3e50;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #ecf0f1;
-      transition: all 0.3s ease;
-    }
-
-    .social-links a:hover {
-      background: #1abc9c;
-      color: white;
-      transform: translateY(-3px);
-    }
-
-    .project-description {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      padding: 2rem;
-      margin: 2rem 0;
-    }
-
-    .project-description p {
-      margin-bottom: 1rem;
-      color: #2c3e50;
-    }
-
-    @media (max-width: 768px) {
-      .team-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .about-hero h1 {
-        font-size: 2rem;
-      }
-    }
-  </style>
+  <script>document.documentElement.setAttribute('data-theme',localStorage.getItem('soul-theme')||'dark')</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <div class="logo" onclick="window.location.href='index.html'">SOul</div>
+
+  <header class="site-header">
+    <a href="index.html" class="logo">SO<span>ul</span></a>
     <nav>
       <ul>
-        <li><a href="os.html">Sistemas Operacionais</a></li>
+        <li><a href="os.html">Sistemas</a></li>
         <li><a href="favorites.html">Favoritos</a></li>
         <li><a href="test.html">Teste</a></li>
-        <li><a href="about.html">Sobre Nós</a></li>
-        <li class="user-area">
-          <a href="login.html" class="login-btn">Entrar</a>
-        </li>
+        <li><a href="about.html" class="active">Sobre</a></li>
+        <li class="user-area"></li>
       </ul>
     </nav>
+    <button class="theme-toggle" aria-label="Alternar tema"></button>
+    <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </header>
 
-  <main>
+  <main class="about-main">
     <section class="about-hero">
-      <h1>Conheça o time por trás do SOul</h1>
+      <p class="section-label">Conheça o projeto</p>
+      <h1>O time por trás do SOul</h1>
       <p>Uma plataforma criada para ajudar você a encontrar o sistema operacional perfeito para suas necessidades.</p>
     </section>
 
     <section class="project-description">
-      <h2 class="section-title">Sobre o Projeto SOul</h2>
-      <p>O SOul nasceu como um projeto universitário para a matéria de Desenvolvimento Web, inicialmente com o objetivo de alinhar tipos de personalidade como MBTI e eneagrama ao usuário, após seremos confrontados com o desafio que seria implementar todas as funcionalidades e tipagens no curto espaço de tempo que tinhamos, decidimos mudar.</p>
-      <p>Com a visão estratégica de nossa integrante, Rayssa, alteramos a ideia sem perder a essência do projeto inicial. Ao invés de oferecer ao usuário consumidor o seu tipo de personalidade, estariamos agora proporcionando uma experiência similar mas ainda mais aplicável ao mundo real: o alinhamento de suas necessidades pessoais ao seu sistema operacional ideal.</p>
-      <p>Criamos o teste com o conhecimento vasto em sistemas operacionais de nosso outro integrante e idealizador, o Victor, de forma que pudéssemos ajudar usuários a navegarem no complexo mundo dos sistemas operacionais. Com tantas opções disponíveis - cada uma com suas particularidades, vantagens e públicos-alvo - pode ser desafiador escolher a melhor alternativa.</p>
+      <h2>Sobre o Projeto SOul</h2>
+      <p>O SOul nasceu como um projeto universitário para a matéria de Desenvolvimento Web, inicialmente com o objetivo de alinhar tipos de personalidade como MBTI e eneagrama ao usuário, após seremos confrontados com o desafio que seria implementar todas as funcionalidades e tipagens no curto espaço de tempo que tínhamos, decidimos mudar.</p>
+      <p>Com a visão estratégica de nossa integrante, Rayssa, alteramos a ideia sem perder a essência do projeto inicial. Ao invés de oferecer ao usuário consumidor o seu tipo de personalidade, estaríamos agora proporcionando uma experiência similar mas ainda mais aplicável ao mundo real: o alinhamento de suas necessidades pessoais ao seu sistema operacional ideal.</p>
+      <p>Criamos o teste com o conhecimento vasto em sistemas operacionais de nosso outro integrante e idealizador, o Victor, de forma que pudéssemos ajudar usuários a navegarem no complexo mundo dos sistemas operacionais. Com tantas opções disponíveis — cada uma com suas particularidades, vantagens e públicos-alvo — pode ser desafiador escolher a melhor alternativa.</p>
       <p>É a partir dessa demanda que surge o nome SOul, do inglês "alma", o nosso objetivo é fornecer informações claras, imparciais e detalhadas sobre os principais sistemas operacionais do mercado, desde os mais populares como Windows e macOS até distribuições Linux menos conhecidas.</p>
       <p>A plataforma oferece:</p>
-      <ul style="margin-left: 2rem; color: #2c3e50; margin-bottom: 1rem;">
+      <ul>
         <li>Descrições detalhadas de cada sistema operacional</li>
         <li>Comparações de características técnicas</li>
         <li>Teste personalizado para recomendar o melhor SO para seu perfil</li>
@@ -257,52 +51,63 @@
     </section>
 
     <section>
-      <h2 class="section-title">Nosso Time</h2>
+      <h2 class="section-title" style="text-align:center;margin:2rem 0 0">Nosso Time</h2>
       <div class="team-grid">
+
         <div class="team-card">
-          <div class="team-photo">
-            <i class="fas fa-user fa-3x"></i>
-          </div>
+          <div class="team-photo"><i class="fas fa-user"></i></div>
           <h3>Letícia Miniuk</h3>
           <span class="role">Front-end</span>
-          <p>Responsável por dar vida e direção à iniciativa, criando um esqueleto e corpo para que seus colegas fossem capaz de implementar a alma. Movida pela paixão por dança, arte e cultura, iniciou sua jornada acadêmica na Psicologia, mas foi na Ciência da Computação que descobriu um novo jeito de entender conexões — agora, entre pessoas e inovação.</p>
+          <p>Responsável pelo desenvolvimento front-end e pela identidade visual da plataforma, Letícia atuou na construção da interface, organização da experiência do usuário e estruturação inicial do projeto. Movida pela paixão por dança, arte e cultura, iniciou sua jornada acadêmica na Psicologia, mas foi na Ciência da Computação que encontrou um novo modo de compreender conexões — agora entre pessoas, tecnologia e inovação. No SOul, buscou transformar a proposta do grupo em uma experiência visual clara, funcional e acolhedora.</p>
           <div class="social-links">
-            <a href="https://www.linkedin.com/in/letícia-m-715730241/"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/ltcmnk"><i class="fab fa-github"></i></a>
-            <a href="mailto:ltcmnk@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/letícia-m-715730241/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/ltcmnk" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="mailto:ltcmnk@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
           </div>
         </div>
 
         <div class="team-card">
-          <div class="team-photo">
-            <i class="fas fa-user fa-3x"></i>
-          </div>
+          <div class="team-photo"><i class="fas fa-user"></i></div>
           <h3>Rayssa G. Grafetti</h3>
           <span class="role">Banco de Dados</span>
-          <p>Encarregada pela construção e estruturação do Banco de Dados do projeto. Como estudante de Ciência da Computação, busca se especializar em Arquitetura de Software e Cloud Computing, transformando linhas de código em soluções escaláveis e eficientes. Tem como objetivo unir teoria e prática para criar sistemas que não apenas funcionem, mas também evoluam.</p>
+          <p>Encarregada pela construção e estruturação do banco de dados do projeto, Rayssa foi responsável por organizar as informações que sustentam o funcionamento da plataforma e suas principais funcionalidades. Como estudante de Ciência da Computação, busca se especializar em Arquitetura de Software e Cloud Computing, transformando linhas de código em soluções escaláveis, eficientes e bem planejadas. No SOul, contribuiu para que os dados fossem tratados de forma consistente, permitindo que o sistema evoluísse com segurança e organização.</p>
           <div class="social-links">
-            <a href="https://www.linkedin.com/in/rayssa-g-grafetti-622107301/"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/T-800-888"><i class="fab fa-github"></i></a>
-            <a href="mailto:rayssagrafetti7@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/rayssa-g-grafetti-622107301/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/T-800-888" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="mailto:rayssagrafetti7@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
           </div>
         </div>
 
         <div class="team-card">
-          <div class="team-photo">
-            <i class="fas fa-user fa-3x"></i>
-          </div>
+          <div class="team-photo"><i class="fas fa-user"></i></div>
           <h3>Victor Bittencourt</h3>
           <span class="role">Back-end</span>
-          <p>Vito, edita aqui pf</p>
+          <p>Responsável pelo desenvolvimento back-end e pela lógica central do sistema, Victor contribuiu com seu conhecimento em sistemas operacionais para estruturar o teste e suas recomendações. Como estudante de Ciência da Computação, tem interesse pelo funcionamento interno dos sistemas e busca transformar conceitos técnicos em soluções práticas, claras e acessíveis ao usuário. No SOul, foi essencial para conectar a proposta da plataforma à parte técnica, garantindo que as recomendações fossem coerentes, funcionais e bem fundamentadas.</p>
           <div class="social-links">
-            <a href="#"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/scourgeyyy"><i class="fab fa-github"></i></a>
-            <a href="mailto:"><i class="fas fa-envelope"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/scourgeyyy" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="mailto:" aria-label="Email"><i class="fas fa-envelope"></i></a>
           </div>
         </div>
+
       </div>
     </section>
   </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">SO<span>ul</span></div>
+      <div class="footer-links">
+        <a href="os.html">Sistemas</a>
+        <a href="test.html">Quiz</a>
+        <a href="favorites.html">Favoritos</a>
+        <a href="about.html">Sobre</a>
+        <a href="terms.html">Termos</a>
+        <a href="privacy.html">Privacidade</a>
+      </div>
+    </div>
+    <p class="footer-copy">© 2025 SOul — Projeto Universitário · Desenvolvimento Web</p>
+  </footer>
 
   <script src="shared.js"></script>
 </body>

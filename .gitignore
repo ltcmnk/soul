@@ -1,0 +1,34 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Environment
+.env
+.env.*
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Logs
+*.log
+
+# MySQL dump with credentials
+*.sql.bak
+
+# Node (caso venha a usar)
+node_modules/
+
+# IDE
+.idea/
+.vscode/settings.json
+*.swp
+*.swo
+
+# Screenshots geradas pelo script (não versionar binários grandes)
+docs/screenshots/

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zorin OS | SOul</title>
+  <script>document.documentElement.setAttribute('data-theme',localStorage.getItem('soul-theme')||'dark')</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="index.html" class="logo">SO<span>ul</span></a>
+    <nav>
+      <ul>
+        <li><a href="os.html" class="active">Sistemas</a></li>
+        <li><a href="favorites.html">Favoritos</a></li>
+        <li><a href="test.html">Teste</a></li>
+        <li><a href="about.html">Sobre</a></li>
+        <li class="user-area"></li>
+      </ul>
+    </nav>
+    <button class="theme-toggle" aria-label="Alternar tema"></button>
+    <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <main>
+    <div class="os-page-inner">
+
+      <section class="os-hero" style="background:linear-gradient(135deg,#15A6F0,#0D7AB5)">
+        <button class="favorite-btn" id="favoriteBtn" title="Favoritar Zorin OS">
+          <i class="fas fa-heart"></i>
+        </button>
+        <div class="os-hero-content">
+          <i class="fas fa-desktop" style="font-size:3.5rem;margin-bottom:1rem;opacity:.9"></i>
+          <h1>Zorin OS</h1>
+          <p>A porta de entrada mais suave para o Linux — feito para quem vem do Windows ou Mac e quer se sentir em casa desde o primeiro boot.</p>
+        </div>
+      </section>
+
+      <div class="os-details-container">
+        <div class="os-main-content">
+
+          <div class="os-description">
+            <h2>Sobre o Zorin OS</h2>
+            <p>O Zorin OS foi criado em 2008 pelos irmãos Artyom e Kyrill Zorin com uma missão clara: tornar a migração do Windows ou Mac para o Linux tão suave quanto possível. Baseado no Ubuntu LTS, ele entrega estabilidade comprovada com uma camada de polimento visual e usabilidade que o diferencia de qualquer outra distro.</p>
+            <p>O Zorin OS oferece layouts de interface que imitam o Windows 11, o Windows 7 e o macOS — o usuário escolhe qual visual prefere logo na instalação, sem precisar instalar nada extra. Isso elimina a estranheza visual que afasta migrantes do Linux convencional.</p>
+            <p>Vem com Wine e PlayOnLinux pré-configurados para rodar programas Windows, LibreOffice, aplicativos de educação e tudo que um usuário doméstico precisa. A versão Pro adiciona mais layouts, jogos e suporte premium.</p>
+          </div>
+
+          <div class="os-features">
+            <h2>Principais Características</h2>
+            <div class="feature-grid">
+              <div class="feature-card">
+                <i class="fab fa-windows"></i>
+                <h4>Layout familiar</h4>
+                <p>Interface que imita o Windows 11, Windows 7 ou macOS — você escolhe na instalação.</p>
+              </div>
+              <div class="feature-card">
+                <i class="fas fa-plug"></i>
+                <h4>Compatibilidade Windows</h4>
+                <p>Wine pré-configurado para rodar softwares Windows sem configuração manual.</p>
+              </div>
+              <div class="feature-card">
+                <i class="fas fa-bolt"></i>
+                <h4>Pronto para uso</h4>
+                <p>LibreOffice, navegador, reprodutor de mídia e muito mais já instalados.</p>
+              </div>
+              <div class="feature-card">
+                <i class="fas fa-laptop-house"></i>
+                <h4>Hardware antigo</h4>
+                <p>Versão Lite baseada em Xfce para computadores com 4 anos ou mais.</p>
+              </div>
+              <div class="feature-card">
+                <i class="fas fa-graduation-cap"></i>
+                <h4>Foco educacional</h4>
+                <p>Zorin OS Education vem com apps educativos para alunos e professores.</p>
+              </div>
+              <div class="feature-card">
+                <i class="fas fa-lock"></i>
+                <h4>Privacidade</h4>
+                <p>Sem telemetria. Código aberto com base Ubuntu auditável pela comunidade.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="os-screenshots">
+            <h2>Capturas de Tela</h2>
+            <div class="screenshot-grid">
+              <div class="screenshot-item" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/c/c3/Zorin-18-Desktop_Installed.png');background-position:top"></div>
+              <div class="screenshot-item" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/c/c3/Zorin-18-Desktop_Installed.png');background-position:center left"></div>
+              <div class="screenshot-item" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/c/c3/Zorin-18-Desktop_Installed.png');background-position:center right"></div>
+              <div class="screenshot-item" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/c/c3/Zorin-18-Desktop_Installed.png');background-position:bottom"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="os-sidebar">
+          <div class="os-info-card">
+            <h3>Informações Técnicas</h3>
+            <div class="info-item"><span>Desenvolvedor</span><span>Zorin Group</span></div>
+            <div class="info-item"><span>Lançamento</span><span>2008</span></div>
+            <div class="info-item"><span>Versão atual</span><span>Zorin OS 17</span></div>
+            <div class="info-item"><span>Base</span><span>Ubuntu 22.04 LTS</span></div>
+            <div class="info-item"><span>Desktop</span><span>GNOME (modificado)</span></div>
+            <div class="info-item"><span>Pacotes</span><span>APT (.deb)</span></div>
+            <div class="info-item"><span>Licença</span><span>GPL e outras</span></div>
+          </div>
+
+          <div class="os-info-card">
+            <h3>Requisitos Mínimos (Core)</h3>
+            <div class="info-item"><span>CPU</span><span>Dual core 1 GHz</span></div>
+            <div class="info-item"><span>RAM</span><span>2 GB (4 GB recomendado)</span></div>
+            <div class="info-item"><span>Armazenamento</span><span>10 GB</span></div>
+            <div class="info-item"><span>GPU</span><span>800×600</span></div>
+            <div class="info-item"><span>Mídia</span><span>USB ou DVD</span></div>
+          </div>
+
+          <div class="os-info-card">
+            <h3>Links Úteis</h3>
+            <a href="https://zorin.com/os/download/" class="btn btn-secondary"><i class="fas fa-download"></i> Download Oficial</a>
+            <a href="https://help.zorin.com/" class="btn btn-secondary"><i class="fas fa-book"></i> Central de Ajuda</a>
+            <a href="https://forum.zorin.com/" class="btn btn-secondary"><i class="fas fa-comments"></i> Fórum</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="download-section">
+        <h2>Pronto para experimentar o Zorin OS?</h2>
+        <p>A versão Core é gratuita e completa. A versão Pro adiciona mais layouts e suporte direto dos desenvolvedores.</p>
+        <a href="https://zorin.com/os/download/" class="download-btn" style="background:#15A6F0">
+          <i class="fas fa-download"></i> Baixar Zorin OS
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">SO<span>ul</span></div>
+      <div class="footer-links">
+        <a href="os.html">Sistemas</a>
+        <a href="test.html">Quiz</a>
+        <a href="about.html">Sobre</a>
+        <a href="terms.html">Termos</a>
+        <a href="privacy.html">Privacidade</a>
+      </div>
+    </div>
+    <p class="footer-copy">© 2025 SOul — Projeto Universitário · Desenvolvimento Web</p>
+  </footer>
+
+  <script src="shared.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const favoriteBtn = document.getElementById('favoriteBtn');
+      const slug = 'zorin';
+
+      if (favorites.isFavorite(slug)) favoriteBtn.classList.add('favorited');
+
+      favoriteBtn.addEventListener('click', function() {
+        const added = favorites.toggle(slug);
+        this.classList.toggle('favorited', added);
+        if (added) {
+          favoritesSync.add(slug);
+          utils.showToast('Zorin OS adicionado aos favoritos');
+        } else {
+          favoritesSync.remove(slug);
+          utils.showToast('Zorin OS removido dos favoritos');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

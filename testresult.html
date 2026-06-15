@@ -3,387 +3,219 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Resultados do Teste | SOul</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <title>Seus Resultados | SOul</title>
+  <script>document.documentElement.setAttribute('data-theme',localStorage.getItem('soul-theme')||'dark')</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
-  <style>
-    .results-container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
-
-    .results-header {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-
-    .results-header h1 {
-      font-size: 2rem;
-      color: #2c3e50;
-      margin-bottom: 1rem;
-    }
-
-    .results-header p {
-      color: #7f8c8d;
-      font-size: 1.1rem;
-    }
-
-    .recommendations {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin-bottom: 3rem;
-    }
-
-    .os-card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .os-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-    }
-
-    .os-image {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-    }
-
-    .os-content {
-      padding: 1.5rem;
-    }
-
-    .os-name {
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: #2c3e50;
-      margin-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .os-description {
-      color: #7f8c8d;
-      margin-bottom: 1rem;
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-
-    .match-score {
-      display: inline-block;
-      background: #1abc9c;
-      color: white;
-      padding: 0.25rem 0.75rem;
-      border-radius: 20px;
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-
-    .os-features {
-      margin-top: 1rem;
-      padding-top: 1rem;
-      border-top: 1px solid #ecf0f1;
-    }
-
-    .feature-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: #7f8c8d;
-      font-size: 0.9rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .feature-item i {
-      color: #1abc9c;
-    }
-
-    .actions {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-
-    .favorite-btn {
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: #e74c3c;
-      font-size: 1.25rem;
-      padding: 0.5rem;
-      transition: transform 0.3s ease;
-    }
-
-    .favorite-btn:hover {
-      transform: scale(1.1);
-    }
-
-    .favorite-btn.active {
-      color: #e74c3c;
-    }
-
-    .loading {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 400px;
-    }
-
-    .loading i {
-      font-size: 3rem;
-      color: #1abc9c;
-      animation: spin 1s linear infinite;
-    }
-
-    .loading p {
-      margin-top: 1rem;
-      color: #7f8c8d;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .error {
-      text-align: center;
-      padding: 2rem;
-      color: #e74c3c;
-    }
-
-    .retry-btn {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.75rem 1.5rem;
-      background: #e74c3c;
-      color: white;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: background 0.3s ease;
-    }
-
-    .retry-btn:hover {
-      background: #c0392b;
-    }
-  </style>
 </head>
 <body>
-  <header>
-    <div class="logo" onclick="window.location.href='index.html'">SOul</div>
+
+  <header class="site-header">
+    <a href="index.html" class="logo">SO<span>ul</span></a>
     <nav>
       <ul>
-        <li><a href="os.html">Sistemas Operacionais</a></li>
+        <li><a href="os.html">Sistemas</a></li>
         <li><a href="favorites.html">Favoritos</a></li>
         <li><a href="test.html">Teste</a></li>
-        <li><a href="about.html">Sobre Nós</a></li>
+        <li><a href="about.html">Sobre</a></li>
         <li class="user-area"></li>
       </ul>
     </nav>
+    <button class="theme-toggle" aria-label="Alternar tema"></button>
+    <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </header>
 
   <main>
-    <div class="results-container">
+    <div style="max-width:900px;margin:0 auto;padding:2rem 1.5rem;">
+
+      <!-- Loading -->
       <div id="loadingSection" class="loading">
-        <i class="fas fa-circle-notch"></i>
-        <p>Analisando suas respostas...</p>
-      </div>
-
-      <div id="resultsSection" style="display: none;">
-        <div class="results-header">
-          <h1>Seus Resultados</h1>
-          <p>Com base nas suas respostas, aqui estão os sistemas operacionais mais adequados para você:</p>
+        <div class="ai-loading-visual" aria-label="Analisando respostas">
+          <div class="ai-loading-ring"></div>
+          <div class="ai-loading-ring"></div>
+          <div class="ai-loading-ring"></div>
+          <div class="ai-loading-core"><i class="fas fa-brain"></i></div>
         </div>
-
-        <div id="recommendations" class="recommendations">
-          <!-- OS cards will be dynamically inserted here -->
-        </div>
-
-        <div class="actions">
-          <button class="btn btn-secondary" onclick="navigation.goTo('test7')">Refazer Teste</button>
-          <button class="btn btn-primary" onclick="navigation.goTo('os')">Ver Todos os Sistemas</button>
+        <div class="ai-loading-text">
+          <h3>Analisando suas respostas…</h3>
+          <p>A IA está processando seu perfil.<br>Isso leva apenas alguns segundos.</p>
         </div>
       </div>
 
-      <div id="errorSection" class="error" style="display: none;">
+      <!-- Results -->
+      <div id="resultsSection" style="display:none;">
+        <div style="text-align:center;margin-bottom:2rem;">
+          <p class="section-label">Resultado do Quiz</p>
+          <h1 class="section-title">Seus sistemas recomendados</h1>
+          <p class="section-subtitle">Com base nas suas respostas, aqui estão os 3 sistemas operacionais mais adequados para você.</p>
+        </div>
+
+        <!-- Justificativa da IA / regras -->
+        <div id="justificativaBox" style="display:none;margin-bottom:2rem;padding:1.25rem 1.5rem;border-radius:12px;background:var(--card-bg);border:1px solid var(--border);position:relative;">
+          <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.6rem;">
+            <i id="fonteIcon" class="fas fa-brain" style="font-size:1.1rem;color:var(--accent)"></i>
+            <strong id="fonteLabel" style="font-size:.9rem;color:var(--t1)"></strong>
+            <span id="confiancaBadge" style="margin-left:auto;font-size:.8rem;padding:.2rem .7rem;border-radius:20px;background:var(--accent);color:#fff;font-weight:600"></span>
+          </div>
+          <p id="justificativaText" style="color:var(--t2);font-size:.95rem;line-height:1.7;margin:0"></p>
+        </div>
+
+        <div id="recommendations" class="recommendations"></div>
+
+        <div style="display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-top:2.5rem;">
+          <button class="btn btn-secondary" onclick="testProgress.clearProgress(); window.location.href='test.html'">
+            <i class="fas fa-redo"></i> Refazer Teste
+          </button>
+          <a href="os.html" class="btn btn-primary">
+            Ver Todos os Sistemas <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Error -->
+      <div id="errorSection" style="display:none;" class="empty-state">
+        <i class="fas fa-exclamation-triangle" style="color:var(--danger)"></i>
         <h2>Ops! Algo deu errado.</h2>
-        <p>Não foi possível carregar seus resultados. Por favor, tente novamente.</p>
-        <a href="test.html" class="retry-btn">Refazer o Teste</a>
+        <p id="errorMessage">Não foi possível carregar seus resultados. Por favor, tente novamente.</p>
+        <a href="test.html" class="btn btn-primary" style="margin-top:1rem">Refazer o Teste</a>
       </div>
+
     </div>
   </main>
 
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">SO<span>ul</span></div>
+      <div class="footer-links">
+        <a href="os.html">Sistemas</a>
+        <a href="test.html">Quiz</a>
+        <a href="about.html">Sobre</a>
+        <a href="terms.html">Termos</a>
+        <a href="privacy.html">Privacidade</a>
+      </div>
+    </div>
+    <p class="footer-copy">© 2025 SOul — Projeto Universitário · Desenvolvimento Web</p>
+  </footer>
+
   <script src="shared.js"></script>
   <script>
-    // OS recommendation logic based on user answers
-    const recommendOS = (answers) => {
-      const recommendations = [];
-      
-      // Example OS data - in a real app, this would come from a database
-      const operatingSystems = [
-        {
-          id: 'ubuntu',
-          name: 'Ubuntu',
-          description: 'Sistema Linux amigável e popular, perfeito para iniciantes',
-          image: 'images/ubuntu.jpg',
-          features: ['Interface intuitiva', 'Grande comunidade', 'Fácil instalação'],
-          matchCriteria: {
-            q1: ['easy', 'moderate'],
-            q2: ['free', 'low-cost'],
-            q3: ['gui'],
-            q4: ['productivity', 'multimedia'],
-            q5: ['stable'],
-            q6: ['basic', 'enhanced'],
-            q7: ['beginner', 'intermediate']
-          }
-        },
-        {
-          id: 'fedora',
-          name: 'Fedora',
-          description: 'Distribuição Linux moderna com foco em inovação',
-          image: 'images/fedora.jpg',
-          features: ['Atualizações frequentes', 'Software recente', 'Ótimo para desenvolvedores'],
-          matchCriteria: {
-            q1: ['moderate', 'complex'],
-            q2: ['free'],
-            q3: ['gui', 'cli'],
-            q4: ['development', 'productivity'],
-            q5: ['latest'],
-            q6: ['enhanced', 'maximum'],
-            q7: ['intermediate', 'advanced']
-          }
-        },
-        {
-          id: 'arch',
-          name: 'Arch Linux',
-          description: 'Distribuição Linux minimalista e altamente customizável',
-          image: 'images/arch.jpg',
-          features: ['Controle total', 'Rolling release', 'Documentação excelente'],
-          matchCriteria: {
-            q1: ['complex'],
-            q2: ['free'],
-            q3: ['cli'],
-            q4: ['development'],
-            q5: ['latest'],
-            q6: ['maximum'],
-            q7: ['advanced']
-          }
-        },
-        // Add more OS options here
-      ];
-
-      // Calculate match score for each OS
-      operatingSystems.forEach(os => {
-        let score = 0;
-        let maxScore = 0;
-
-        // Compare user answers with OS criteria
-        Object.entries(answers).forEach(([question, answer]) => {
-          if (os.matchCriteria[question]) {
-            maxScore++;
-            if (os.matchCriteria[question].includes(answer)) {
-              score++;
-            }
-          }
-        });
-
-        const matchPercentage = (score / maxScore) * 100;
-        
-        // Add to recommendations if match is above 50%
-        if (matchPercentage >= 50) {
-          recommendations.push({
-            ...os,
-            matchScore: Math.round(matchPercentage)
-          });
-        }
-      });
-
-      // Sort by match score
-      return recommendations.sort((a, b) => b.matchScore - a.matchScore);
-    };
-
-    // Create OS card HTML
-    const createOSCard = (os) => {
-      return `
-        <div class="os-card">
-          <img src="${os.image}" alt="${os.name}" class="os-image">
-          <div class="os-content">
-            <div class="os-name">
-              ${os.name}
-              <span class="match-score">${os.matchScore}% match</span>
-            </div>
-            <p class="os-description">${os.description}</p>
-            <div class="os-features">
-              ${os.features.map(feature => `
-                <div class="feature-item">
-                  <i class="fas fa-check"></i>
-                  <span>${feature}</span>
-                </div>
-              `).join('')}
-            </div>
-            <button class="favorite-btn" data-os-id="${os.id}" onclick="favorites.toggle('${os.id}')">
-              <i class="fas fa-heart"></i>
-            </button>
+    const createOSCard = (os, idx) => `
+      <div class="os-card${idx === 0 ? ' os-card--top' : ''}">
+        <div class="os-card-header" style="background:${os.gradient};display:flex;align-items:center;gap:1rem;padding:1.25rem 1.25rem 0;position:relative;">
+          ${idx === 0 ? '<div class="top-pick-badge"><i class="fas fa-trophy"></i> Melhor escolha</div>' : ''}
+          <i class="${os.icon}" style="font-size:2.2rem;color:${os.color}"></i>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:1.1rem;font-weight:700;color:var(--t1)">${os.name}</div>
+            <span class="match-score">${os.score}% compatível</span>
           </div>
+          <button class="favorite-btn" data-slug="${os.slug}"
+                  title="Favoritar ${os.name}" aria-label="Adicionar ${os.name} aos favoritos">
+            <i class="fas fa-heart"></i>
+          </button>
         </div>
-      `;
-    };
+        <div class="os-card-body">
+          <p style="color:var(--t2);font-size:.9rem;line-height:1.6;margin-bottom:1rem;">${os.description}</p>
+          <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:.4rem;">
+            ${os.features.map(f => `
+              <li style="display:flex;align-items:center;gap:.5rem;color:var(--t2);font-size:.88rem;">
+                <i class="fas fa-check" style="color:var(--success);flex-shrink:0;font-size:.7rem"></i>${f}
+              </li>`).join('')}
+          </ul>
+        </div>
+        <div class="os-card-footer">
+          <a href="${os.page}" class="btn btn-secondary" style="flex:1;text-align:center;">Ver detalhes</a>
+        </div>
+      </div>
+    `;
 
-    // Initialize page
+    function showError(msg) {
+      document.getElementById('loadingSection').style.display  = 'none';
+      document.getElementById('resultsSection').style.display  = 'none';
+      document.getElementById('errorSection').style.display    = 'block';
+      if (msg) document.getElementById('errorMessage').textContent = msg;
+    }
+
     document.addEventListener('DOMContentLoaded', async () => {
-      // Check if user is logged in
       if (!navigation.requireAuth()) return;
 
+      const answers = testProgress.getAnswers();
+      if (!answers || Object.keys(answers).length === 0) {
+        window.location.href = 'test.html';
+        return;
+      }
+
       try {
-        // Get test answers
-        const answers = testProgress.getAnswers();
-        
-        // If no answers, redirect to test start
-        if (!answers || Object.keys(answers).length === 0) {
-          navigation.goTo('test');
-          return;
-        }
+        const userId = auth.getUserId();
 
-        // Simulate API delay
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        const res = await fetch('/recommend', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ answers, userId: userId ? parseInt(userId) : null }),
+        });
 
-        // Get recommendations
-        const recommendations = recommendOS(answers);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
 
-        // Show results
         document.getElementById('loadingSection').style.display = 'none';
         document.getElementById('resultsSection').style.display = 'block';
 
-        // Render recommendations
-        const recommendationsContainer = document.getElementById('recommendations');
-        recommendationsContainer.innerHTML = recommendations
-          .map(os => createOSCard(os))
-          .join('');
+        // Justificativa
+        if (data.justificativa) {
+          const box        = document.getElementById('justificativaBox');
+          const fonteLabel = document.getElementById('fonteLabel');
+          const fonteIcon  = document.getElementById('fonteIcon');
+          const badge      = document.getElementById('confiancaBadge');
 
-        // Update favorite buttons
-        const favoriteButtons = document.querySelectorAll('.favorite-btn');
-        favoriteButtons.forEach(btn => {
-          const osId = btn.dataset.osId;
-          if (favorites.isFavorite(osId)) {
-            btn.classList.add('active');
+          document.getElementById('justificativaText').textContent = data.justificativa;
+
+          if (data.fonte === 'ai') {
+            fonteLabel.textContent = 'Análise por Inteligência Artificial';
+            fonteIcon.className    = 'fas fa-brain';
+          } else {
+            fonteLabel.textContent = 'Análise por regras determinísticas';
+            fonteIcon.className    = 'fas fa-cogs';
+            fonteIcon.style.color  = 'var(--t2)';
           }
+
+          if (data.confianca != null) {
+            badge.textContent = `${data.confianca}% confiança`;
+          }
+          box.style.display = 'block';
+        }
+
+        // Cards de resultado
+        const container = document.getElementById('recommendations');
+        const ranking   = data.ranking || [];
+
+        if (ranking.length === 0) {
+          container.innerHTML = '<p style="text-align:center;color:var(--t2)">Nenhuma correspondência encontrada. Tente refazer o teste.</p>';
+        } else {
+          container.innerHTML = ranking.slice(0, 3).map((os, idx) => createOSCard(os, idx)).join('');
+        }
+
+        // Estado dos botões de favorito
+        document.querySelectorAll('.favorite-btn').forEach(btn => {
+          const slug = btn.dataset.slug;
+          if (favorites.isFavorite(slug)) btn.classList.add('active');
+
+          btn.addEventListener('click', () => {
+            const added = favorites.toggle(slug);
+            btn.classList.toggle('active', added);
+            if (added) {
+              favoritesSync.add(slug);
+            } else {
+              favoritesSync.remove(slug);
+            }
+          });
         });
 
-      } catch (error) {
-        console.error('Error loading results:', error);
-        document.getElementById('loadingSection').style.display = 'none';
-        document.getElementById('errorSection').style.display = 'block';
+      } catch (err) {
+        console.error('Erro ao carregar resultados:', err);
+        showError('Não foi possível obter a recomendação. Verifique se o servidor Flask está rodando e tente novamente.');
       }
     });
   </script>
 </body>
-</html> 
+</html>

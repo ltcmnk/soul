@@ -57,22 +57,28 @@ const auth = {
             }
             localStorage.setItem('userLoggedIn', 'true');
             localStorage.setItem('userName', data.user);
-            utils.showToast('Login successful!');
+            if (data.userId) localStorage.setItem('userId', String(data.userId));
+            utils.showToast('Login realizado com sucesso!');
         } catch (error) {
             console.error('Error during login:', error);
-            utils.showToast('Login failed. Please try again.', 'error');
+            utils.showToast('Falha no login. Tente novamente.', 'error');
             throw error;
         }
+    },
+
+    getUserId() {
+        return localStorage.getItem('userId') || null;
     },
     
     logout() {
         try {
             localStorage.removeItem('userLoggedIn');
             localStorage.removeItem('userName');
+            localStorage.removeItem('userId');
             window.location.href = 'login.html';
         } catch (error) {
             console.error('Error during logout:', error);
-            utils.showToast('Logout failed. Please try again.', 'error');
+            utils.showToast('Erro ao sair. Tente novamente.', 'error');
             throw error;
         }
     },
@@ -302,14 +308,13 @@ const navigation = {
             return false;
         }
         return true;
-    }
-};
+    },
 
-goBackToTest() {
+    goBackToTest() {
         try {
             const currentPage = this.getCurrentPage();
             if (!currentPage.startsWith('test')) return;
-            
+
             const currentTestNumber = parseInt(currentPage.replace('test', '').replace('.html', ''));
             if (currentTestNumber > 1) {
                 const prevPage = `test${currentTestNumber - 1}.html`;
@@ -324,9 +329,49 @@ goBackToTest() {
     }
 };
 
+// ── Sincronização de favoritos com o backend ───────────────────────────────
+const favoritesSync = {
+    async add(slug) {
+        const userId = auth.getUserId();
+        if (!userId) return;
+        try {
+            await fetch('/favorites', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ userId: parseInt(userId), slug }),
+            });
+        } catch (e) { /* offline — localStorage já foi atualizado */ }
+    },
+
+    async remove(slug) {
+        const userId = auth.getUserId();
+        if (!userId) return;
+        try {
+            await fetch('/favorites', {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ userId: parseInt(userId), slug }),
+            });
+        } catch (e) { /* offline */ }
+    },
+
+    async syncFromServer() {
+        const userId = auth.getUserId();
+        if (!userId) return;
+        try {
+            const res = await fetch(`/favorites/${userId}`);
+            if (!res.ok) return;
+            const data = await res.json();
+            if (Array.isArray(data.favorites)) {
+                localStorage.setItem('favoriteOS', JSON.stringify(data.favorites));
+            }
+        } catch (e) { /* offline — usa localStorage */ }
+    },
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     auth.updateUI();
-    
+
     document.querySelectorAll('nav a').forEach(link => {
         link.addEventListener('click', (e) => {
             const href = link.getAttribute('href');
@@ -336,4 +381,61 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-}); 
+});
+
+// ── Theme Manager ──────────────────────────────────────────────
+const themeManager = {
+    KEY: 'soul-theme',
+    get() { return localStorage.getItem(this.KEY) || 'dark'; },
+    set(t) {
+        localStorage.setItem(this.KEY, t);
+        document.documentElement.setAttribute('data-theme', t);
+        this.updateIcon();
+    },
+    toggle() { this.set(this.get() === 'dark' ? 'light' : 'dark'); },
+    updateIcon() {
+        const isDark = this.get() === 'dark';
+        document.querySelectorAll('.theme-toggle').forEach(btn => {
+            btn.innerHTML = isDark
+                ? '<i class="fas fa-sun"></i>'
+                : '<i class="fas fa-moon"></i>';
+            btn.title = isDark ? 'Mudar para modo claro' : 'Mudar para modo escuro';
+        });
+    },
+    init() {
+        document.documentElement.setAttribute('data-theme', this.get());
+    }
+};
+
+// Apply theme before render to avoid flash
+themeManager.init();
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Wire theme toggle buttons
+    document.querySelectorAll('.theme-toggle').forEach(btn => {
+        btn.addEventListener('click', () => themeManager.toggle());
+    });
+    themeManager.updateIcon();
+
+    // Mobile hamburger
+    const navToggle = document.querySelector('.nav-toggle');
+    if (navToggle) {
+        navToggle.addEventListener('click', () => {
+            const open = navToggle.getAttribute('aria-expanded') === 'true';
+            navToggle.setAttribute('aria-expanded', !open);
+            navToggle.classList.toggle('active', !open);
+            const navList = document.querySelector('nav ul');
+            if (navList) navList.classList.toggle('open', !open);
+        });
+
+        // Close nav on link click (mobile)
+        document.querySelectorAll('nav a').forEach(a => {
+            a.addEventListener('click', () => {
+                navToggle.classList.remove('active');
+                navToggle.setAttribute('aria-expanded', 'false');
+                const navList = document.querySelector('nav ul');
+                if (navList) navList.classList.remove('open');
+            });
+        });
+    }
+});

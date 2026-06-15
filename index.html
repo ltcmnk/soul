@@ -3,301 +3,162 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home | SOul</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #f5f7fa;
-      color: #333;
-      line-height: 1.6;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #2c3e50;
-      color: #fff;
-      padding: 1rem 2rem;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: #fff;
-      cursor: pointer;
-    }
-
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 1.5rem;
-      align-items: center;
-    }
-
-    nav a {
-      color: #ecf0f1;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s ease;
-    }
-
-    nav a:hover {
-      color: #1abc9c;
-    }
-
-    .user-area {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-      .login-btn {
-      background: #1abc9c;
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      font-weight: 500;
-      transition: background 0.3s ease;
-    }
-
-      .login-btn:hover {
-      background: #16a085;
-    }
-
-    .user-avatar {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background-color: #1abc9c;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-    }
-
-    .user-dropdown {
-      position: absolute;
-      top: 70px;
-      right: 2rem;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      padding: 1rem;
-      width: 200px;
-      display: none;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .user-dropdown.show {
-      display: flex;
-    }
-    
-    .user-dropdown a {
-      color: #333;
-      padding: 0.5rem;
-      border-radius: 4px;
-      transition: background 0.3s ease;
-    }
-
-    .user-dropdown a:hover {
-      background: #f5f7fa;
-    }
-
-    main {
-      padding: 3rem 2rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: calc(100vh - 70px);
-    }
-
-    .container {
-    width: 100%;
-    max-width: 800px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    padding: 2.5rem;
-    margin-bottom: 2rem;
-    }
-
-    .welcome {
-      max-width: 600px;
-      text-align: center;
-    }
-
-    .welcome h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .welcome p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      color: #555;
-    }
-
-    .start-btn {
-      background: #1abc9c;
-      color: white;
-      padding: 0.75rem 1.5rem;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      display: inline-block;
-    }
-
-    .start-btn:hover {
-      background: #16a085;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Estilos compartilhados com login/signup */
-    .auth-container {
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 400px;
-      padding: 2rem;
-      margin: 2rem auto;
-    }
-
-    .auth-header {
-      text-align: center;
-      margin-bottom: 1.5rem;
-    }
-
-    .auth-header h1 {
-      color: #2c3e50;
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .auth-header p {
-      color: #7f8c8d;
-      font-size: 0.9rem;
-    }
-
-    .input-group {
-      margin-bottom: 1rem;
-      position: relative;
-    }
-
-    .input-group i {
-      position: absolute;
-      left: 15px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #95a5a6;
-    }
-
-    .input-group input {
-      width: 100%;
-      padding: 0.75rem 1rem 0.75rem 2.5rem;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      font-size: 0.9rem;
-      transition: all 0.3s ease;
-    }
-
-    .input-group input:focus {
-      border-color: #1abc9c;
-      outline: none;
-      box-shadow: 0 0 0 2px rgba(26, 188, 156, 0.2);
-    }
-
-    .auth-button {
-      width: 100%;
-      padding: 0.75rem;
-      background-color: #1abc9c;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-size: 1rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      margin-top: 0.5rem;
-    }
-
-    .auth-button:hover {
-      background-color: #16a085;
-    }
-
-    .auth-link {
-      text-align: center;
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      color: #7f8c8d;
-    }
-
-    .auth-link a {
-      color: #1abc9c;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    .auth-link a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 768px) {
-      header {
-        padding: 1.5rem;
-      }
-      
-      nav ul {
-        gap: 1rem;
-      }
-      
-      .welcome h1 {
-        font-size: 2rem;
-      }
-      
-      .welcome p {
-        font-size: 1rem;
-      }
-    }
-  </style>
+  <title>SOul — Descubra seu Sistema Operacional Ideal</title>
+  <script>document.documentElement.setAttribute('data-theme',localStorage.getItem('soul-theme')||'dark')</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <div class="logo" onclick="window.location.href='index.html'">SOul</div>
+
+  <header class="site-header">
+    <a href="index.html" class="logo">SO<span>ul</span></a>
     <nav>
       <ul>
-        <li><a href="os.html">Sistemas Operacionais</a></li>
+        <li><a href="os.html">Sistemas</a></li>
         <li><a href="favorites.html">Favoritos</a></li>
         <li><a href="test.html">Teste</a></li>
-        <li><a href="about.html">Sobre Nós</a></li>
-        <li class="user-area">
-          <a href="login.html" class="login-btn">Entrar</a>
-        </li>
+        <li><a href="about.html">Sobre</a></li>
+        <li class="user-area"></li>
       </ul>
     </nav>
+    <button class="theme-toggle" aria-label="Alternar tema"></button>
+    <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </header>
 
   <main>
-    <section class="welcome">
-      <h1>Olá, <span id="username">@usuário</span> 👋</h1>
-      <p>Bem-vindo ao <strong>SOul</strong> — nosso objetivo é alinhar você ao sistema operacional ideal com base em um teste simples e personalizado.</p>
-      <a href="test.html" class="start-btn">Começar o Teste</a>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-eyebrow">
+        <i class="fas fa-terminal"></i> Powered by IA Local
+      </div>
+      <h1>Descubra seu <span>sistema operacional</span> ideal</h1>
+      <p class="hero-subtitle">
+        Olá, <strong id="username">visitante</strong>! Responda algumas perguntas e deixe a inteligência artificial recomendar o SO perfeito para o seu perfil.
+      </p>
+      <div class="hero-actions">
+        <a href="test.html" class="btn btn-primary btn-lg">
+          <i class="fas fa-arrow-right"></i> Fazer o Teste
+        </a>
+        <a href="os.html" class="btn btn-secondary btn-lg">
+          Explorar Sistemas
+        </a>
+      </div>
+      <div class="hero-os-logos">
+        <div class="os-logo-chip">
+          <i class="fab fa-windows" style="color:#0078D7"></i>
+          <span>Windows</span>
+        </div>
+        <div class="os-logo-chip">
+          <i class="fab fa-ubuntu" style="color:#E95420"></i>
+          <span>Ubuntu</span>
+        </div>
+        <div class="os-logo-chip">
+          <i class="fab fa-apple" style="color:#888"></i>
+          <span>macOS</span>
+        </div>
+        <div class="os-logo-chip">
+          <i class="fab fa-linux" style="color:#1793D1"></i>
+          <span>Arch</span>
+        </div>
+        <div class="os-logo-chip">
+          <i class="fab fa-debian" style="color:#A80030"></i>
+          <span>Debian</span>
+        </div>
+        <div class="os-logo-chip">
+          <i class="fas fa-leaf" style="color:#87CF3E"></i>
+          <span>Mint</span>
+        </div>
+      </div>
     </section>
+
+    <hr class="section-divider">
+
+    <!-- COMO FUNCIONA -->
+    <div class="section">
+      <p class="section-label">Como funciona</p>
+      <h2 class="section-title">Três passos para encontrar seu SO</h2>
+      <p class="section-subtitle">Sem jargões técnicos — só perguntas simples sobre como você usa seu computador.</p>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <h3>Responda o quiz</h3>
+          <p>Seis perguntas sobre seu uso, hardware e preferências. Leva menos de dois minutos.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <h3>A IA analisa</h3>
+          <p>Nosso modelo local (via Ollama) processa seu perfil e cruza com as características de cada sistema.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <h3>Receba a recomendação</h3>
+          <p>Veja qual SO combina mais com você, com uma explicação clara e links para começar.</p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- OS SHOWCASE -->
+    <div class="section">
+      <p class="section-label">Catálogo</p>
+      <h2 class="section-title">Sistemas que analisamos</h2>
+      <p class="section-subtitle">Do mais popular ao mais avançado — conheça cada um antes de decidir.</p>
+
+      <div class="os-preview-grid">
+        <a href="windows.html" class="os-preview-card">
+          <div class="os-icon"><i class="fab fa-windows" style="color:#0078D7"></i></div>
+          <h4>Windows</h4>
+          <p>Maior compatibilidade do mercado</p>
+        </a>
+        <a href="ubuntu.html" class="os-preview-card">
+          <div class="os-icon"><i class="fab fa-ubuntu" style="color:#E95420"></i></div>
+          <h4>Ubuntu</h4>
+          <p>Linux amigável para todos</p>
+        </a>
+        <a href="macos.html" class="os-preview-card">
+          <div class="os-icon"><i class="fab fa-apple" style="color:#888"></i></div>
+          <h4>macOS</h4>
+          <p>Elegância do ecossistema Apple</p>
+        </a>
+        <a href="arch.html" class="os-preview-card">
+          <div class="os-icon"><i class="fab fa-linux" style="color:#1793D1"></i></div>
+          <h4>Arch Linux</h4>
+          <p>Controle total, para avançados</p>
+        </a>
+        <a href="debian.html" class="os-preview-card">
+          <div class="os-icon"><i class="fab fa-debian" style="color:#A80030"></i></div>
+          <h4>Debian</h4>
+          <p>Estabilidade e software livre</p>
+        </a>
+        <a href="mint.html" class="os-preview-card">
+          <div class="os-icon"><i class="fas fa-leaf" style="color:#87CF3E"></i></div>
+          <h4>Linux Mint</h4>
+          <p>Pronto para uso imediato</p>
+        </a>
+      </div>
+    </div>
+
   </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">SO<span>ul</span></div>
+      <div class="footer-links">
+        <a href="os.html">Sistemas</a>
+        <a href="test.html">Quiz</a>
+        <a href="favorites.html">Favoritos</a>
+        <a href="about.html">Sobre</a>
+        <a href="terms.html">Termos</a>
+        <a href="privacy.html">Privacidade</a>
+      </div>
+    </div>
+    <p class="footer-copy">© 2025 SOul — Projeto Universitário · Desenvolvimento Web</p>
+  </footer>
 
   <script src="shared.js"></script>
 </body>

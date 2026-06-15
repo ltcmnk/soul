@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pop!_OS | SOul</title>
+  <script>document.documentElement.setAttribute('data-theme',localStorage.getItem('soul-theme')||'dark')</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="index.html" class="logo">SO<span>ul</span></a>
+    <nav>
+      <ul>
+        <li><a href="os.html" class="active">Sistemas</a></li>
+        <li><a href="favorites.html">Favoritos</a></li>
+        <li><a href="test.html">Teste</a></li>
+        <li><a href="about.html">Sobre</a></li>
+        <li class="user-area"></li>
+      </ul>
+    </nav>
+    <button class="theme-toggle" aria-label="Alternar tema"></button>
+    <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <main>
+    <div class="os-page-inner">
+
+      <section class="os-hero" style="background:linear-gradient(135deg,#48B9C7,#32878F)">
+        <button class="favorite-btn" id="favoriteBtn" title="Favoritar Pop!_OS">
+          <i class="fas fa-heart"></i>
+        </button>
+        <div class="os-hero-content">
+          <i class="fas fa-rocket" style="font-size:3.5rem;margin-bottom:1rem;opacity:.9"></i>
+          <h1>Pop!_OS</h1>
+          <p>Criado pela System76 para quem quer o Linux sem compromisso — desempenho máximo em jogos, design e desenvolvimento.</p>
+        </div>
+      </section>
+
+      <div class="os-details-container">
+        <div class="os-main-content">
+
+          <div class="os-description">
+            <h2>Sobre o Pop!_OS</h2>
+            <p>O Pop!_OS é desenvolvido pela System76, fabricante americana de hardware focado em Linux. Lançado em 2017, nasceu da necessidade de oferecer uma experiência polida e sem atritos para usuários de notebooks e workstations da marca — mas rapidamente ganhou popularidade entre a comunidade Linux geral.</p>
+            <p>Baseado no Ubuntu LTS, o Pop!_OS adiciona uma camada de refinamento significativa: driver proprietário Nvidia integrado na ISO dedicada (eliminando a dor de cabeça de instalar drivers), gerenciador de janelas em mosaico (tiling) automático via COSMIC Shell, e um sistema de atualização que prioriza a experiência do usuário.</p>
+            <p>É especialmente apreciado por gamers Linux (suporte Steam Proton nativo), designers e desenvolvedores que precisam de GPU dedicada. O sistema também se destaca pelo excelente gerenciamento de energia em notebooks.</p>
+          </div>
+
+          <div class="os-features">
+            <h2>Principais Características</h2>
+            <div class="feature-grid">
+              <div class="feature-card">
+                <i class="fas fa-microchip"></i>
+                <h4>Driver Nvidia nativo</h4>
+                <p>ISO dedicada com driver proprietário Nvidia pré-instalado. Zero configuração pós-install.</p>
+              </div>
+              <div class="feature-card">
+                <i class="fas fa-gamepad"></i>
+                <h4>Gaming no Linux</h4>
+                <p>Integração Steam e Proton, suporte a Vulkan e otimizações de desempenho para jogos.</p>
+              </div>
+              <div class="feature-card">
+                <i class="fas fa-th"></i>
+                <h4>Tiling automático</h4>
+                <p>Organize janelas automaticamente em mosaico sem precisar de atalhos complexos.</p>
+              </div>
+              <div class="feature-card">
+                <i class="fas fa-palette"></i>
+                <h4>Para criadores</h4>
+                <p>Excelente suporte a GPU para edição de vídeo, renderização 3D e design gráfico.</p>
+              </div>
+              <div class="feature-card">
+                <i class="fas fa-battery-three-quarters"></i>
+                <h4>Gestão de energia</h4>
+                <p>System76 Power para alternar entre modos de economia e desempenho com um clique.</p>
+              </div>
+              <div class="feature-card">
+                <i class="fas fa-download"></i>
+                <h4>Atualizações simples</h4>
+                <p>Ferramenta de atualização que fecha apenas apps necessários, sem reinicialização forçada.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="os-screenshots">
+            <h2>Capturas de Tela</h2>
+            <div class="screenshot-grid">
+              <div class="screenshot-item" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/3/3e/Pop%21_OS_24.04_LTS_default_desktop_-_English.png');background-position:top"></div>
+              <div class="screenshot-item" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/3/3e/Pop%21_OS_24.04_LTS_default_desktop_-_English.png');background-position:center left"></div>
+              <div class="screenshot-item" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/3/3e/Pop%21_OS_24.04_LTS_default_desktop_-_English.png');background-position:center right"></div>
+              <div class="screenshot-item" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/3/3e/Pop%21_OS_24.04_LTS_default_desktop_-_English.png');background-position:bottom"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="os-sidebar">
+          <div class="os-info-card">
+            <h3>Informações Técnicas</h3>
+            <div class="info-item"><span>Desenvolvedor</span><span>System76</span></div>
+            <div class="info-item"><span>Lançamento</span><span>2017</span></div>
+            <div class="info-item"><span>Versão atual</span><span>Pop!_OS 22.04 LTS</span></div>
+            <div class="info-item"><span>Base</span><span>Ubuntu LTS</span></div>
+            <div class="info-item"><span>Desktop</span><span>GNOME + COSMIC</span></div>
+            <div class="info-item"><span>Pacotes</span><span>APT (.deb)</span></div>
+            <div class="info-item"><span>Licença</span><span>GPL e outras</span></div>
+          </div>
+
+          <div class="os-info-card">
+            <h3>Requisitos Mínimos</h3>
+            <div class="info-item"><span>CPU</span><span>64-bit x86 ou ARM</span></div>
+            <div class="info-item"><span>RAM</span><span>4 GB (8 GB recomendado)</span></div>
+            <div class="info-item"><span>Armazenamento</span><span>20 GB</span></div>
+            <div class="info-item"><span>GPU</span><span>Nvidia, AMD ou Intel</span></div>
+            <div class="info-item"><span>Mídia</span><span>USB (8 GB+)</span></div>
+          </div>
+
+          <div class="os-info-card">
+            <h3>Links Úteis</h3>
+            <a href="https://pop.system76.com/" class="btn btn-secondary"><i class="fas fa-download"></i> Download Oficial</a>
+            <a href="https://support.system76.com/" class="btn btn-secondary"><i class="fas fa-book"></i> Documentação</a>
+            <a href="https://reddit.com/r/pop_os/" class="btn btn-secondary"><i class="fab fa-reddit"></i> Comunidade Reddit</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="download-section">
+        <h2>Pronto para experimentar o Pop!_OS?</h2>
+        <p>Escolha a ISO com driver Nvidia (se tiver placa dedicada) ou a versão padrão para AMD/Intel.</p>
+        <a href="https://pop.system76.com/" class="download-btn" style="background:#48B9C7">
+          <i class="fas fa-download"></i> Baixar Pop!_OS
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">SO<span>ul</span></div>
+      <div class="footer-links">
+        <a href="os.html">Sistemas</a>
+        <a href="test.html">Quiz</a>
+        <a href="about.html">Sobre</a>
+        <a href="terms.html">Termos</a>
+        <a href="privacy.html">Privacidade</a>
+      </div>
+    </div>
+    <p class="footer-copy">© 2025 SOul — Projeto Universitário · Desenvolvimento Web</p>
+  </footer>
+
+  <script src="shared.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const favoriteBtn = document.getElementById('favoriteBtn');
+      const slug = 'popos';
+
+      if (favorites.isFavorite(slug)) favoriteBtn.classList.add('favorited');
+
+      favoriteBtn.addEventListener('click', function() {
+        const added = favorites.toggle(slug);
+        this.classList.toggle('favorited', added);
+        if (added) {
+          favoritesSync.add(slug);
+          utils.showToast('Pop!_OS adicionado aos favoritos');
+        } else {
+          favoritesSync.remove(slug);
+          utils.showToast('Pop!_OS removido dos favoritos');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

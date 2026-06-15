@@ -1,13 +1,15 @@
 <?php
 session_start();
 header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Headers: Content-Type');
 
-$host = "localhost";
-$usuario = "root";
-$senha = "";
-$banco = "mydb";
+$host   = 'localhost';
+$dbuser = 'root';
+$dbpass = '';
+$banco  = 'SOul';
 
-$conn = new mysqli($host, $usuario, $senha, $banco);
+$conn = new mysqli($host, $dbuser, $dbpass, $banco);
 if ($conn->connect_error) {
     echo json_encode(['success' => false, 'message' => 'Falha na conexão com o banco de dados']);
     exit;
@@ -15,39 +17,37 @@ if ($conn->connect_error) {
 
 $data = json_decode(file_get_contents('php://input'), true);
 
-// Validação dos campos
 if (empty($data['email']) || empty($data['senha'])) {
-    echo json_encode(['success' => false, 'message' => 'Email e senha são obrigatórios']);
+    echo json_encode(['success' => false, 'message' => 'E-mail e senha são obrigatórios']);
     exit;
 }
 
-$email = $conn->real_escape_string($data['email']);
+$email = $data['email'];
 $senha = $data['senha'];
 
-$sql = "SELECT id, nome, senha FROM usuario WHERE email = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $email);
+$stmt = $conn->prepare('SELECT id, nome, senha FROM usuario WHERE email = ?');
+$stmt->bind_param('s', $email);
 $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
     $user = $result->fetch_assoc();
     if (password_verify($senha, $user['senha'])) {
-        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['user_id']   = $user['id'];
         $_SESSION['user_name'] = $user['nome'];
         echo json_encode([
-            'success' => true, 
-            'message' => 'Login realizado com sucesso!',
+            'success'  => true,
+            'message'  => 'Login realizado com sucesso!',
             'redirect' => 'index.html',
-            'user' => $user['nome']
+            'user'     => $user['nome'],
+            'userId'   => $user['id'],
         ]);
     } else {
-        echo json_encode(['success' => false, 'message' => 'Email ou senha incorretos']);
+        echo json_encode(['success' => false, 'message' => 'E-mail ou senha incorretos']);
     }
 } else {
-    echo json_encode(['success' => false, 'message' => 'Email ou senha incorretos']);
+    echo json_encode(['success' => false, 'message' => 'E-mail ou senha incorretos']);
 }
 
 $stmt->close();
 $conn->close();
-?>

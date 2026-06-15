@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Política de Privacidade | SOul</title>
+  <script>document.documentElement.setAttribute('data-theme',localStorage.getItem('soul-theme')||'dark')</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="index.html" class="logo">SO<span>ul</span></a>
+    <nav>
+      <ul>
+        <li><a href="os.html">Sistemas</a></li>
+        <li><a href="favorites.html">Favoritos</a></li>
+        <li><a href="test.html">Teste</a></li>
+        <li><a href="about.html">Sobre</a></li>
+        <li class="user-area"></li>
+      </ul>
+    </nav>
+    <button class="theme-toggle" aria-label="Alternar tema"></button>
+    <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>Política de Privacidade</h1>
+      <p>Última atualização: junho de 2025</p>
+    </div>
+
+    <div style="max-width:800px;margin:0 auto;padding:0 1.5rem 4rem;">
+
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:2rem;display:flex;align-items:flex-start;gap:1rem;">
+        <i class="fas fa-shield-halved" style="color:var(--accent);font-size:1.4rem;margin-top:.15rem;flex-shrink:0"></i>
+        <div>
+          <strong style="color:var(--t1)">Compromisso com a Privacidade</strong>
+          <p style="color:var(--t2);font-size:.9rem;margin:.3rem 0 0">O SOul coleta apenas os dados estritamente necessários para o funcionamento da plataforma. Nenhuma informação é vendida, repassada ou utilizada para fins comerciais. Este projeto não possui fins lucrativos.</p>
+        </div>
+      </div>
+
+      <div class="os-description" style="display:flex;flex-direction:column;gap:2rem;">
+
+        <section>
+          <h2 style="font-size:1.2rem;margin-bottom:.75rem;color:var(--t1);display:flex;align-items:center;gap:.6rem;">
+            <i class="fas fa-circle-info" style="color:var(--accent)"></i> 1. Quem Somos
+          </h2>
+          <p style="color:var(--t2);line-height:1.8">O SOul é um projeto acadêmico desenvolvido por estudantes do curso de Desenvolvimento de Sistemas. Opera em ambiente local (localhost) durante o período de avaliação, sem infraestrutura de produção em nuvem. Esta política descreve como os dados fornecidos pelos usuários são tratados dentro desse contexto.</p>
+        </section>
+
+        <section>
+          <h2 style="font-size:1.2rem;margin-bottom:.75rem;color:var(--t1);display:flex;align-items:center;gap:.6rem;">
+            <i class="fas fa-database" style="color:var(--accent)"></i> 2. Dados Coletados
+          </h2>
+          <p style="color:var(--t2);line-height:1.8;margin-bottom:1rem">A tabela abaixo detalha exatamente quais dados são coletados, onde são armazenados e por quê:</p>
+
+          <div style="overflow-x:auto">
+            <table style="width:100%;border-collapse:collapse;font-size:.9rem">
+              <thead>
+                <tr style="background:var(--border)">
+                  <th style="padding:.6rem 1rem;text-align:left;color:var(--t1);font-weight:600">Dado</th>
+                  <th style="padding:.6rem 1rem;text-align:left;color:var(--t1);font-weight:600">Armazenamento</th>
+                  <th style="padding:.6rem 1rem;text-align:left;color:var(--t1);font-weight:600">Finalidade</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom:1px solid var(--border)">
+                  <td style="padding:.65rem 1rem;color:var(--t2)">Nome</td>
+                  <td style="padding:.65rem 1rem;color:var(--t2)">MySQL (local)</td>
+                  <td style="padding:.65rem 1rem;color:var(--t2)">Identificação na interface</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border);background:var(--card-bg)">
+                  <td style="padding:.65rem 1rem;color:var(--t2)">E-mail</td>
+                  <td style="padding:.65rem 1rem;color:var(--t2)">MySQL (local)</td>
+                  <td style="padding:.65rem 1rem;color:var(--t2)">Login e identificação única</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border)">
+                  <td style="padding:.65rem 1rem;color:var(--t2)">Senha</td>
+                  <td style="padding:.65rem 1rem;color:var(--t2)">MySQL (hash bcrypt)</td>
+                  <td style="padding:.65rem 1rem;color:var(--t2)">Autenticação — nunca armazenada em texto puro</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border);background:var(--card-bg)">
+                  <td style="padding:.65rem 1rem;color:var(--t2)">Respostas do quiz</td>
+                  <td style="padding:.65rem 1rem;color:var(--t2)">localStorage + MySQL (JSON)</td>
+                  <td style="padding:.65rem 1rem;color:var(--t2)">Gerar e registrar a recomendação</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border)">
+                  <td style="padding:.65rem 1rem;color:var(--t2)">Sistemas favoritos</td>
+                  <td style="padding:.65rem 1rem;color:var(--t2)">localStorage + MySQL</td>
+                  <td style="padding:.65rem 1rem;color:var(--t2)">Exibição personalizada dos favoritos</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border);background:var(--card-bg)">
+                  <td style="padding:.65rem 1rem;color:var(--t2)">Histórico de recomendações</td>
+                  <td style="padding:.65rem 1rem;color:var(--t2)">MySQL (local)</td>
+                  <td style="padding:.65rem 1rem;color:var(--t2)">Registro de resultados anteriores do usuário</td>
+                </tr>
+                <tr>
+                  <td style="padding:.65rem 1rem;color:var(--t2)">Preferência de tema</td>
+                  <td style="padding:.65rem 1rem;color:var(--t2)">localStorage</td>
+                  <td style="padding:.65rem 1rem;color:var(--t2)">Manter tema claro/escuro entre sessões</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section>
+          <h2 style="font-size:1.2rem;margin-bottom:.75rem;color:var(--t1);display:flex;align-items:center;gap:.6rem;">
+            <i class="fas fa-ban" style="color:var(--accent)"></i> 3. O Que Não Coletamos
+          </h2>
+          <p style="color:var(--t2);line-height:1.8">O SOul <strong>não coleta</strong>:</p>
+          <ul style="color:var(--t2);line-height:2;padding-left:1.5rem;margin-top:.5rem">
+            <li>Endereço IP ou localização geográfica;</li>
+            <li>Cookies de rastreamento ou identificadores publicitários;</li>
+            <li>Dados de navegação ou comportamento fora da plataforma;</li>
+            <li>Informações de dispositivo além das necessárias para a sessão;</li>
+            <li>Dados biométricos ou financeiros de qualquer natureza.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 style="font-size:1.2rem;margin-bottom:.75rem;color:var(--t1);display:flex;align-items:center;gap:.6rem;">
+            <i class="fas fa-share-nodes" style="color:var(--accent)"></i> 4. Compartilhamento de Dados
+          </h2>
+          <p style="color:var(--t2);line-height:1.8">Os dados dos usuários <strong>não são compartilhados</strong> com terceiros, anunciantes ou parceiros comerciais. As únicas "terceiras partes" envolvidas no processamento são:</p>
+          <ul style="color:var(--t2);line-height:2;padding-left:1.5rem;margin-top:.5rem">
+            <li><strong>Ollama (local):</strong> as respostas do quiz são enviadas ao modelo de IA que roda na própria máquina do usuário/servidor. Nenhum dado é enviado a servidores externos;</li>
+            <li><strong>Font Awesome (CDN):</strong> carregamento de ícones via CDN público — sem dados de usuário transmitidos.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 style="font-size:1.2rem;margin-bottom:.75rem;color:var(--t1);display:flex;align-items:center;gap:.6rem;">
+            <i class="fas fa-lock" style="color:var(--accent)"></i> 5. Segurança dos Dados
+          </h2>
+          <p style="color:var(--t2);line-height:1.8">As seguintes medidas de segurança são adotadas:</p>
+          <ul style="color:var(--t2);line-height:2;padding-left:1.5rem;margin-top:.5rem">
+            <li>Senhas armazenadas exclusivamente como hash bcrypt (via <code>password_hash</code> do PHP);</li>
+            <li>Banco de dados MySQL operando localmente, sem exposição à internet;</li>
+            <li>Comunicação entre frontend e backend restrita ao ambiente local;</li>
+            <li>Nenhum dado sensível trafega em texto puro nas requisições da API.</li>
+          </ul>
+          <p style="color:var(--t2);line-height:1.8;margin-top:.75rem">Por tratar-se de um projeto acadêmico em ambiente de desenvolvimento, não há certificado SSL/TLS ativo. Recomenda-se não reutilizar senhas pessoais nesta plataforma.</p>
+        </section>
+
+        <section>
+          <h2 style="font-size:1.2rem;margin-bottom:.75rem;color:var(--t1);display:flex;align-items:center;gap:.6rem;">
+            <i class="fas fa-clock" style="color:var(--accent)"></i> 6. Retenção de Dados
+          </h2>
+          <p style="color:var(--t2);line-height:1.8">Os dados são mantidos enquanto a conta do usuário existir no banco de dados. Como o projeto opera em ambiente local, os dados são armazenados exclusivamente na instância MySQL da máquina onde o sistema está sendo executado. Não há backup automatizado em servidores externos.</p>
+        </section>
+
+        <section>
+          <h2 style="font-size:1.2rem;margin-bottom:.75rem;color:var(--t1);display:flex;align-items:center;gap:.6rem;">
+            <i class="fas fa-user-gear" style="color:var(--accent)"></i> 7. Direitos do Usuário
+          </h2>
+          <p style="color:var(--t2);line-height:1.8">Em consonância com a Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018), o usuário tem direito a:</p>
+          <ul style="color:var(--t2);line-height:2;padding-left:1.5rem;margin-top:.5rem">
+            <li><strong>Acesso:</strong> saber quais dados seus estão armazenados;</li>
+            <li><strong>Correção:</strong> solicitar atualização de dados incorretos;</li>
+            <li><strong>Exclusão:</strong> solicitar a remoção de sua conta e dados associados;</li>
+            <li><strong>Portabilidade:</strong> receber seus dados em formato estruturado;</li>
+            <li><strong>Revogação:</strong> retirar consentimento a qualquer momento.</li>
+          </ul>
+          <p style="color:var(--t2);line-height:1.8;margin-top:.75rem">Para exercer qualquer desses direitos, entre em contato pelos canais indicados na seção 9.</p>
+        </section>
+
+        <section>
+          <h2 style="font-size:1.2rem;margin-bottom:.75rem;color:var(--t1);display:flex;align-items:center;gap:.6rem;">
+            <i class="fas fa-child" style="color:var(--accent)"></i> 8. Menores de Idade
+          </h2>
+          <p style="color:var(--t2);line-height:1.8">O SOul não é destinado a menores de 13 anos. Usuários entre 13 e 18 anos devem obter consentimento de um responsável legal antes de criar uma conta. Caso identifiquemos o cadastro de menor sem autorização, os dados serão excluídos imediatamente.</p>
+        </section>
+
+        <section>
+          <h2 style="font-size:1.2rem;margin-bottom:.75rem;color:var(--t1);display:flex;align-items:center;gap:.6rem;">
+            <i class="fas fa-envelope" style="color:var(--accent)"></i> 9. Contato
+          </h2>
+          <p style="color:var(--t2);line-height:1.8">Para dúvidas, solicitações de exclusão de dados ou qualquer questão relacionada à privacidade, entre em contato pelo repositório do projeto:</p>
+          <div style="margin-top:.75rem">
+            <a href="https://github.com/ltcmnk/soul" class="btn btn-secondary" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i> Repositório no GitHub
+            </a>
+          </div>
+        </section>
+
+        <section>
+          <h2 style="font-size:1.2rem;margin-bottom:.75rem;color:var(--t1);display:flex;align-items:center;gap:.6rem;">
+            <i class="fas fa-sync-alt" style="color:var(--accent)"></i> 10. Atualizações desta Política
+          </h2>
+          <p style="color:var(--t2);line-height:1.8">Esta Política de Privacidade pode ser atualizada conforme o projeto evolui. A data da última revisão é exibida no topo da página. Recomenda-se a leitura periódica deste documento.</p>
+        </section>
+
+      </div>
+
+      <div style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);display:flex;gap:1rem;flex-wrap:wrap">
+        <a href="terms.html" class="btn btn-secondary"><i class="fas fa-file-contract"></i> Termos de Uso</a>
+        <a href="index.html" class="btn btn-primary"><i class="fas fa-home"></i> Voltar ao Início</a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">SO<span>ul</span></div>
+      <div class="footer-links">
+        <a href="os.html">Sistemas</a>
+        <a href="test.html">Quiz</a>
+        <a href="about.html">Sobre</a>
+        <a href="terms.html">Termos</a>
+        <a href="privacy.html">Privacidade</a>
+      </div>
+    </div>
+    <p class="footer-copy">© 2025 SOul — Projeto Universitário · Desenvolvimento Web</p>
+  </footer>
+
+  <script src="shared.js"></script>
+</body>
+</html>

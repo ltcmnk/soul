@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fedora | SOul</title>
+  <script>document.documentElement.setAttribute('data-theme',localStorage.getItem('soul-theme')||'dark')</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="index.html" class="logo">SO<span>ul</span></a>
+    <nav>
+      <ul>
+        <li><a href="os.html" class="active">Sistemas</a></li>
+        <li><a href="favorites.html">Favoritos</a></li>
+        <li><a href="test.html">Teste</a></li>
+        <li><a href="about.html">Sobre</a></li>
+        <li class="user-area"></li>
+      </ul>
+    </nav>
+    <button class="theme-toggle" aria-label="Alternar tema"></button>
+    <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <main>
+    <div class="os-page-inner">
+
+      <section class="os-hero" style="background:linear-gradient(135deg,#294172,#3C6EB4)">
+        <button class="favorite-btn" id="favoriteBtn" title="Favoritar Fedora">
+          <i class="fas fa-heart"></i>
+        </button>
+        <div class="os-hero-content">
+          <i class="fab fa-fedora" style="font-size:3.5rem;margin-bottom:1rem;opacity:.9"></i>
+          <h1>Fedora</h1>
+          <p>Inovação primeiro — a distribuição de ponta patrocinada pela Red Hat, sempre na vanguarda das tecnologias Linux.</p>
+        </div>
+      </section>
+
+      <div class="os-details-container">
+        <div class="os-main-content">
+
+          <div class="os-description">
+            <h2>Sobre o Fedora</h2>
+            <p>O Fedora é uma distribuição Linux patrocinada pela Red Hat e desenvolvida pela comunidade. Lançado em 2003, é reconhecido por trazer as tecnologias mais recentes do ecossistema Linux antes de qualquer outra distro mainstream — muitas inovações do Fedora chegam depois ao Red Hat Enterprise Linux (RHEL) e ao CentOS.</p>
+            <p>Usa o gerenciador de pacotes DNF com repositórios RPM, oferece o ambiente GNOME em sua versão mais pura e atual, e é uma das primeiras distros a adotar tecnologias como Wayland, Pipewire, Btrfs por padrão e suporte nativo a containers com Podman.</p>
+            <p>Com ciclo de lançamento semestral e suporte de 13 meses por versão, o Fedora é a escolha preferida de desenvolvedores que querem um sistema estável mas sempre atualizado, sem a complexidade de uma distro rolling release.</p>
+          </div>
+
+          <div class="os-features">
+            <h2>Principais Características</h2>
+            <div class="feature-grid">
+              <div class="feature-card">
+                <i class="fas fa-rocket"></i>
+                <h4>Tecnologias de ponta</h4>
+                <p>Primeiro a adotar Wayland, Pipewire, Btrfs e outras inovações do kernel Linux.</p>
+              </div>
+              <div class="feature-card">
+                <i class="fab fa-redhat"></i>
+                <h4>Patrocínio Red Hat</h4>
+                <p>Sustentado pela maior empresa de Linux do mundo, com infraestrutura robusta.</p>
+              </div>
+              <div class="feature-card">
+                <i class="fas fa-box"></i>
+                <h4>GNOME puro</h4>
+                <p>Interface GNOME sem modificações — a experiência mais fiel ao upstream.</p>
+              </div>
+              <div class="feature-card">
+                <i class="fas fa-cube"></i>
+                <h4>Containers nativos</h4>
+                <p>Podman e Toolbox pré-instalados para desenvolvimento em containers sem root.</p>
+              </div>
+              <div class="feature-card">
+                <i class="fas fa-shield-alt"></i>
+                <h4>SELinux ativo</h4>
+                <p>Segurança reforçada por padrão com SELinux em modo enforcing.</p>
+              </div>
+              <div class="feature-card">
+                <i class="fas fa-code"></i>
+                <h4>Ideal para devs</h4>
+                <p>Ferramentas de desenvolvimento, compiladores e SDKs amplamente disponíveis.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="os-screenshots">
+            <h2>Capturas de Tela</h2>
+            <div class="screenshot-grid">
+              <div class="screenshot-item" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/3/32/Fedora_44_Workstation.png');background-position:top"></div>
+              <div class="screenshot-item" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/3/32/Fedora_44_Workstation.png');background-position:center left"></div>
+              <div class="screenshot-item" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/3/32/Fedora_44_Workstation.png');background-position:center right"></div>
+              <div class="screenshot-item" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/3/32/Fedora_44_Workstation.png');background-position:bottom"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="os-sidebar">
+          <div class="os-info-card">
+            <h3>Informações Técnicas</h3>
+            <div class="info-item"><span>Desenvolvedor</span><span>Fedora Project / Red Hat</span></div>
+            <div class="info-item"><span>Lançamento</span><span>6 nov 2003</span></div>
+            <div class="info-item"><span>Versão atual</span><span>Fedora 41</span></div>
+            <div class="info-item"><span>Desktop</span><span>GNOME (padrão)</span></div>
+            <div class="info-item"><span>Pacotes</span><span>DNF (.rpm)</span></div>
+            <div class="info-item"><span>Arquiteturas</span><span>x86-64, ARM, RISC-V</span></div>
+            <div class="info-item"><span>Licença</span><span>GPL e outras livres</span></div>
+          </div>
+
+          <div class="os-info-card">
+            <h3>Requisitos Mínimos</h3>
+            <div class="info-item"><span>CPU</span><span>Dual core 2 GHz</span></div>
+            <div class="info-item"><span>RAM</span><span>2 GB (4 GB recomendado)</span></div>
+            <div class="info-item"><span>Armazenamento</span><span>15 GB</span></div>
+            <div class="info-item"><span>GPU</span><span>1024×768</span></div>
+            <div class="info-item"><span>Mídia</span><span>USB ou DVD</span></div>
+          </div>
+
+          <div class="os-info-card">
+            <h3>Links Úteis</h3>
+            <a href="https://fedoraproject.org/workstation/download" class="btn btn-secondary"><i class="fas fa-download"></i> Download Oficial</a>
+            <a href="https://docs.fedoraproject.org/" class="btn btn-secondary"><i class="fas fa-book"></i> Documentação</a>
+            <a href="https://discussion.fedoraproject.org/" class="btn btn-secondary"><i class="fas fa-comments"></i> Fórum</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="download-section">
+        <h2>Pronto para experimentar o Fedora?</h2>
+        <p>Baixe a versão mais recente e descubra por que tantos desenvolvedores escolhem o Fedora como seu sistema principal.</p>
+        <a href="https://fedoraproject.org/workstation/download" class="download-btn" style="background:#3C6EB4">
+          <i class="fas fa-download"></i> Baixar Fedora
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">SO<span>ul</span></div>
+      <div class="footer-links">
+        <a href="os.html">Sistemas</a>
+        <a href="test.html">Quiz</a>
+        <a href="about.html">Sobre</a>
+        <a href="terms.html">Termos</a>
+        <a href="privacy.html">Privacidade</a>
+      </div>
+    </div>
+    <p class="footer-copy">© 2025 SOul — Projeto Universitário · Desenvolvimento Web</p>
+  </footer>
+
+  <script src="shared.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const favoriteBtn = document.getElementById('favoriteBtn');
+      const slug = 'fedora';
+
+      if (favorites.isFavorite(slug)) favoriteBtn.classList.add('favorited');
+
+      favoriteBtn.addEventListener('click', function() {
+        const added = favorites.toggle(slug);
+        this.classList.toggle('favorited', added);
+        if (added) {
+          favoritesSync.add(slug);
+          utils.showToast('Fedora adicionado aos favoritos');
+        } else {
+          favoritesSync.remove(slug);
+          utils.showToast('Fedora removido dos favoritos');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

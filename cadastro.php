@@ -1,13 +1,14 @@
 <?php
 header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Headers: Content-Type');
 
-$host = "localhost";
-$usuario = "root";
-$senha = "";
-$banco = "mydb";
+$host   = 'localhost';
+$dbuser = 'root';
+$dbpass = '';
+$banco  = 'SOul';
 
-$conn = new mysqli($host, $usuario, $senha, $banco);
-
+$conn = new mysqli($host, $dbuser, $dbpass, $banco);
 if ($conn->connect_error) {
     echo json_encode(['success' => false, 'message' => 'Falha na conexão com o banco de dados']);
     exit;
@@ -15,37 +16,43 @@ if ($conn->connect_error) {
 
 $data = json_decode(file_get_contents('php://input'), true);
 
-// Validação dos campos
 if (empty($data['nome']) || empty($data['email']) || empty($data['senha'])) {
     echo json_encode(['success' => false, 'message' => 'Todos os campos são obrigatórios']);
     exit;
 }
 
-$nome = $conn->real_escape_string($data['nome']);
-$email = $conn->real_escape_string($data['email']);
+$nome  = $data['nome'];
+$email = $data['email'];
 $senha = password_hash($data['senha'], PASSWORD_DEFAULT);
 
-// Verifica se email já existe
-$check = $conn->prepare("SELECT email FROM usuario WHERE email = ?");
-$check->bind_param("s", $email);
+// Verifica e-mail duplicado
+$check = $conn->prepare('SELECT id FROM usuario WHERE email = ?');
+$check->bind_param('s', $email);
 $check->execute();
 $check->store_result();
 
 if ($check->num_rows > 0) {
-    echo json_encode(['success' => false, 'message' => 'Email já cadastrado']);
+    echo json_encode(['success' => false, 'message' => 'E-mail já cadastrado']);
     exit;
 }
+$check->close();
 
-$sql = "INSERT INTO usuario (nome, email, senha) VALUES (?, ?, ?)";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("sss", $nome, $email, $senha);
+$stmt = $conn->prepare(
+    'INSERT INTO usuario (nome, email, senha, data_reg, tema) VALUES (?, ?, ?, NOW(), "escuro")'
+);
+$stmt->bind_param('sss', $nome, $email, $senha);
 
 if ($stmt->execute()) {
-    echo json_encode(['success' => true, 'message' => 'Usuário cadastrado com sucesso!', 'redirect' => 'index.html']);
+    $new_id = $conn->insert_id;
+    echo json_encode([
+        'success'  => true,
+        'message'  => 'Conta criada com sucesso!',
+        'redirect' => 'login.html',
+        'userId'   => $new_id,
+    ]);
 } else {
-    echo json_encode(['success' => false, 'message' => 'Erro ao cadastrar usuário: ' . $stmt->error]);
+    echo json_encode(['success' => false, 'message' => 'Erro ao cadastrar: ' . $stmt->error]);
 }
 
 $stmt->close();
 $conn->close();
-?>

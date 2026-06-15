@@ -3,442 +3,143 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MacOS | SOul</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <title>macOS | SOul</title>
+  <script>document.documentElement.setAttribute('data-theme',localStorage.getItem('soul-theme')||'dark')</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    /* alterado o nome do botão de favorito de favorite-hero-btn para favorite-btn */ 
-    .os-hero {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto 2rem;
-      border-radius: 12px;
-      overflow: hidden;
-      position: relative;
-      height: 300px;
-      background-image: linear-gradient(to right, #000000, #333333);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-align: center;
-      padding: 2rem;
-    }
-    
-    .os-hero-content {
-      z-index: 2;
-      max-width: 800px;
-      position: relative;
-    }
-    
-    .os-hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-    
-    .os-hero p {
-      font-size: 1.1rem;
-      opacity: 0.9;
-    }
-    
-    .favorite-btn {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: rgba(255, 255, 255, 0.8);
-      border: none;
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    
-    .favorite-btn:hover {
-      background: white;
-      transform: scale(1.1);
-    }
-    
-    .favorite-btn i {
-      color: #e74c3c;
-      font-size: 1.4rem;
-    }
-    
-    .favorite-btn.favorited i {
-      color: #e74c3c;
-    }
-    
-    .os-details-container {
-      display: flex;
-      gap: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      width: 100%;
-    }
-    
-    .os-main-content {
-      flex: 2;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      padding: 2rem;
-    }
-    
-    .os-sidebar {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-    
-    .os-info-card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      padding: 1.5rem;
-    }
-    
-    .os-info-card h3 {
-      color: #2c3e50;
-      margin-bottom: 1rem;
-      font-size: 1.2rem;
-      border-bottom: 1px solid #ecf0f1;
-      padding-bottom: 0.5rem;
-    }
-    
-    .info-item {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 0.75rem;
-    }
-    
-    .info-item span:first-child {
-      color: #7f8c8d;
-      font-weight: 500;
-    }
-    
-    .info-item span:last-child {
-      color: #2c3e50;
-    }
-    
-    .os-features {
-      margin-top: 2rem;
-    }
-    
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-    
-    .feature-card {
-      background: #f8fafc;
-      border-radius: 8px;
-      padding: 1.5rem;
-      transition: transform 0.3s ease;
-    }
-    
-    .feature-card:hover {
-      transform: translateY(-5px);
-    }
-    
-    .feature-card i {
-      font-size: 1.5rem;
-      color: #1abc9c;
-      margin-bottom: 1rem;
-    }
-    
-    .feature-card h4 {
-      color: #2c3e50;
-      margin-bottom: 0.5rem;
-    }
-    
-    .feature-card p {
-      color: #7f8c8d;
-      font-size: 0.9rem;
-    }
-    
-    .os-screenshots {
-      margin-top: 3rem;
-    }
-    
-    .screenshot-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-    
-    .screenshot-item {
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
-      height: 180px;
-      background-size: cover;
-      background-position: center;
-    }
-    
-    .screenshot-item:hover {
-      transform: scale(1.03);
-    }
-    
-    .download-section {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      margin-top: 3rem;
-      padding: 2rem;
-      background: linear-gradient(to right, #f5f7fa, #e8f0f8);
-      border-radius: 12px;
-    }
-    
-    .download-section h2 {
-      color: #2c3e50;
-      margin-bottom: 1rem;
-    }
-    
-    .download-section p {
-      color: #7f8c8d;
-      max-width: 600px;
-      margin-bottom: 1.5rem;
-    }
-    
-    .download-btn {
-      background: #000000;
-      color: white;
-      padding: 0.75rem 2rem;
-      border-radius: 8px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    
-    .download-btn:hover {
-      background: #333333;
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    }
-    
-    @media (max-width: 768px) {
-      .os-hero {
-        height: auto;
-        padding: 3rem 1rem;
-      }
-      
-      .os-hero h1 {
-        font-size: 2rem;
-      }
-      
-      .os-details-container {
-        flex-direction: column;
-      }
-      
-      .feature-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .screenshot-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
 </head>
 <body>
-  <header>
-    <div class="logo" onclick="window.location.href='index.html'">SOul</div>
+
+  <header class="site-header">
+    <a href="index.html" class="logo">SO<span>ul</span></a>
     <nav>
       <ul>
-        <li><a href="os.html">Sistemas Operacionais</a></li>
+        <li><a href="os.html">Sistemas</a></li>
         <li><a href="favorites.html">Favoritos</a></li>
         <li><a href="test.html">Teste</a></li>
-        <li><a href="about.html">Sobre Nós</a></li>
-        <li class="user-area">
-          <a href="login.html" class="login-btn">Entrar</a>
-        </li>
+        <li><a href="about.html">Sobre</a></li>
+        <li class="user-area"></li>
       </ul>
     </nav>
+    <button class="theme-toggle" aria-label="Alternar tema"></button>
+    <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </header>
 
   <main>
-    <section class="os-hero">
-      <div class="os-hero-content">
-        <button class="favorite-btn" id="favoriteBtn">
-          <i class="far fa-star"></i>
+    <div class="os-page-inner">
+
+      <section class="os-hero" style="background:linear-gradient(135deg,#111,#3a3a3a)">
+        <button class="favorite-btn" id="favoriteBtn" title="Favoritar MacOS">
+          <i class="fas fa-heart"></i>
         </button>
-        <h1>MacOS</h1>
-        <p>Sistema operacional da Apple, conhecido por sua interface elegante, estabilidade e integração perfeita com outros produtos da marca</p>
+        <div class="os-hero-content">
+          <i class="fab fa-apple" style="font-size:3.5rem;margin-bottom:1rem;opacity:.9"></i>
+          <h1>macOS</h1>
+          <p>Elegância, performance e integração perfeita com o ecossistema Apple. O sistema preferido de criativos e desenvolvedores.</p>
+        </div>
+      </section>
+
+      <div class="os-details-container">
+        <div class="os-main-content">
+
+          <div class="os-description">
+            <h2>Sobre o macOS</h2>
+            <p>O macOS é o sistema operacional da Apple para computadores Mac. Baseado em Unix (derivado do BSD), combina a robustez de sistemas profissionais com uma interface gráfica refinada e altamente polida.</p>
+            <p>O macOS é famoso pela integração perfeita com o hardware Apple — especialmente após a transição para os chips Apple Silicon (M1, M2, M3, M4), que entregam desempenho e eficiência energética excepcionais.</p>
+            <p>Para profissionais de design, vídeo, música e desenvolvimento, o macOS se tornou referência graças ao suporte nativo a ferramentas como Final Cut Pro, Logic Pro, Xcode e à excelente compatibilidade com ferramentas de desenvolvimento web e mobile.</p>
+          </div>
+
+          <div class="os-features">
+            <h2>Principais Características</h2>
+            <div class="feature-grid">
+              <div class="feature-card"><i class="fas fa-paint-brush"></i><h4>Design Refinado</h4><p>Interface consistente e elegante, com atenção a cada detalhe visual.</p></div>
+              <div class="feature-card"><i class="fas fa-link"></i><h4>Ecossistema Apple</h4><p>Integração nativa com iPhone, iPad, Apple Watch e iCloud.</p></div>
+              <div class="feature-card"><i class="fas fa-bolt"></i><h4>Apple Silicon</h4><p>Chips M-series com performance e eficiência energética excepcionais.</p></div>
+              <div class="feature-card"><i class="fas fa-lock"></i><h4>Privacidade</h4><p>Recursos avançados de privacidade integrados ao sistema operacional.</p></div>
+              <div class="feature-card"><i class="fas fa-code"></i><h4>Desenvolvimento</h4><p>Terminal Unix, Xcode e suporte a todas as ferramentas modernas.</p></div>
+              <div class="feature-card"><i class="fas fa-film"></i><h4>Criatividade</h4><p>Final Cut Pro, Logic Pro e apps criativos de alto nível.</p></div>
+            </div>
+          </div>
+
+          <div class="os-screenshots">
+            <h2>Ambiente de Trabalho</h2>
+            <div class="screenshot-grid">
+              <div class="screenshot-item" style="background-image:url('https://upload.wikimedia.org/wikipedia/en/7/7b/Screenshot_of_macOS_Sequoia.png');background-position:top"></div>
+              <div class="screenshot-item" style="background-image:url('https://upload.wikimedia.org/wikipedia/en/7/7b/Screenshot_of_macOS_Sequoia.png');background-position:center"></div>
+              <div class="screenshot-item" style="background-image:url('https://upload.wikimedia.org/wikipedia/en/7/7b/Screenshot_of_macOS_Sequoia.png');background-position:bottom"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="os-sidebar">
+          <div class="os-info-card">
+            <h3>Informações Técnicas</h3>
+            <div class="info-item"><span>Desenvolvedor</span><span>Apple Inc.</span></div>
+            <div class="info-item"><span>Lançamento</span><span>24 mar 2001</span></div>
+            <div class="info-item"><span>Versão atual</span><span>macOS Sequoia 15</span></div>
+            <div class="info-item"><span>Desktop</span><span>Aqua / Finder</span></div>
+            <div class="info-item"><span>Arquiteturas</span><span>Apple Silicon, Intel</span></div>
+            <div class="info-item"><span>Pacotes</span><span>Homebrew, App Store</span></div>
+            <div class="info-item"><span>Licença</span><span>Proprietária</span></div>
+          </div>
+
+          <div class="os-info-card">
+            <h3>Requisitos Mínimos</h3>
+            <div class="info-item"><span>Hardware</span><span>Mac Apple (obrigatório)</span></div>
+            <div class="info-item"><span>RAM</span><span>8 GB</span></div>
+            <div class="info-item"><span>Armazenamento</span><span>20 GB</span></div>
+            <div class="info-item"><span>Internet</span><span>Recomendada</span></div>
+          </div>
+
+          <div class="os-info-card">
+            <h3>Links Úteis</h3>
+            <a href="https://www.apple.com/macos/" class="btn btn-secondary"><i class="fas fa-external-link-alt"></i> Site Oficial</a>
+            <a href="https://support.apple.com/macos" class="btn btn-secondary"><i class="fas fa-book"></i> Suporte</a>
+            <a href="https://developer.apple.com/" class="btn btn-secondary"><i class="fas fa-code"></i> Developers</a>
+          </div>
+        </div>
       </div>
-    </section>
-    
-    <div class="os-details-container">
-      <div class="os-main-content">
-        <section class="os-description">
-          <h2>Sobre o MacOS</h2>
-          <p>O MacOS é o sistema operacional desenvolvido pela Apple para seus computadores Macintosh. Conhecido por sua interface elegante e intuitiva, o MacOS combina poder, estabilidade e facilidade de uso em um pacote coeso.</p>
-          <p>Com atualizações anuais gratuitas, o MacOS oferece integração perfeita com outros dispositivos Apple como iPhone, iPad e Apple Watch através do ecossistema Continuity. Recursos como Handoff, Universal Clipboard e Sidecar tornam a experiência multiplataforma fluida e produtiva.</p>
-          <p>O MacOS também é reconhecido por seu excelente suporte a aplicativos criativos, sendo a plataforma preferida de muitos profissionais de design, vídeo e música. A loja de aplicativos Mac App Store oferece milhares de aplicativos otimizados para o sistema.</p>
-        </section>
-        
-        <section class="os-features">
-          <h2>Principais Características</h2>
-          <div class="feature-grid">
-            <div class="feature-card">
-              <i class="fas fa-brush"></i>
-              <h4>Design Refinado</h4>
-              <p>Interface limpa e consistente com atenção aos detalhes visuais e de usabilidade.</p>
-            </div>
-            <div class="feature-card">
-              <i class="fas fa-lock"></i>
-              <h4>Segurança Robustecida</h4>
-              <p>Proteções integradas contra malware e privacidade reforçada.</p>
-            </div>
-            <div class="feature-card">
-              <i class="fas fa-mobile-alt"></i>
-              <h4>Integração com iOS</h4>
-              <p>Trabalhe facilmente entre seu Mac e dispositivos iOS.</p>
-            </div>
-            <div class="feature-card">
-              <i class="fas fa-tachometer-alt"></i>
-              <h4>Performance Otimizada</h4>
-              <p>Desenvolvido especificamente para hardware Apple.</p>
-            </div>
-            <div class="feature-card">
-              <i class="fas fa-photo-video"></i>
-              <h4>Aplicativos Criativos</h4>
-              <p>Suporte excepcional para aplicativos profissionais.</p>
-            </div>
-            <div class="feature-card">
-              <i class="fas fa-terminal"></i>
-              <h4>Terminal Unix</h4>
-              <p>Acesso completo a ferramentas de linha de comando Unix.</p>
-            </div>
-          </div>
-        </section>
-        
-        <section class="os-screenshots">
-          <h2>Capturas de Tela</h2>
-          <div class="screenshot-grid">
-            <div class="screenshot-item" style="background-image: url('https://i.pcmag.com/imagery/reviews/038S7yTOxUEqOgk2yPZgU1n-33.fit_lim.size_1600x.png');"></div>
-            <div class="screenshot-item" style="background-image: url('https://i.pcmag.com/imagery/reviews/038S7yTOxUEqOgk2yPZgU1n-37.fit_lim.size_1600x.png');"></div>
-            <div class="screenshot-item" style="background-image: url('https://i.pcmag.com/imagery/reviews/038S7yTOxUEqOgk2yPZgU1n-36.fit_lim.size_1600x.png');"></div>
-            <div class="screenshot-item" style="background-image: url('https://i.pcmag.com/imagery/reviews/038S7yTOxUEqOgk2yPZgU1n-43.fit_lim.size_1600x.png');"></div>
-          </div>
-        </section>
+
+      <div class="download-section">
+        <h2>Interessado no macOS?</h2>
+        <p>O macOS está disponível exclusivamente em computadores Mac. Confira os modelos disponíveis no site da Apple.</p>
+        <a href="https://www.apple.com/mac/" class="download-btn" style="background:#636363">
+          <i class="fab fa-apple"></i> Conheça os Macs
+        </a>
       </div>
-      
-      <div class="os-sidebar">
-        <div class="os-info-card">
-          <h3>Informações Técnicas</h3>
-          <div class="info-item">
-            <span>Desenvolvedor</span>
-            <span>Apple Inc.</span>
-          </div>
-          <div class="info-item">
-            <span>Lançamento Inicial</span>
-            <span>24 de março de 2001</span>
-          </div>
-          <div class="info-item">
-            <span>Versão Atual</span>
-            <span>macOS Monterey (12.0)</span>
-          </div>
-          <div class="info-item">
-            <span>Ambiente Desktop</span>
-            <span>Aqua</span>
-          </div>
-          <div class="info-item">
-            <span>Arquiteturas</span>
-            <span>x86-64, ARM (Apple silicon)</span>
-          </div>
-          <div class="info-item">
-            <span>Gerenciador de Pacotes</span>
-            <span>Mac App Store, Homebrew</span>
-          </div>
-          <div class="info-item">
-            <span>Licença</span>
-            <span>Proprietária</span>
-          </div>
-        </div>
-        
-        <div class="os-info-card">
-          <h3>Requisitos Mínimos</h3>
-          <div class="info-item">
-            <span>Modelo Mac</span>
-            <span>Depende da versão</span>
-          </div>
-          <div class="info-item">
-            <span>Memória RAM</span>
-            <span>4 GB (recomendado 8 GB)</span>
-          </div>
-          <div class="info-item">
-            <span>Armazenamento</span>
-            <span>64 GB (recomendado 128 GB)</span>
-          </div>
-          <div class="info-item">
-            <span>Resolução</span>
-            <span>1280×800</span>
-          </div>
-        </div>
-        
-        <div class="os-info-card">
-          <h3>Links Úteis</h3>
-          <a href="https://www.apple.com/macos/" class="btn btn-secondary" style="width: 100%; margin-bottom: 1rem; text-align: center; display: block;">
-            <i class="fas fa-external-link-alt"></i> Site Oficial
-          </a>
-          <a href="https://support.apple.com/macos" class="btn btn-secondary" style="width: 100%; margin-bottom: 1rem; text-align: center; display: block;">
-            <i class="fas fa-book"></i> Documentação
-          </a>
-          <a href="https://discussions.apple.com/welcome" class="btn btn-secondary" style="width: 100%; text-align: center; display: block;">
-            <i class="fas fa-question-circle"></i> Fórum
-          </a>
-        </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">SO<span>ul</span></div>
+      <div class="footer-links">
+        <a href="os.html">Sistemas</a>
+        <a href="test.html">Quiz</a>
+        <a href="about.html">Sobre</a>
+        <a href="terms.html">Termos</a>
+        <a href="privacy.html">Privacidade</a>
       </div>
     </div>
-    
-    <section class="download-section">
-      <h2>Pronto para experimentar o MacOS?</h2>
-      <p>O MacOS vem pré-instalado em todos os Macs. Atualize para a versão mais recente através da Mac App Store.</p>
-      <a href="https://www.apple.com/macos/" class="download-btn">
-        <i class="fas fa-external-link-alt"></i> Saiba mais sobre o MacOS
-      </a>
-    </section>
-  </main>
+    <p class="footer-copy">© 2025 SOul — Projeto Universitário · Desenvolvimento Web</p>
+  </footer>
 
   <script src="shared.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const favoriteBtn = document.getElementById('favoriteBtn');
       const osName = 'MacOS';
-      
-      if (favorites.isFavorite(osName)) {
-        favoriteBtn.innerHTML = '<i class="fas fa-star"></i>';
-        favoriteBtn.classList.add('favorited');
-      }
-      
+
+      if (favorites.isFavorite(osName)) favoriteBtn.classList.add('favorited');
+
       favoriteBtn.addEventListener('click', function() {
         const isFavorited = favorites.toggle(osName);
-        
-        if (isFavorited) {
-          this.innerHTML = '<i class="fas fa-star"></i>';
-          this.classList.add('favorited');
-          utils.showToast(`${osName} adicionado aos favoritos`);
-        } else {
-          this.innerHTML = '<i class="far fa-star"></i>';
-          this.classList.remove('favorited');
-          utils.showToast(`${osName} removido dos favoritos`);
-        }
+        this.classList.toggle('favorited', isFavorited);
+        utils.showToast(isFavorited ? `${osName} adicionado aos favoritos` : `${osName} removido dos favoritos`);
       });
     });
   </script>

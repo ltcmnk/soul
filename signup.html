@@ -1,227 +1,76 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cadastro | SOul</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #f5f7fa;
-      color: #333;
-      line-height: 1.6;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 20px;
-    }
-
-    .auth-container {
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 450px;
-      padding: 2rem;
-    }
-
-    .auth-header {
-      text-align: center;
-      margin-bottom: 1.5rem;
-    }
-
-    .auth-header h1 {
-      color: #2c3e50;
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .auth-header p {
-      color: #7f8c8d;
-      font-size: 0.9rem;
-    }
-
-    .input-group {
-      margin-bottom: 1rem;
-      position: relative;
-    }
-
-    .input-group i {
-      position: absolute;
-      left: 15px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #95a5a6;
-    }
-
-    .input-group input {
-      width: 100%;
-      padding: 0.75rem 1rem 0.75rem 2.5rem;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      font-size: 0.9rem;
-      transition: all 0.3s ease;
-    }
-
-    .input-group input:focus {
-      border-color: #1abc9c;
-      outline: none;
-      box-shadow: 0 0 0 2px rgba(26, 188, 156, 0.2);
-    }
-
-    .password-strength {
-      margin: 0.5rem 0;
-      font-size: 0.8rem;
-      color: #7f8c8d;
-    }
-
-    .password-match {
-      font-size: 0.8rem;
-      margin-top: -0.5rem;
-      margin-bottom: 0.5rem;
-      display: none;
-    }
-
-    .password-match.valid {
-      color: #1abc9c;
-      display: block;
-    }
-
-    .password-match.invalid {
-      color: #e74c3c;
-      display: block;
-    }
-
-    .auth-button {
-      width: 100%;
-      padding: 0.75rem;
-      background-color: #1abc9c;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-size: 1rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      margin-top: 1rem;
-    }
-
-    .auth-button:hover {
-      background-color: #16a085;
-    }
-
-    .auth-button:disabled {
-      background-color: #bdc3c7;
-      cursor: not-allowed;
-    }
-
-    .message {
-      text-align: center;
-      margin: 1rem 0;
-      padding: 0.5rem;
-      border-radius: 4px;
-      font-size: 0.9rem;
-    }
-
-    .auth-link {
-      text-align: center;
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      color: #7f8c8d;
-    }
-
-    .auth-link a {
-      color: #1abc9c;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    .auth-link a:hover {
-      text-decoration: underline;
-    }
-
-    .terms {
-      font-size: 0.75rem;
-      color: #7f8c8d;
-      text-align: center;
-      margin-top: 1.5rem;
-    }
-
-    .terms a {
-      color: #1abc9c;
-      text-decoration: none;
-    }
-
-    .terms a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 480px) {
-      .auth-container {
-        padding: 1.5rem;
-      }
-    }
-  </style>
+  <script>document.documentElement.setAttribute('data-theme',localStorage.getItem('soul-theme')||'dark')</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="auth-page">
+
   <div class="auth-container">
+    <a href="index.html" class="auth-brand">SO<span>ul</span></a>
+
     <div class="auth-header">
       <h1>Crie sua conta</h1>
       <p>Preencha os campos abaixo para se cadastrar</p>
     </div>
-    
+
     <form id="signupForm">
       <div class="input-group">
         <i class="fas fa-user"></i>
-        <input type="text" id="username" placeholder="Nome de usuário" required>
+        <input type="text" id="username" placeholder="Nome de usuário" required autocomplete="username">
       </div>
-      
+
       <div class="input-group">
         <i class="fas fa-envelope"></i>
-        <input type="email" id="email" placeholder="E-mail" required>
+        <input type="email" id="email" placeholder="E-mail" required autocomplete="email">
       </div>
-      
+
       <div class="input-group">
         <i class="fas fa-lock"></i>
-        <input type="password" id="password" placeholder="Senha" required>
+        <input type="password" id="password" placeholder="Senha" required autocomplete="new-password">
       </div>
-      
+
       <div class="password-strength">
         <span id="strengthText">Força da senha: </span>
         <span id="strengthMeter"></span>
       </div>
-      
+
       <div class="input-group">
         <i class="fas fa-lock"></i>
-        <input type="password" id="confirmPassword" placeholder="Confirme sua senha" required>
+        <input type="password" id="confirmPassword" placeholder="Confirme sua senha" required autocomplete="new-password">
       </div>
-      
+
       <div id="passwordMatch" class="password-match"></div>
-      
-      <button type="submit" id="submitButton" class="auth-button" disabled>Cadastrar</button>
+
+      <button type="submit" id="submitButton" class="btn btn-primary" disabled style="width:100%;justify-content:center;margin-top:.25rem">
+        Cadastrar <i class="fas fa-arrow-right"></i>
+      </button>
 
       <div id="signupMessage" class="message"></div>
     </form>
-    
-    <div class="auth-link">
-      <p>Já tem uma conta? <a href="login.html">Faça login</a></p>
-    </div>
-    
-    <div class="terms">
-      <p>Ao se cadastrar, você concorda com nossos <a href="#">Termos de Serviço</a> e <a href="#">Política de Privacidade</a>.</p>
-    </div>
+
+    <p class="auth-link">Já tem uma conta? <a href="login.html">Faça login</a></p>
+
+    <p class="terms">
+      Ao se cadastrar, você concorda com nossos <a href="terms.html">Termos de Uso</a> e <a href="privacy.html">Política de Privacidade</a>.
+    </p>
   </div>
 
+  <footer style="text-align:center;padding:1.5rem;margin-top:auto;">
+    <div style="display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;font-size:.85rem;">
+      <a href="terms.html" style="color:var(--t3);text-decoration:none;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--t3)'">Termos de Uso</a>
+      <a href="privacy.html" style="color:var(--t3);text-decoration:none;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--t3)'">Política de Privacidade</a>
+      <a href="about.html" style="color:var(--t3);text-decoration:none;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--t3)'">Sobre</a>
+    </div>
+    <p style="color:var(--t3);font-size:.78rem;margin-top:.6rem">© 2025 SOul — Projeto Universitário</p>
+  </footer>
+
+  <script src="shared.js"></script>
   <script>
-    // Elementos DOM
     const passwordInput = document.getElementById('password');
     const confirmPasswordInput = document.getElementById('confirmPassword');
     const passwordMatchEl = document.getElementById('passwordMatch');
@@ -229,7 +78,6 @@
     let isPasswordValid = false;
     let doPasswordsMatch = false;
 
-    // Validação em tempo real
     passwordInput.addEventListener('input', validatePassword);
     confirmPasswordInput.addEventListener('input', checkPasswordMatch);
 
@@ -237,55 +85,34 @@
       const password = passwordInput.value;
       const strengthText = document.getElementById('strengthText');
       const strengthMeter = document.getElementById('strengthMeter');
-      
+
       let strength = 0;
       let meterColor = '';
       let text = '';
-      
-      // Verifica o comprimento
+
       if (password.length >= 8) strength += 1;
       if (password.length >= 12) strength += 1;
-      
-      // Verifica caracteres especiais
       if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) strength += 1;
-      
-      // Verifica números
       if (/\d/.test(password)) strength += 1;
-      
-      // Verifica letras maiúsculas e minúsculas
       if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength += 1;
-      
-      // Define o texto e cor com base na força
+
       switch(strength) {
         case 0:
         case 1:
-          text = 'Fraca';
-          meterColor = '#e74c3c';
-          isPasswordValid = false;
-          break;
+          text = 'Fraca'; meterColor = 'var(--danger)'; isPasswordValid = false; break;
         case 2:
-          text = 'Moderada';
-          meterColor = '#f39c12';
-          isPasswordValid = true;
-          break;
+          text = 'Moderada'; meterColor = '#f39c12'; isPasswordValid = true; break;
         case 3:
-          text = 'Boa';
-          meterColor = '#1abc9c';
-          isPasswordValid = true;
-          break;
+          text = 'Boa'; meterColor = 'var(--primary)'; isPasswordValid = true; break;
         case 4:
         case 5:
-          text = 'Forte';
-          meterColor = '#27ae60';
-          isPasswordValid = true;
-          break;
+          text = 'Forte'; meterColor = 'var(--success)'; isPasswordValid = true; break;
       }
-      
+
       strengthText.textContent = `Força da senha: ${text}`;
       strengthMeter.textContent = '●'.repeat(strength);
       strengthMeter.style.color = meterColor;
-      
-      // Verifica se as senhas coincidem novamente
+
       checkPasswordMatch();
       updateSubmitButton();
     }
@@ -293,7 +120,7 @@
     function checkPasswordMatch() {
       const password = passwordInput.value;
       const confirmPassword = confirmPasswordInput.value;
-      
+
       if (password && confirmPassword) {
         if (password === confirmPassword) {
           passwordMatchEl.textContent = 'As senhas coincidem!';
@@ -309,7 +136,7 @@
         passwordMatchEl.className = 'password-match';
         doPasswordsMatch = false;
       }
-      
+
       updateSubmitButton();
     }
 
@@ -317,55 +144,46 @@
       submitButton.disabled = !(isPasswordValid && doPasswordsMatch);
     }
 
-    // Validação do formulário
     document.getElementById('signupForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      
+
       const username = document.getElementById('username').value;
       const email = document.getElementById('email').value;
       const password = passwordInput.value;
       const confirmPassword = confirmPasswordInput.value;
       const messageEl = document.getElementById('signupMessage');
-      
-      // Validações redundantes para segurança
+
       if (password.length < 8) {
         messageEl.textContent = 'A senha deve ter pelo menos 8 caracteres';
-        messageEl.style.color = '#e74c3c';
+        messageEl.style.color = 'var(--danger)';
         return;
       }
-      
+
       if (password !== confirmPassword) {
         messageEl.textContent = 'As senhas não coincidem';
-        messageEl.style.color = '#e74c3c';
+        messageEl.style.color = 'var(--danger)';
         return;
       }
-      
+
       fetch('cadastro.php', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          nome: username,
-          email: email,
-          senha: password
-        })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome: username, email: email, senha: password })
       })
       .then(response => response.json())
       .then(data => {
         messageEl.textContent = data.message || '';
-        messageEl.style.color = data.success ? '#27ae60' : '#e74c3c';
-        
+        messageEl.style.color = data.success ? 'var(--success)' : 'var(--danger)';
+
         if (data.success) {
-          // Redireciona após breve delay
           setTimeout(() => {
             window.location.href = data.redirect || 'index.html';
           }, 1500);
         }
       })
-      .catch(error => {
+      .catch(() => {
         messageEl.textContent = 'Erro ao conectar com o servidor';
-        messageEl.style.color = '#e74c3c';
+        messageEl.style.color = 'var(--danger)';
       });
     });
   </script>

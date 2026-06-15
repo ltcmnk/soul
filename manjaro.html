@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manjaro | SOul</title>
+  <script>document.documentElement.setAttribute('data-theme',localStorage.getItem('soul-theme')||'dark')</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="index.html" class="logo">SO<span>ul</span></a>
+    <nav>
+      <ul>
+        <li><a href="os.html" class="active">Sistemas</a></li>
+        <li><a href="favorites.html">Favoritos</a></li>
+        <li><a href="test.html">Teste</a></li>
+        <li><a href="about.html">Sobre</a></li>
+        <li class="user-area"></li>
+      </ul>
+    </nav>
+    <button class="theme-toggle" aria-label="Alternar tema"></button>
+    <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <main>
+    <div class="os-page-inner">
+
+      <section class="os-hero" style="background:linear-gradient(135deg,#35BF5C,#2A9948)">
+        <button class="favorite-btn" id="favoriteBtn" title="Favoritar Manjaro">
+          <i class="fas fa-heart"></i>
+        </button>
+        <div class="os-hero-content">
+          <i class="fas fa-gem" style="font-size:3.5rem;margin-bottom:1rem;opacity:.9"></i>
+          <h1>Manjaro</h1>
+          <p>O poder do Arch Linux com a acessibilidade que ele nunca teve — rolling release, AUR e instalador gráfico num pacote coeso.</p>
+        </div>
+      </section>
+
+      <div class="os-details-container">
+        <div class="os-main-content">
+
+          <div class="os-description">
+            <h2>Sobre o Manjaro</h2>
+            <p>O Manjaro é uma distribuição Linux baseada no Arch, lançada em 2011 pela Manjaro GmbH & Co. KG. Seu objetivo é tornar o ecossistema do Arch Linux acessível a usuários que querem os benefícios da plataforma — repositórios bleeding-edge, AUR gigante, rolling release — sem ter que passar pelo processo de instalação manual e configuração do zero.</p>
+            <p>Oferece instalador gráfico (Calamares), hardware detection automático, drivers pré-configurados e ambientes desktop prontos para uso como KDE Plasma, GNOME e Xfce. Os pacotes passam por uma camada de testes adicional antes de chegarem ao usuário, o que reduz o risco de quebras típicas de distros rolling release puras.</p>
+            <p>Com acesso ao AUR (Arch User Repository) e ao gerenciador Pamac com interface gráfica, o Manjaro é frequentemente a escolha de quem "se formou" no Ubuntu e quer mais controle e atualidade sem a curva íngreme do Arch puro.</p>
+          </div>
+
+          <div class="os-features">
+            <h2>Principais Características</h2>
+            <div class="feature-grid">
+              <div class="feature-card">
+                <i class="fas fa-sync-alt"></i>
+                <h4>Rolling Release</h4>
+                <p>Sistema sempre atualizado — sem necessidade de reinstalar a cada versão nova.</p>
+              </div>
+              <div class="feature-card">
+                <i class="fas fa-store"></i>
+                <h4>Acesso ao AUR</h4>
+                <p>Repositório comunitário com milhares de pacotes não disponíveis nas distros baseadas em Debian.</p>
+              </div>
+              <div class="feature-card">
+                <i class="fas fa-magic"></i>
+                <h4>Instalação simples</h4>
+                <p>Instalador Calamares com interface gráfica intuitiva — sem linha de comando necessária.</p>
+              </div>
+              <div class="feature-card">
+                <i class="fas fa-sliders-h"></i>
+                <h4>Múltiplos desktops</h4>
+                <p>KDE Plasma, GNOME e Xfce disponíveis oficialmente. Outros via community editions.</p>
+              </div>
+              <div class="feature-card">
+                <i class="fas fa-shield-alt"></i>
+                <h4>Pacotes testados</h4>
+                <p>Camada extra de testes antes de liberar atualizações — mais estável que o Arch puro.</p>
+              </div>
+              <div class="feature-card">
+                <i class="fas fa-tools"></i>
+                <h4>Pamac GUI</h4>
+                <p>Gerenciador de pacotes gráfico para instalar, atualizar e remover software facilmente.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="os-screenshots">
+            <h2>Capturas de Tela</h2>
+            <div class="screenshot-grid">
+              <div class="screenshot-item" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/3/30/Manjaro_Linux_24.0_KDE_Plasma_Desktop_English.png');background-position:top"></div>
+              <div class="screenshot-item" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/3/30/Manjaro_Linux_24.0_KDE_Plasma_Desktop_English.png');background-position:center left"></div>
+              <div class="screenshot-item" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/3/30/Manjaro_Linux_24.0_KDE_Plasma_Desktop_English.png');background-position:center right"></div>
+              <div class="screenshot-item" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/3/30/Manjaro_Linux_24.0_KDE_Plasma_Desktop_English.png');background-position:bottom"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="os-sidebar">
+          <div class="os-info-card">
+            <h3>Informações Técnicas</h3>
+            <div class="info-item"><span>Desenvolvedor</span><span>Manjaro GmbH & Co. KG</span></div>
+            <div class="info-item"><span>Lançamento</span><span>2011</span></div>
+            <div class="info-item"><span>Versão atual</span><span>Manjaro 24.x</span></div>
+            <div class="info-item"><span>Base</span><span>Arch Linux</span></div>
+            <div class="info-item"><span>Desktop</span><span>KDE / GNOME / Xfce</span></div>
+            <div class="info-item"><span>Pacotes</span><span>Pacman + AUR</span></div>
+            <div class="info-item"><span>Licença</span><span>GPL e outras</span></div>
+          </div>
+
+          <div class="os-info-card">
+            <h3>Requisitos Mínimos</h3>
+            <div class="info-item"><span>CPU</span><span>x86-64 (64 bits)</span></div>
+            <div class="info-item"><span>RAM</span><span>2 GB (4 GB recomendado)</span></div>
+            <div class="info-item"><span>Armazenamento</span><span>30 GB</span></div>
+            <div class="info-item"><span>GPU</span><span>1024×768</span></div>
+            <div class="info-item"><span>Mídia</span><span>USB (8 GB+)</span></div>
+          </div>
+
+          <div class="os-info-card">
+            <h3>Links Úteis</h3>
+            <a href="https://manjaro.org/download/" class="btn btn-secondary"><i class="fas fa-download"></i> Download Oficial</a>
+            <a href="https://wiki.manjaro.org/" class="btn btn-secondary"><i class="fas fa-book"></i> Wiki</a>
+            <a href="https://forum.manjaro.org/" class="btn btn-secondary"><i class="fas fa-comments"></i> Fórum</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="download-section">
+        <h2>Pronto para experimentar o Manjaro?</h2>
+        <p>Escolha seu desktop favorito — KDE Plasma, GNOME ou Xfce — e experimente o Arch Linux do jeito mais acessível.</p>
+        <a href="https://manjaro.org/download/" class="download-btn" style="background:#35BF5C">
+          <i class="fas fa-download"></i> Baixar Manjaro
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">SO<span>ul</span></div>
+      <div class="footer-links">
+        <a href="os.html">Sistemas</a>
+        <a href="test.html">Quiz</a>
+        <a href="about.html">Sobre</a>
+        <a href="terms.html">Termos</a>
+        <a href="privacy.html">Privacidade</a>
+      </div>
+    </div>
+    <p class="footer-copy">© 2025 SOul — Projeto Universitário · Desenvolvimento Web</p>
+  </footer>
+
+  <script src="shared.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const favoriteBtn = document.getElementById('favoriteBtn');
+      const slug = 'manjaro';
+
+      if (favorites.isFavorite(slug)) favoriteBtn.classList.add('favorited');
+
+      favoriteBtn.addEventListener('click', function() {
+        const added = favorites.toggle(slug);
+        this.classList.toggle('favorited', added);
+        if (added) {
+          favoritesSync.add(slug);
+          utils.showToast('Manjaro adicionado aos favoritos');
+        } else {
+          favoritesSync.remove(slug);
+          utils.showToast('Manjaro removido dos favoritos');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

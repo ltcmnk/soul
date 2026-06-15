@@ -3,323 +3,113 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Teste | SOul</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #f5f7fa;
-      color: #333;
-      line-height: 1.6;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #2c3e50;
-      color: #fff;
-      padding: 1rem 2rem;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: #fff;
-      cursor: pointer;
-    }
-
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 1.5rem;
-      align-items: center;
-    }
-
-    nav a {
-      color: #ecf0f1;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s ease;
-    }
-
-    nav a:hover {
-      color: #1abc9c;
-    }
-
-    .user-area {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .login-btn {
-      background: #1abc9c;
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      font-weight: 500;
-      transition: background 0.3s ease;
-    }
-
-    .login-btn:hover {
-      background: #16a085;
-    }
-
-    main {
-      padding: 3rem 2rem;
-      min-height: calc(100vh - 70px);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .test-intro-container {
-      width: 100%;
-      max-width: 800px;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      padding: 2.5rem;
-      margin-bottom: 2rem;
-      text-align: center;
-    }
-
-    .test-intro-container h1 {
-      color: #2c3e50;
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .test-intro-container p {
-      color: #7f8c8d;
-      margin-bottom: 1.5rem;
-      text-align: left;
-      line-height: 1.7;
-    }
-
-    .features-list {
-      text-align: left;
-      margin: 2rem 0;
-    }
-
-    .feature-item {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 1.5rem;
-    }
-
-    .feature-icon {
-      color: #1abc9c;
-      font-size: 1.2rem;
-      margin-right: 1rem;
-      margin-top: 0.2rem;
-    }
-
-    .feature-text h3 {
-      color: #2c3e50;
-      margin-bottom: 0.5rem;
-    }
-
-    .feature-text p {
-      color: #7f8c8d;
-      margin-bottom: 0;
-    }
-
-    .start-test-btn {
-      background: #1abc9c;
-      color: white;
-      padding: 1rem 2rem;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 1.1rem;
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      margin-top: 1rem;
-    }
-
-    .start-test-btn:hover {
-      background: #16a085;
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(26, 188, 156, 0.3);
-    }
-
-    .test-steps {
-      display: flex;
-      justify-content: space-between;
-      margin: 2rem auto;
-      width: 100%;
-      max-width: 600px;
-    }
-
-    .step {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      flex: 1;
-      position: relative;
-    }
-
-    .step-number {
-      width: 40px;
-      height: 40px;
-      background: #1abc9c;
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      z-index: 2;
-    }
-
-    .step-text {
-      color: #7f8c8d;
-      font-size: 0.9rem;
-      text-align: center;
-      max-width: 100px;
-    }
-
-    .step-connector {
-      position: absolute;
-      height: 2px;
-      background: #ecf0f1;
-      top: 20px;
-      left: 50%;
-      width: 100%;
-      z-index: 1;
-    }
-
-    .step:last-child .step-connector {
-      display: none;
-    }
-
-    @media (max-width: 768px) {
-      .test-intro-container {
-        padding: 1.5rem;
-      }
-      
-      .test-intro-container h1 {
-        font-size: 1.5rem;
-      }
-      
-      .test-steps {
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
-      }
-      
-      .step-connector {
-        display: none;
-      }
-    }
-  </style>
+  <title>Quiz — Encontre seu SO | SOul</title>
+  <script>document.documentElement.setAttribute('data-theme',localStorage.getItem('soul-theme')||'dark')</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <div class="logo" onclick="window.location.href='index.html'">SOul</div>
+
+  <header class="site-header">
+    <a href="index.html" class="logo">SO<span>ul</span></a>
     <nav>
       <ul>
-        <li><a href="os.html">Sistemas Operacionais</a></li>
+        <li><a href="os.html">Sistemas</a></li>
         <li><a href="favorites.html">Favoritos</a></li>
         <li><a href="test.html">Teste</a></li>
-        <li><a href="about.html">Sobre Nós</a></li>
-        <li class="user-area">
-          <a href="login.html" class="login-btn">Entrar</a>
-        </li>
+        <li><a href="about.html">Sobre</a></li>
+        <li class="user-area"></li>
       </ul>
     </nav>
+    <button class="theme-toggle" aria-label="Alternar tema"></button>
+    <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </header>
 
-  <main>
-    <div class="test-intro-container">
-      <h1>Encontre o Sistema Operacional Perfeito para Você</h1>
-      <p>Nosso teste de compatibilidade analisa suas necessidades, preferências e hardware para recomendar o sistema operacional ideal para seu uso diário. Responda algumas perguntas simples e descubra qual sistema combina mais com você!</p>
-      
-      <div class="features-list">
-        <div class="feature-item">
-          <div class="feature-icon">
-            <i class="fas fa-search"></i>
-          </div>
-          <div class="feature-text">
+  <main class="quiz-page">
+    <div class="quiz-intro-card">
+      <div class="quiz-intro-icon">
+        <i class="fas fa-terminal"></i>
+      </div>
+      <h1>Encontre o Sistema Operacional Perfeito</h1>
+      <p>Responda 6 perguntas sobre como você usa seu computador. Sem jargões — só escolhas simples. A IA analisa seu perfil e entrega a recomendação ideal.</p>
+
+      <div class="feature-list-quiz">
+        <div class="feature-item-quiz">
+          <div class="fi-icon"><i class="fas fa-search"></i></div>
+          <div>
             <h3>Análise Personalizada</h3>
-            <p>Consideramos seu tipo de uso, hardware e preferências para oferecer recomendações precisas.</p>
+            <p>Consideramos uso, hardware e preferências para recomendações precisas.</p>
           </div>
         </div>
-        
-        <div class="feature-item">
-          <div class="feature-icon">
-            <i class="fas fa-clock"></i>
-          </div>
-          <div class="feature-text">
+        <div class="feature-item-quiz">
+          <div class="fi-icon"><i class="fas fa-clock"></i></div>
+          <div>
             <h3>Rápido e Fácil</h3>
-            <p>O teste leva apenas alguns minutos e você pode fazê-lo diretamente no navegador.</p>
+            <p>Menos de dois minutos, direto no navegador.</p>
           </div>
         </div>
-        
-        <div class="feature-item">
-          <div class="feature-icon">
-            <i class="fas fa-star"></i>
-          </div>
-          <div class="feature-text">
+        <div class="feature-item-quiz">
+          <div class="fi-icon"><i class="fas fa-star"></i></div>
+          <div>
             <h3>Resultados Objetivos</h3>
-            <p>Baseamos nossas recomendações em critérios técnicos e de usabilidade, sem viés comercial.</p>
+            <p>Critérios técnicos e de usabilidade, sem viés comercial.</p>
           </div>
         </div>
       </div>
-      
-      <div class="test-steps">
-        <div class="step">
-          <div class="step-number">1</div>
-          <div class="step-connector"></div>
-          <div class="step-text">Responda as perguntas</div>
+
+      <div class="quiz-steps-row">
+        <div class="qs-item active">
+          <div class="qs-dot">1</div>
+          <span>Responda o quiz</span>
         </div>
-        
-        <div class="step">
-          <div class="step-number">2</div>
-          <div class="step-connector"></div>
-          <div class="step-text">Analisamos suas respostas</div>
+        <div class="qs-line"></div>
+        <div class="qs-item">
+          <div class="qs-dot">2</div>
+          <span>A IA analisa</span>
         </div>
-        
-        <div class="step">
-          <div class="step-number">3</div>
-          <div class="step-connector"></div>
-          <div class="step-text">Receba suas recomendações</div>
+        <div class="qs-line"></div>
+        <div class="qs-item">
+          <div class="qs-dot">3</div>
+          <span>Sua recomendação</span>
         </div>
       </div>
-      
-      <button class="start-test-btn" onclick="window.location.href='test1.html'">
+
+      <button class="btn btn-primary btn-lg" id="startBtn" style="width:100%;justify-content:center;margin-top:.5rem">
         Começar Teste <i class="fas fa-arrow-right"></i>
       </button>
     </div>
   </main>
 
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">SO<span>ul</span></div>
+      <div class="footer-links">
+        <a href="os.html">Sistemas</a>
+        <a href="test.html">Quiz</a>
+        <a href="about.html">Sobre</a>
+        <a href="terms.html">Termos</a>
+        <a href="privacy.html">Privacidade</a>
+      </div>
+    </div>
+    <p class="footer-copy">© 2025 SOul — Projeto Universitário · Desenvolvimento Web</p>
+  </footer>
+
   <script src="shared.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    const startBtn = document.querySelector('.start-test-btn');
-    const currentQuestion = testProgress.getCurrentQuestion();
-    const hasAnswers = Object.keys(testProgress.getAnswers()).length > 0;
-    
-    if (currentQuestion !== 'test1.html' || hasAnswers) {
-        startBtn.textContent = hasAnswers ? 'Continuar Teste' : 'Começar Teste';
-        startBtn.innerHTML += ' <i class="fas fa-arrow-right"></i>';
-        startBtn.onclick = function() {
-            window.location.href = hasAnswers ? currentQuestion : 'test1.html';
-        };
-    }
-  });
+    document.addEventListener('DOMContentLoaded', function () {
+      const startBtn = document.getElementById('startBtn');
+      const currentQuestion = testProgress.getCurrentQuestion();
+      const hasAnswers = Object.keys(testProgress.getAnswers()).length > 0;
+
+      if (hasAnswers) {
+        startBtn.innerHTML = 'Continuar Teste <i class="fas fa-arrow-right"></i>';
+        startBtn.onclick = function () { window.location.href = currentQuestion; };
+      } else {
+        startBtn.onclick = function () { window.location.href = 'test1.html'; };
+      }
+    });
   </script>
 </body>
 </html>
